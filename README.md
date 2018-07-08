@@ -13,5 +13,9 @@ First,please run following commands:<br/>
 <pre><code>npm install fs
 npm install ws</code></pre>
 Then,run command:<code>node myagent.js</code>
+## About Key
+The key of myagent is in the keys.txt
+Format is: <code>KEY01 KEY02 </code>
+<br>The end of keys.txt file must have a space.
 ## LICENSE
 GNU GPL v3
