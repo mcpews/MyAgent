@@ -14,4 +14,4 @@ First,please run following commands:<br/>
 npm install ws</code></pre>
 Then,run command:<code>node myagent.js</code>
 ## LICENSE
-GNU GPL.
+GNU GPL v3
