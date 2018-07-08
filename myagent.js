@@ -1,9 +1,10 @@
 var WebSocketServer = require('ws').Server;
 var fs=require("fs");
-var wss = new WebSocketServer({port:19131});
+var portm=19131;
+var wss = new WebSocketServer({port: portm});
 
 console.log('MyAgent by LNSSPsd');
-console.log('Please Connect Client to 0.0.0.0:19131.');
+console.log("Please Connect Client to 127.0.0.1:%s.",portm);
 
 var see=true;
 
