@@ -36,3 +36,5 @@ Build it with gcc:<pre><code>gcc myagentd.c -o myagentd</code></pre>
 Submit a issue to report bug.
 ## LICENSE
 GNU GPL v3
+## Contact Us
+MJTG QQ Group:<code>590352162</code>
