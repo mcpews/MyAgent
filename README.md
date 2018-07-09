@@ -32,5 +32,7 @@ Build it with gcc:<pre><code>gcc myagentd.c -o myagentd</code></pre>
 <pre><code>./myagentd</code></pre>
 ### KILL
 <pre><code>killall myagentd</code></pre>
+## Report a bug
+Submit a issue to report bug.
 ## LICENSE
 GNU GPL v3
