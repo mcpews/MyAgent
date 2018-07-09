@@ -13,9 +13,16 @@ First,please run following commands:<br/>
 <pre><code>npm install fs
 npm install ws</code></pre>
 Then,run command:<code>node myagent.js</code>
+## Connect
+type command in game:<br>
+<code>/connect [ip]:19131</code>
 ## About Key
 The key of myagent is in the keys.txt
-Format is: <code>KEY01 KEY02 </code>
-<br>The end of keys.txt file must have a space.
+Format is: <code>KEY01 KEY02</code>
+## Command Collections
+Command Collections can start at game.<br>
+When you enter <code>*/cmdc</code> at game,it can be run.<br>
+The <code>cmdc.txt</code> is an example of command collections.<br>
+We use char <code>$</code> to split commands.
 ## LICENSE
 GNU GPL v3
