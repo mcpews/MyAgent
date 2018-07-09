@@ -3,7 +3,8 @@ var fs=require("fs");
 var portm=19131;
 var wss = new WebSocketServer({port: portm});
 
-console.log('MyAgent by LNSSPsd');
+console.log('MyAgentR by LNSSPsd');
+console.log("Version: v1.0R");
 console.log("Please Connect Client to 127.0.0.1:%s.",portm);
 
 var see=true;
