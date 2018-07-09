@@ -59,7 +59,7 @@ function gamecmds(cmd,ws){
 			"version": 1
 		},
 		"header": {
-			"requestId": "0ffae098-00ff-ffff-abbbbbbbbbdf3044",
+			"requestId": "00000000-0000-0000-0000000000000000",
 			"messagePurpose": "commandRequest",
 			"version": 1,
 			"messageType": "commandRequest"
@@ -347,11 +347,11 @@ wss.on('connection', function connection(ws){
 			}
 			return;
 		}
-		if(JSON.parse(message).header.messagePurpose=="commandResponse" && JSON.parse(message).header.requestId=="0ffae098-00ff-ffff-abbbbbbbbbdf3f44")
+		if(JSON.parse(message).header.messagePurpose=="commandResponse" && JSON.parse(message).header.requestId!="00000000-0000-0000-0000000000000000")
 		{
 			serverinf("Command Response:\nMessage:"+JSON.parse(message).body.statusMessage,ws);
 		}
-		if(JSON.parse(message).body.eventName=="AgentCommand")
+		if(JSON.parse(message).body.eventName=="AgentCommand" && JSON.parse(message).header.requestId!="00000000-0000-0000-0000000000000000")
 		{
 			serverinf("Agent Command:\nResult:"+JSON.parse(message).body.properties.Result,ws);
 		}
@@ -457,7 +457,7 @@ serverinf("*/check <key>:check your key\n\
 					case "*/cmdc":
 						var cmdc=fs.readFileSync("cmdc.txt","ascii").split("$");
 						for(var cc=0;cc<cmdc.length;cc++){
-							setTimeout(function(){gamecmd(cmdc[cc],ws);},500*cc);
+							setTimeout(function(){gamecmds(cmdc[cc],ws);},500*cc);
 						}
 						setTimeout(function(){serverinf("Commands Collection Done.",ws);},500*cmdc.length);
 						break;
