@@ -25,6 +25,7 @@ When you enter <code>*/cmdc</code> at game,it can be run.<br>
 The <code>cmdc.txt</code> is an example of command collections.<br>
 We use char <code>$</code> to split commands.
 ## MyAgent Daemon
+* Only LINUX
 ### Build
 Build it with gcc:<pre><code>gcc myagentd.c -o myagentd</code></pre>
 ### Run
