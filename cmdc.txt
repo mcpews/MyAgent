@@ -1,0 +1,1 @@
+say This is a command collection$agent create$agent move forward$agent move forward$agent move up$agent till forward
