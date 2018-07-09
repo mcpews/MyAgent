@@ -78,10 +78,10 @@ function serverinf(msg,ws){
 }
 
 wss.on('connection', function connection(ws){
-	var logtogame=true;
-	var owner="None";
+	//var logtogame=true;
+	
 	console.log('Client Connected!');
-	console.log('Listening Events...');
+	//console.log('Listening Events...');
 	
 	ws.send(JSON.stringify(
 	{
@@ -317,7 +317,7 @@ wss.on('connection', function connection(ws){
 		}
 	}
 	));
-	serverinf("MyAgent Connected.\nPlease use */check <Your Password> to login.\nIf you not checked,Websocket will disconnect in 12s.\n[MyAgent By LNSSPsd]",ws);
+	serverinf("MyAgent Connected.\nPlease use */check <Your Key> to login.\nIf you not checked,Websocket will disconnect in 12s.\n[MyAgent By LNSSPsd]",ws);
 	/*gamecmd("agent create",ws);// /connect 127.0.0.1:19131
 	gamecmd("agent till forward",ws);*/
 	var checked=false;
@@ -450,9 +450,17 @@ serverinf("*/transfer <srcSlotNum:int> <quantity:int> <dstSlotNum:int>:transfer 
 */place <slotNum:int> <direction>:Put <slotNum>'s block to <direction>.\n\
 */getitemcount|getitemspace|getitemdetail <slotNum:item>",ws);
 serverinf("*/check <key>:check your key\n\
-*/bye:Disconnect Websocket.",ws);
+*/bye:Disconnect Websocket.\n\
+*/cmdc: Run cmdc.txt(Command collection)",ws);
 
 					break;
+					case "*/cmdc":
+						var cmdc=fs.readFileSync("cmdc.txt","ascii").split("$");
+						for(var cc=0;cc<cmdc.length;cc++){
+							setTimeout(function(){gamecmd(cmdc[cc],ws);},500*cc);
+						}
+						setTimeout(function(){serverinf("Commands Collection Done.",ws);},500*cmdc.length);
+						break;
 					default:
 					gamecmd("agent "+JSON.parse(message).body.properties.Message.split("/")[1],ws);
 					//serverinf("Unknown command.",ws);
