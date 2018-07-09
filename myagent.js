@@ -456,11 +456,15 @@ serverinf("*/check <key>:check your key\n\
 
 					break;
 					case "*/cmdc":
+						try{
 						var cmdc=fs.readFileSync("cmdc.txt","ascii").split("$");
 						for(var cc=0;cc<cmdc.length;cc++){
 							setTimeout(function(){gamecmds(cmdc[cc],ws);},500*cc);
 						}
 						setTimeout(function(){serverinf("Commands Collection Done.",ws);},500*cmdc.length);
+						}catch(err){
+							serverinf("Error when doing command collections: "+err[message],ws);
+						}
 						break;
 					default:
 					gamecmd("agent "+JSON.parse(message).body.properties.Message.split("/")[1],ws);
