@@ -317,9 +317,6 @@ wss.on('connection', function connection(ws){
 	ws.on('message',function incoming(message){
 		//ws.terminate();
 		console.log('received: %s',message);
-		if(JSON.parse(message).header.requestId=="00000000-0000-0000-000000000000"){
-			return;
-		}
 		if(checked==false){
 			if(JSON.parse(message).body.eventName=="PlayerMessage"){
 				if(JSON.parse(message).body.properties.Message.substring(0,8)=="*/check "){
@@ -344,7 +341,7 @@ wss.on('connection', function connection(ws){
 		{
 			serverinf("Agent Command:\nResult:"+JSON.parse(message).body.properties.Result,ws);
 		}
-		if(JSON.parse(message).body.eventName=="PlayerMessage"/* && JSON.parse(message).body.properties.MessageType=="chat"*/)
+		if(JSON.parse(message).body.eventName=="PlayerMessage"/* && JSON.parse(message).body.properties.MessageType=="chat"*/ && JSON.parse(message).header.requestId!="00000000-0000-0000-000000000000")
 		{
 			if(JSON.parse(message).body.properties.Message.substring(0,2)=="./")
 			{
