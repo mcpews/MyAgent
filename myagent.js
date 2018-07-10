@@ -4,7 +4,7 @@ var fs=require("fs");
 var portm=19131;
 var wss = new WebSocketServer({port: portm});
 }catch(err){
-	console.log("Error when loading require packages: %s.",err[message]);
+	console.log("Error when loading require packages: %s.",err.message);
 	process.exit(1);
 }
 
@@ -468,7 +468,7 @@ serverinf("*/check <key>:check your key\n\
 						}
 						setTimeout(function(){serverinf("Commands Collection Done.",ws);},500*cmdc.length);
 						}catch(err){
-							serverinf("Error when doing command collections: "+err[message],ws);
+							serverinf("Error when doing command collections: "+err.message,ws);
 						}
 						break;
 					default:
