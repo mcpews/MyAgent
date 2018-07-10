@@ -1,7 +1,7 @@
 # MyAgent
 The agent generator&amp;controller written in node.js
 ## Install Node.Js
-* WINDOWS: download nodejs at <code>https://nodejs.org</code>
+* WINDOWS: download nodejs at <code>https://nodejs.org/en/download/</code>
 * LINUX: Please install packages <code>gcc g++ make</code> first,then<br/>
 Run commands:<pre><code>chmod +x configure
 ./configure</code></pre>
