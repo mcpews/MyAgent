@@ -325,7 +325,7 @@ wss.on('connection', function connection(ws){
 		if(checked==false){
 			if(JSON.parse(message).body.eventName=="PlayerMessage"){
 				if(JSON.parse(message).body.properties.Message.substring(0,8)=="*/check "){
-					var keys=fs.readFileSync("keys.txt","ascii").split(" ");
+					var keys=fs.readFileSync("keys.txt","ascii")+" ".split(" ");
 					for(var i=0;i<=keys.length;i++){
 						if(JSON.parse(message).body.properties.Message.split(" ")[1]==keys[i]){
 							serverinf("Key is OK!\nType */help to get help!\nEnjoy It!:)",ws);
@@ -420,7 +420,7 @@ wss.on('connection', function connection(ws){
 				switch(JSON.parse(message).body.properties.Message)
 				{
 					case "*/help":
-					serverinf("MyAgent v1 by LNSSPsd\n(support for command block[say command] or chat/msg)*/create: Create Agent.\n\
+					serverinf("MyAgent v1 by LNSSPsd\n*/create: Create Agent.\n\
 */move <direction>:move to selected direction.\n\
 (Direction: forward|back|up|down|left|right)\n\
 (turnDirection: left|right)\n\
@@ -447,7 +447,7 @@ serverinf("*/check <key>:check your key\n\
 					break;
 					case "*/cmdc":
 						try{
-						var cmdc=fs.readFileSync("cmdc.txt","ascii").split("$");
+						var cmdc=fs.readFileSync("cmdc.txt","ascii")+"$".split("$");
 						for(var cc=0;cc<=cmdc.length;cc++){
 							setTimeout(function(){gamecmds(cmdc[cc],ws);},500*cc);
 						}
