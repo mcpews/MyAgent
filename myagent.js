@@ -309,15 +309,15 @@ wss.on('connection', function connection(ws){
 	var checked=false;
 	setTimeout(function(){
 		if(checked==false){serverinf("Websocket check Timed out.\nDisconnecting...",ws);}
-	},11000);
+	},21000);
 	setTimeout(function(){
 		if(checked==false){ws.terminate();}
-	},12000);
+	},22000);
 	
 	ws.on('message',function incoming(message){
 		//ws.terminate();
 		console.log('received: %s',message);
-		if(JSON.parse(message).body.eventName!=undefined){
+		if(JSON.parse(message).body.eventName=="PlayerMessage"){
 		if(JSON.parse(message).body.properties.MessageType=="me"){
 			return;
 		}
