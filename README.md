@@ -2,12 +2,10 @@
 The agent generator&amp;controller written in node.js
 ## Install Node.Js
 * WINDOWS: download nodejs at <code>https://nodejs.org</code>
-* LINUX: download nodejs source code at <code>https://nodejs.org/dist/v8.11.3/node-v8.11.3.tar.gz</code> and run the following commands:<br/>
-<pre><code>tar -xvzf node-v8.11.3.tar.gz
-cd node-v8.11.3
-./configure
-make #this command will take about an hour.
-make install</code></pre>
+* LINUX: Please install packages <code>gcc g++ make</code> first,then<br/>
+Run commands:<pre><code>chmod +x configure
+./configure</code></pre>
+and wait about 1 hour.
 ## Run
 First,please run following commands:<br/>
 <pre><code>npm install fs
