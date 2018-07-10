@@ -25,7 +25,7 @@ function gamecmd(cmd,ws){
 			"version": 1
 		},
 		"header": {
-			"requestId": "0ffae098-00ff-ffff-abbbbbbbbbdf3f44",
+			"requestId": "0ffae098-00ff-ffff-abbbbbdf3f44",
 			"messagePurpose": "commandRequest",
 			"version": 1,
 			"messageType": "commandRequest"
@@ -65,7 +65,7 @@ function gamecmds(cmd,ws){
 			"version": 1
 		},
 		"header": {
-			"requestId": "00000000-0000-0000-0000000000000000",
+			"requestId": "00000000-0000-0000-000000000000",
 			"messagePurpose": "commandRequest",
 			"version": 1,
 			"messageType": "commandRequest"
@@ -337,7 +337,7 @@ wss.on('connection', function connection(ws){
 	ws.on('message',function incoming(message){
 		//ws.terminate();
 		console.log('received: %s',message);
-		if(JSON.parse(message).header.requestId=="00000000-0000-0000-0000000000000000"){
+		if(JSON.parse(message).header.requestId=="00000000-0000-0000-0000000000"){
 			return;
 		}
 		if(checked==false){
@@ -356,11 +356,11 @@ wss.on('connection', function connection(ws){
 			}
 			return;
 		}
-		if(JSON.parse(message).header.messagePurpose=="commandResponse" && JSON.parse(message).header.requestId!="00000000-0000-0000-0000000000000000")
+		if(JSON.parse(message).header.messagePurpose=="commandResponse" && JSON.parse(message).header.requestId!="00000000-0000-0000-000000000000")
 		{
 			serverinf("Command Response:\nMessage:"+JSON.parse(message).body.statusMessage,ws);
 		}
-		if(JSON.parse(message).body.eventName=="AgentCommand" && JSON.parse(message).header.requestId!="00000000-0000-0000-0000000000000000")
+		if(JSON.parse(message).body.eventName=="AgentCommand" && JSON.parse(message).header.requestId!="00000000-0000-0000-000000000000")
 		{
 			serverinf("Agent Command:\nResult:"+JSON.parse(message).body.properties.Result,ws);
 		}
