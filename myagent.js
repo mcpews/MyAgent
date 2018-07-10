@@ -9,7 +9,7 @@ var wss = new WebSocketServer({port: portm});
 }
 
 console.log('MyAgentR by LNSSPsd');
-console.log("Version: v1.0");
+console.log("Version: v1.0 hotfix #1");
 console.log("Please Connect Client to 127.0.0.1:%s.",portm);
 
 var see=true;
