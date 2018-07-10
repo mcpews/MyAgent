@@ -317,6 +317,9 @@ wss.on('connection', function connection(ws){
 	ws.on('message',function incoming(message){
 		//ws.terminate();
 		console.log('received: %s',message);
+		if(JSON.parse(message).body.properties.MessageType=="me"){
+			return;
+		}
 		if(checked==false){
 			if(JSON.parse(message).body.eventName=="PlayerMessage"){
 				if(JSON.parse(message).body.properties.Message.substring(0,8)=="*/check "){
