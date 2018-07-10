@@ -7,10 +7,11 @@ Run commands:<pre><code>chmod +x configure
 ./configure</code></pre>
 and wait about 1 hour.
 ## Run
-First,please run following commands:<br/>
+In WINDOWS:First,please run following commands:<br/>
 <pre><code>npm install fs
 npm install ws</code></pre>
 Then,run command:<code>node myagent.js</code>
+In LINUX: Do step Install Node.JS and then run command:<code>node myagent.js</code>
 ## Connect
 type command in game:<br>
 <code>/connect [ip]:19131</code>
