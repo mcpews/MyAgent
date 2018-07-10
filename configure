@@ -1,0 +1,61 @@
+#! /bin/bash
+
+mkainn(){
+echo "Downloading Node.JS Source code..."
+wget https://nodejs.org/dist/v8.11.3/node-v8.11.3.tar.gz
+if [ $? != 0 ]; then
+echo "[FAILED]DOWNLOAD"
+exit 10
+fi
+echo "Extracting Source Code..."
+tar -xzf node-v8.11.3.tar.gz
+if [ $? != 0 ]; then
+echo "FAILED WHEN EXTRACT"
+exit 11
+fi
+echo "Configuring..."
+cd node-v8.11.3
+./configure
+if [ $? != 0 ]; then
+echo "[FAILED]CONFIGURE nodejs"
+cd ..
+exit 12
+fi
+echo "********************************************************"
+echo "*   MAKE - This operation will take about 1 hour       *"
+echo "********************************************************"
+make
+if [ $? != 0 ]; then
+echo "[FAILED] MAKE"
+cd ..
+exit 13
+fi
+echo "Installing Node.JS"
+make install
+if [ $? != 0 ]; then
+echo "[FAILED] INSTALL"
+cd ..
+exit 14
+fi
+cd ..
+echo "Node.JS has been Installed on your computer!"
+return 0
+}
+
+echo "Checking node and npm.."
+
+node -v
+if [ $? != 0 ]; then
+echo "Node.JS Looks like not installed,Installing..."
+mkainn
+fi
+
+npm -v
+if [ $? != 0 ]; then
+echo "Npm Looks like not installed,Reinstalling..."
+mkainn
+fi
+echo "Installing Packages..."
+npm install ws
+npm install fs
+echo "All Done!! Type 'node myagent.js' to start myagent!"
