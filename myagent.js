@@ -45,7 +45,7 @@ function gamecmds(cmd,ws){
 			"version": 1
 		},
 		"header": {
-			"requestId": "00000000-0000-0000-000000000000",
+			"requestId": "00000000-0001-0000-000000000000",
 			"messagePurpose": "commandRequest",
 			"version": 1,
 			"messageType": "commandRequest"
@@ -333,15 +333,15 @@ wss.on('connection', function connection(ws){
 			}
 			return;
 		}
-		if(JSON.parse(message).header.messagePurpose=="commandResponse" && JSON.parse(message).header.requestId!="00000000-0000-0000-000000000000")
+		if(JSON.parse(message).header.messagePurpose=="commandResponse" && JSON.parse(message).header.requestId!="00000000-0001-0000-000000000000")
 		{
 			serverinf("Command Response:\nMessage:"+JSON.parse(message).body.statusMessage,ws);
 		}
-		if(JSON.parse(message).body.eventName=="AgentCommand" && JSON.parse(message).header.requestId!="00000000-0000-0000-000000000000")
+		if(JSON.parse(message).body.eventName=="AgentCommand" && JSON.parse(message).header.requestId!="00000000-0000-0001-000000000000")
 		{
 			serverinf("Agent Command:\nResult:"+JSON.parse(message).body.properties.Result,ws);
 		}
-		if(JSON.parse(message).body.eventName=="PlayerMessage"/* && JSON.parse(message).body.properties.MessageType=="chat"*/ && JSON.parse(message).header.requestId!="00000000-0000-0000-000000000000")
+		if(JSON.parse(message).body.eventName=="PlayerMessage"/* && JSON.parse(message).body.properties.MessageType=="chat"*/ && JSON.parse(message).header.requestId!="00000000-0001-0000-000000000000")
 		{
 			if(JSON.parse(message).body.properties.Message.substring(0,2)=="./")
 			{
