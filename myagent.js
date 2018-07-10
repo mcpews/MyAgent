@@ -34,26 +34,6 @@ function gamecmd(cmd,ws){
 	));
 }
 
-function gameccmd(){
-	wsa.send(JSON.stringify(
-	{
-		"body": {
-			"origin": {
-				"type": "player"
-			},
-			"commandLine": com,
-			"version": 1
-		},
-		"header": {
-			"requestId": "0ffae098-00ff-ffff-abbbbbbbbbdf3f44",
-			"messagePurpose": "commandRequest",
-			"version": 1,
-			"messageType": "commandRequest"
-		}
-	}
-	));
-}
-
 function gamecmds(cmd,ws){
 	ws.send(JSON.stringify(
 	{
@@ -337,14 +317,14 @@ wss.on('connection', function connection(ws){
 	ws.on('message',function incoming(message){
 		//ws.terminate();
 		console.log('received: %s',message);
-		if(JSON.parse(message).header.requestId=="00000000-0000-0000-0000000000"){
+		if(JSON.parse(message).header.requestId=="00000000-0000-0000-000000000000"){
 			return;
 		}
 		if(checked==false){
 			if(JSON.parse(message).body.eventName=="PlayerMessage"){
 				if(JSON.parse(message).body.properties.Message.substring(0,8)=="*/check "){
 					var keys=fs.readFileSync("keys.txt","ascii").split(" ");
-					for(var i=0;i<keys.length;i++){
+					for(var i=0;i<=keys.length;i++){
 						if(JSON.parse(message).body.properties.Message.split(" ")[1]==keys[i]){
 							serverinf("Key is OK!\nType */help to get help!\nEnjoy It!:)",ws);
 							checked=true;
@@ -466,7 +446,7 @@ serverinf("*/check <key>:check your key\n\
 					case "*/cmdc":
 						try{
 						var cmdc=fs.readFileSync("cmdc.txt","ascii").split("$");
-						for(var cc=0;cc<cmdc.length;cc++){
+						for(var cc=0;cc<=cmdc.length;cc++){
 							setTimeout(function(){gamecmds(cmdc[cc],ws);},500*cc);
 						}
 						setTimeout(function(){serverinf("Commands Collection Done.",ws);},500*cmdc.length);
