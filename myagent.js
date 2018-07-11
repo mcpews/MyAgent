@@ -318,7 +318,7 @@ wss.on('connection', function connection(ws){
 		//ws.terminate();
 		console.log('received: %s',message);
 		if(JSON.parse(message).body.eventName=="PlayerMessage"){
-		if(JSON.parse(message).body.properties.MessageType=="me"){
+		if(JSON.parse(message).body.properties.MessageType=="me" || JSON.parse(message).body.properties.MessageType=="say"){
 			return;
 		}
 		}
