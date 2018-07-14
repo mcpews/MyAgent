@@ -37,6 +37,6 @@ Submit a issue to report bug.
 ## LICENSE
 GNU GPL v3
 ## Authors
-許嘉鋅,LNSSPsd,CAIMEO &amp; Torrekie.
+[許嘉鋅](https://github.com/TheXuJiaXin),[LNSSPsd](https://github.com/LNSSPsd),[CAIMEO](https://github.com/CAIMEOX) &amp; [Torrekie](https://github.com/Torrekie).
 ## Contact Us
 MJTG QQ Group:<code>590352162</code>
