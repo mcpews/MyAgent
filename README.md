@@ -69,8 +69,8 @@ LINUX: 安装node.js后执行命令:<code>node myagent.js</code>
 指令集合可以在游戏中运行<br>
 当输入<code>*/cmdc</code>时,其中包含的指令都会被运行<br>
 <code>cmdc.txt</code> 是一个“指令集合”的示例。<br>
-使用字符<code>$</code>来执行指令.
-## MyAgent 进程
+使用字符<code>$</code>来分割指令.
+## MyAgent 守护进程
 * 仅 LINUX
 ### 搭建
 使用gcc搭建:<pre><code>gcc myagentd.c -o myagentd</code></pre>
@@ -80,7 +80,7 @@ LINUX: 安装node.js后执行命令:<code>node myagent.js</code>
 <pre><code>killall myagentd</code></pre>
 ## Bug反馈
 发一个issue即可。
-## 证书
+## 协议
 GNU GPL v3
 ## 作者
 [許嘉鋅](https://github.com/TheXuJiaXin),[LNSSPsd](https://github.com/LNSSPsd),[CAIMEO](https://github.com/CAIMEOX) &amp; [Torrekie](https://github.com/Torrekie).
