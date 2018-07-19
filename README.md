@@ -20,7 +20,7 @@ yum install gcc-c++</code></pre>
 <pre><code>pacman -S gcc
 pacman -S make</code></pre>
 ## Other Systems
-[Search by Google](http://google.com) [Search by bing](http://bing.com) [Search by BAIDU](http://www.baidu.com)
+[Search by Google](http://google.com)<br>[Search by bing](http://bing.com)<br>[Search by BAIDU](http://www.baidu.com)
 ## Run
 In WINDOWS:First,please run following commands:<br/>
 <pre><code>npm install fs
