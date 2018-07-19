@@ -49,10 +49,10 @@ MJTG QQ Group:<code>590352162</code>
 <b><a href="http://agent.vanillahh.online">MyAgent Project</a></b>
 ## 安装 Node.Js
 * WINDOWS: 下载 nodejs <code>https://nodejs.org/en/download/</code>
-* LINUX: 需要安装 <code>gcc g++ make</code> first,then<br/>
+* LINUX: 需要先安装 <code>gcc g++ make</code> ,然后<br/>
 执行命令:<pre><code>chmod +x configure
 ./configure</code></pre>
-然后等待一个小时左右.
+最后等待一个小时左右.
 ## 运行
 WINDOWS:首先执行如下指令:<br/>
 <pre><code>npm install fs
@@ -63,7 +63,7 @@ LINUX: 安装node.js后执行命令:<code>node myagent.js</code>
 在我的世界基岩版中（包括中国版手游）输入指令:<br>
 <code>/connect [ip]:19131</code>
 ## 关于“key”
-所有用于进入MyAgent的“key”都保存在keys.txt
+所有用于进入MyAgent的“key”都保存在keys.txt中
 格式: <code>KEY01 KEY02</code>
 ## 指令集合功能
 指令集合可以在游戏中运行<br>
@@ -72,11 +72,11 @@ LINUX: 安装node.js后执行命令:<code>node myagent.js</code>
 使用字符<code>$</code>来分割指令.
 ## MyAgent 守护进程
 * 仅 LINUX
-### 搭建
-使用gcc搭建:<pre><code>gcc myagentd.c -o myagentd</code></pre>
+### 构建
+使用gcc构建:<pre><code>gcc myagentd.c -o myagentd</code></pre>
 ### 运行
 <pre><code>./myagentd</code></pre>
-### 结束
+### 杀死
 <pre><code>killall myagentd</code></pre>
 ## Bug反馈
 发一个issue即可。
