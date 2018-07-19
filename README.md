@@ -2,12 +2,25 @@ English-
 # MyAgent
 The Minecraft agent generator&amp;controller written in node.js<br/>
 <b><a href="http://agent.vanillahh.online">MyAgent Project</a></b>
+
 ## Install Node.Js
 * WINDOWS: download nodejs at <code>https://nodejs.org/en/download/</code>
 * LINUX: Please install packages <code>gcc g++ make</code> first,then<br/>
 Run commands:<pre><code>chmod +x configure
 ./configure</code></pre>
 and wait about 1 hour.
+### Install Packages in Linux
+#### Debian and debian - based systems
+<pre><code>apt install gcc g++ make</code></pre>
+#### CentOs and CentOS based systems
+<pre><code>yum install gcc
+yum install make
+yum install gcc-c++</code></pre>
+## Arch Linux
+<pre><code>pacman -S gcc
+pacman -S make</code></pre>
+## Other Systems
+[Search by Google](http://google.com) [Search by bing](http://bing.com) [Search by BAIDU](http://www.baidu.com)
 ## Run
 In WINDOWS:First,please run following commands:<br/>
 <pre><code>npm install fs
