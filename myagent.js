@@ -1,7 +1,9 @@
-try{
-var WebSocketServer = require('ws').Server;
-var fs=require("fs");
+//DEFINE ARGS
 var portm=19131;
+//S
+try{
+var WebSocketServer = require("ws").Server;
+var fs=require("fs");
 var wss = new WebSocketServer({port: portm});
 }catch(err){
 	console.log("Error when loading require packages: %s.",err.message);
@@ -424,7 +426,7 @@ wss.on('connection', function connection(ws){
 */move <direction>:move to selected direction.\n\
 (Direction: forward|back|up|down|left|right)\n\
 (turnDirection: left|right)\n\
-(quantity:数量)\n\
+(quantity: 0-255)\n\
 */turn <turnDirection>:turn left or right.\n\
 */attack <direction>:attack target in <direction>.\n\
 */destroy <direction>:destroy block in <direction>.\n\
@@ -464,6 +466,4 @@ serverinf("*/check <key>:check your key\n\
 			console.log("<%s> %s",JSON.parse(message).body.properties.Sender,JSON.parse(message).body.properties.Message);
 		}
 	});
-	
-	//ws.send('test');
 });
