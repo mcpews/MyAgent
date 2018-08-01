@@ -354,16 +354,23 @@ wss.on('connection', function connection(ws){
 			{
 				gamecmd(JSON.parse(message).body.properties.Message.split("/")[1],ws);
 			}
-			if(JSON.parse(message).body.properties.Message.substring(1,2)=="/"&&JSON.parse(message).body.properties.Message.substring(0,1)!="*"&&JSON.parse(message).body.properties.Message.substring(0,1)!=".")
+			if(JSON.parse(message).body.properties.Message.substring(1,2)=="/"&&JSON.parse(message).body.properties.Message.substring(0,1)==":"&&JSON.parse(message).body.properties.Message.substring(0,1)!=".")
 			{
+				try{
 				var sped=JSON.parse(message).body.properties.Message.split("/");
-				var qs=parseInt(sped[0]);
+				var spee=sped.split("~");
+				var qs=parseInt(spee[1]);
 				var ed=1;
 				while(true){
 					if(qs==ed){break;}
-					setTimeout(function(){gamecmd("agent "+sped[1],ws);},500*ed);
+					setTimeout(function(){gamecmd("agent "+spee[0],ws);},500*ed);
 					ed++;
 				}
+				}catch(ew){
+					serverinf("Error when doing loop");
+					return;
+				}
+				return;
 			}
 			if(JSON.parse(message).body.properties.Message.substring(2,3)=="/"&&JSON.parse(message).body.properties.Message.substring(0,1)=="!")
 			{
