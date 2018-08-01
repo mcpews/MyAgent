@@ -16,7 +16,9 @@ console.log("Please Connect Client to 127.0.0.1:%s.",portm);
 
 var see=true;
 
-function gamecmd(cmd,ws){
+wss.on('connection', function connection(ws){
+	
+	function gamecmd(cmd){
 	ws.send(JSON.stringify(
 	{
 		"body": {
@@ -36,7 +38,7 @@ function gamecmd(cmd,ws){
 	));
 }
 
-function gamecmds(cmd,ws){
+function gamecmds(cmd){
 	ws.send(JSON.stringify(
 	{
 		"body": {
@@ -56,16 +58,15 @@ function gamecmds(cmd,ws){
 	));
 }
 
-function serverinf(msg,ws){
+function serverinf(msg){
 	if(see==true){
 		//console.log("[Server] %s",msg);
-		gamecmds("me "+msg,ws);
+		gamecmds("me "+msg);
 	}else{
-		gamecmds("msg @s |\n"+msg,ws);
+		gamecmds("msg @s |\n"+msg);
 	}
 }
-
-wss.on('connection', function connection(ws){
+	
 	//var logtogame=true;
 	
 	console.log('Client Connected!');
@@ -305,12 +306,12 @@ wss.on('connection', function connection(ws){
 		}
 	}
 	));
-	serverinf("MyAgent Connected.\nPlease use */check <Your Key> to login.\nIf you not checked,Websocket will disconnect in 12s.\n[MyAgent By LNSSPsd]",ws);
+	serverinf("MyAgent Connected.\nPlease type */check <Your Key> to login.\nIf you not checked,Websocket will disconnect in 12s.\n[MyAgent By LNSSPsd]");
 	/*gamecmd("agent create",ws);// /connect 127.0.0.1:19131
 	gamecmd("agent till forward",ws);*/
 	var checked=false;
 	setTimeout(function(){
-		if(checked==false){serverinf("Websocket check Timed out.\nDisconnecting...",ws);}
+		if(checked==false){serverinf("Websocket check Time out.\nDisconnecting...",ws);}
 	},21000);
 	setTimeout(function(){
 		if(checked==false){ws.terminate();}
@@ -330,29 +331,29 @@ wss.on('connection', function connection(ws){
 					var keys=(fs.readFileSync("keys.txt","ascii")+" ").split(" ");
 					for(var i=0;i<=keys.length;i++){
 						if(JSON.parse(message).body.properties.Message.split(" ")[1]==keys[i]){
-							serverinf("Key is OK!\nType */help to get help!\nEnjoy It!:)",ws);
+							serverinf("Key is OK!\nType */help to get help!\nEnjoy It!:)");
 							checked=true;
 							return;
 						}
 					}
-					serverinf("Bad Key.\nPlease Check it!",ws);
+					serverinf("Bad Key.\nPlease Check it!");
 				}
 			}
 			return;
 		}
 		if(JSON.parse(message).header.messagePurpose=="commandResponse" && JSON.parse(message).header.requestId!="00000000-0001-0000-000000000000")
 		{
-			serverinf("Command Response:\nMessage:"+JSON.parse(message).body.statusMessage,ws);
+			serverinf("Command Response:\nMessage:"+JSON.parse(message).body.statusMessage);
 		}
 		if(JSON.parse(message).body.eventName=="AgentCommand" && JSON.parse(message).header.requestId!="00000000-0000-0001-000000000000")
 		{
-			serverinf("Agent Command:\nResult:"+JSON.parse(message).body.properties.Result,ws);
+			serverinf("Agent Command:\nResult:"+JSON.parse(message).body.properties.Result);
 		}
 		if(JSON.parse(message).body.eventName=="PlayerMessage"/* && JSON.parse(message).body.properties.MessageType=="chat"*/ && JSON.parse(message).header.requestId!="00000000-0001-0000-000000000000")
 		{
 			if(JSON.parse(message).body.properties.Message.substring(0,2)=="./")
 			{
-				gamecmd(JSON.parse(message).body.properties.Message.split("/")[1],ws);
+				gamecmd(JSON.parse(message).body.properties.Message.split("/")[1]);
 			}
 			if(JSON.parse(message).body.properties.Message.substring(1,2)=="/"&&JSON.parse(message).body.properties.Message.substring(0,1)==":"&&JSON.parse(message).body.properties.Message.substring(0,1)!=".")
 			{
@@ -363,7 +364,7 @@ wss.on('connection', function connection(ws){
 				var ed=1;
 				while(true){
 					if(qs==ed){break;}
-					setTimeout(function(){gamecmd("agent "+spee[0],ws);},500*ed);
+					setTimeout(function(){gamecmd("agent "+spee[0]);},500*ed);
 					ed++;
 				}
 				}catch(ew){
@@ -379,7 +380,7 @@ wss.on('connection', function connection(ws){
 				var ed=0;
 				while(true){
 					if(qs==ed){break;}
-					setTimeout(function(){gamecmd(sped[1],ws);},500*ed);
+					setTimeout(function(){gamecmd(sped[1]);},500*ed);
 					ed++;
 				}
 			}
@@ -387,7 +388,7 @@ wss.on('connection', function connection(ws){
 			{
 				if(JSON.parse(message).body.properties.Message=="*/bye")
 			{
-				serverinf("Disconnecting..\nGoodBye!",ws);
+				serverinf("Disconnecting..\nGoodBye!");
 				ws.terminate();
 				return;
 			}
@@ -437,21 +438,21 @@ wss.on('connection', function connection(ws){
 */turn <turnDirection>:turn left or right.\n\
 */attack <direction>:attack target in <direction>.\n\
 */destroy <direction>:destroy block in <direction>.\n\
-*/drop <slot:int> <quantity:int> <direction>:drop item in <slot:quantity> to <direction>.\n",ws);
+*/drop <slot:int> <quantity:int> <direction>:drop item in <slot:quantity> to <direction>.\n");
 serverinf("*/dropall <direction>:drop all item from agent's bag to <direction>.\n\
 */inspect <direction>:inspect what block in front.\n\
 */inspectdata <direction>:inspect block data in front.\n\
 */detect <direction>:Unknown because Result is 'false'?\n\
-*/detectredstone <direction>:Detect redstone activated in <direction>?\n",ws);
+*/detectredstone <direction>:Detect redstone activated in <direction>?\n");
 serverinf("*/transfer <srcSlotNum:int> <quantity:int> <dstSlotNum:int>:transfer <quntity> <src> to <dst>\n\
 */tp:tp agent to player.\n\
 */collect <item:string>:collect <item>.\n\
 */till <direction>:till for <direction>.\n\
 */place <slotNum:int> <direction>:Put <slotNum>'s block to <direction>.\n\
-*/getitemcount|getitemspace|getitemdetail <slotNum:item>",ws);
+*/getitemcount|getitemspace|getitemdetail <slotNum:item>");
 serverinf("*/check <key>:check your key\n\
 */bye:Disconnect Websocket.\n\
-*/cmdc: Run cmdc.txt(Command collection)",ws);
+*/cmdc: Run cmdc.txt(Command collection)");
 
 					break;
 					case "*/cmdc":
@@ -460,13 +461,13 @@ serverinf("*/check <key>:check your key\n\
 						for(var cc=0;cc<=cmdc.length;cc++){
 							setTimeout(function(){gamecmds(cmdc[cc],ws);},500*cc);
 						}
-						setTimeout(function(){serverinf("Commands Collection Done.",ws);},500*cmdc.length);
+						setTimeout(function(){serverinf("Commands Collection Done.");},500*cmdc.length);
 						}catch(err){
-							serverinf("Error when doing command collections: "+err.message,ws);
+							serverinf("Error when doing command collections: "+err.message);
 						}
 						break;
 					default:
-					gamecmd("agent "+JSON.parse(message).body.properties.Message.split("/")[1],ws);
+					gamecmd("agent "+JSON.parse(message).body.properties.Message.split("/")[1]);
 					//serverinf("Unknown command.",ws);
 				}
 			}
