@@ -24,8 +24,7 @@ pacman -S make</code></pre>
 [Search by Google](http://google.com)<br>[Search by bing](http://bing.com)<br>[Search by BAIDU](http://www.baidu.com)
 ## Run
 In WINDOWS:First,please run following commands:<br/>
-<pre><code>npm install fs
-npm install ws</code></pre>
+<pre><code>npm install</code></pre>
 Then,run command:<code>node myagent.js</code>
 In LINUX: Do step Install Node.JS and then run command:<code>node myagent.js</code>
 ## Connect
@@ -69,8 +68,7 @@ MJTG QQ Group:<code>590352162</code>
 最后等待一个小时左右.
 ## 运行
 WINDOWS:首先执行如下指令:<br/>
-<pre><code>npm install fs
-npm install ws</code></pre>
+<pre><code>npm install</code></pre>
 然后执行这个指令:<code>node myagent.js</code>
 LINUX: 安装node.js后执行命令:<code>node myagent.js</code>
 ## 连接
