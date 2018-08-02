@@ -1,7 +1,8 @@
 English-
 # MyAgent
 The Minecraft agent generator&amp;controller written in node.js<br/>
-<b><a href="http://agent.vanillahh.online">MyAgent Project</a></b>
+<b><a href="http://agent.vanillahh.online">MyAgent Project</a></b><br/>
+[![cOd](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/ntaa8z8)
 
 ## Install Node.Js
 * WINDOWS: download nodejs at <code>https://nodejs.org/en/download/</code>
@@ -59,7 +60,7 @@ MJTG QQ Group:<code>590352162</code>
 中文-
 # MyAgent
 一个使用node.js编写的我的世界吉祥物生成/控制器<br/>
-<b><a href="http://agent.vanillahh.online">MyAgent Project</a></b>
+<b><a href="http://agent.vanillahh.online">MyAgent Project</a></b><br/>[![cOd](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/ntaa8z8)
 ## 安装 Node.Js
 * WINDOWS: 下载 nodejs <code>https://nodejs.org/en/download/</code>
 * LINUX: 需要先安装 <code>gcc g++ make</code> ,然后<br/>
