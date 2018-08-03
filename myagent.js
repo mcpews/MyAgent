@@ -306,16 +306,16 @@ function serverinf(msg){
 		}
 	}
 	));
-	serverinf("MyAgent Connected.\nPlease type */check <Your Key> to login.\nIf you not checked,Websocket will disconnect in 12s.\n[MyAgent By LNSSPsd]");
+	serverinf("MyAgent Connected.\nType */help for get help.\n[MyAgent By LNSSPsd]");
 	/*gamecmd("agent create",ws);// /connect 127.0.0.1:19131
 	gamecmd("agent till forward",ws);*/
-	var checked=false;
-	setTimeout(function(){
-		if(checked==false){serverinf("Websocket check Time out.\nDisconnecting...",ws);}
+	
+	/*setTimeout(function(){
+		if(checked==false){serverinf("Websocket check time out.\nDisconnecting...",ws);}
 	},21000);
 	setTimeout(function(){
 		if(checked==false){ws.terminate();}
-	},22000);
+	},22000);*/
 	
 	ws.on('message',function incoming(message){
 		//ws.terminate();
@@ -325,22 +325,7 @@ function serverinf(msg){
 			return;
 		}
 		}
-		if(checked==false){
-			if(JSON.parse(message).body.eventName=="PlayerMessage"){
-				if(JSON.parse(message).body.properties.Message.substring(0,8)=="*/check "){
-					var keys=(fs.readFileSync("keys.txt","ascii")).split(" ");
-					for(var i=0;i<=keys.length+1;i++){
-						if(JSON.parse(message).body.properties.Message.split(" ")[1]==keys[i]){
-							serverinf("Key is OK!\nType */help to get help!\nEnjoy It!:)");
-							checked=true;
-							return;
-						}
-					}
-					serverinf("Bad Key.\nPlease Check it!");
-				}
-			}
-			return;
-		}
+		
 		if(JSON.parse(message).header.messagePurpose=="commandResponse" && JSON.parse(message).header.requestId!="00000000-0001-0000-000000000000")
 		{
 			serverinf("Command Response:\nMessage:"+JSON.parse(message).body.statusMessage);
