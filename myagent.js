@@ -342,7 +342,7 @@ function serverinf(msg){
 			{
 				try{
 				var sped=JSON.parse(message).body.properties.Message.split("/");
-				var spee=sped.split("~");
+				var spee=sped[1].split("~");
 				var qs=parseInt(spee[1]);
 				var ed=1;
 				while(true){
