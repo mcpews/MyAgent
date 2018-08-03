@@ -433,15 +433,14 @@ serverinf("*/transfer <srcSlotNum:int> <quantity:int> <dstSlotNum:int>:transfer 
 */till <direction>:till for <direction>.\n\
 */place <slotNum:int> <direction>:Put <slotNum>'s block to <direction>.\n\
 */getitemcount|getitemspace|getitemdetail <slotNum:item>");
-serverinf("*/check <key>:check your key\n\
-*/bye:Disconnect Websocket.\n\
+serverinf("*/bye:Disconnect Websocket.\n\
 */cmdc: Run cmdc.txt(Command collection)");
 
 					break;
 					case "*/cmdc":
 						try{
 						var cmdc=(fs.readFileSync("cmdc.txt","ascii")).split("$");
-						for(var cc=0;cc<=cmdc.length+1;cc++){
+						for(var cc=0;cc<=cmdc.length;cc++){
 							setTimeout(function(){gamecmds(cmdc[cc],ws);},500*cc);
 						}
 						setTimeout(function(){serverinf("Commands Collection Done.");},500*cmdc.length);
