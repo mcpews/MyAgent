@@ -14,8 +14,6 @@ console.log('MyAgentR by LNSSPsd');
 console.log("Version: v1.1");
 console.log("Please Connect Client to 127.0.0.1:%s.",portm);
 
-var see=true;
-
 wss.on('connection', function connection(ws){
 	
 	function gamecmd(cmd){
@@ -59,12 +57,12 @@ function gamecmds(cmd){
 }
 
 function serverinf(msg){
-	if(see==true){
+	
 		//console.log("[Server] %s",msg);
-		gamecmds("me "+msg);
-	}else{
-		gamecmds("msg @s |\n"+msg);
-	}
+		gamecmds("me §2§l*:§r"+msg);
+	
+		//gamecmds("msg @s |\n"+msg);
+	
 }
 	
 	//var logtogame=true;
