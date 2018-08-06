@@ -8,7 +8,7 @@ printf("MyAgentDaemon Loaded\n");
 
 void oninitdone(){
 printf("Creating daemon...\n");
-  freopen("/dev/null","w",stdout);
+  //freopen("/dev/null","w",stdout);
   daemon(1,0);
 }
 void onchat(char *str){}
