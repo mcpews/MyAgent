@@ -7,8 +7,8 @@ printf("MyAgentDaemon Loaded\n");
 }
 
 void oninitdone(){
-printf("Creating daemon...\n");sleep(3);
-  daemon(0,0);
+printf("Creating daemon...\n");
+  daemon(1,0);
 }
 void onchat(char *str){}
 void onclientconnected(){}
