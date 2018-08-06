@@ -26,10 +26,11 @@ function loadPlug(path){
 		    //ffi.Library(path+"/"+ele,{"onload": ["void",["void"]]}).onload();
 		    //pls[loaded].onload();
 		    //loaded++;
-		    var l=ffi.Library("plugins/"+ele,{
+		    pls[loaded]=ffi.Library("plugins/"+ele,{
     'onload': ['void',[]]
 });
-		    l.onload();
+		    pls[loaded].onload();
+		    loaded++;
 	    }
         }
     })
