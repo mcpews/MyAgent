@@ -23,13 +23,14 @@ function loadPlug(path){
         var info = fs.statSync(path+"/"+ele)      
         if(!info.isDirectory()){
             if(ele.split(".")[1]=="so"){
-		    pls[loaded]=ffi.Library(path+"/"+ele,{"onload": ["void",["void"]]});
-		    pls[loaded].onload();
-		    loaded++;
+		    ffi.Library(path+"/"+ele,{"onload": ["void",["void"]]}).onload();
+		    //pls[loaded].onload();
+		    //loaded++;
 	    }
         }
     })
 }
+loadPlug("plugins");
 console.log("Please Connect Client to 127.0.0.1:%s.", portm);
 
 wss.on('connection',
