@@ -15,7 +15,7 @@ try {
 
 console.log('MyAgentR by LNSSPsd');
 console.log("Version: v1.1");
-
+console.log("Loading Plugins..");
 function loadPlug(path){  
     var pa = fs.readdirSync(path);  
     pa.forEach(function(ele,index){  
@@ -25,11 +25,14 @@ function loadPlug(path){
 		    //ffi.Library(path+"/"+ele,{"onload": ["void",["void"]]}).onload();
 		    //pls[loaded].onload();
 		    //loaded++;
+		    try{
+			    
 		    var pl=ffi.Library("plugins/"+ele,{
     'onload': ['void',[]]
 });
 		    pl.onload();
-		    
+		    }catch(err){console.log("Error when loading plugins: %s.",err.message);
+			       process.exit(2);}
 	    }
         }
     })
