@@ -3,11 +3,11 @@
 #include <unistd.h>
 
 void init(){
-
+printf("MyAgentDaemon Loaded\n");
 }
 
 void oninitdone(){
-printf("MyAgentD Loaded.\nCreating daemon...\n");
+printf("Creating daemon...\n");sleep(3);
   daemon(0,0);
 }
 void onchat(char *str){}
