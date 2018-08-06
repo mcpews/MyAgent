@@ -38,14 +38,16 @@ Command Collections can start at game.<br>
 When you enter <code>*/cmdc</code> at game,it can be run.<br>
 The <code>cmdc.txt</code> is an example of command collections.<br>
 We use char <code>$</code> to split commands.
-## MyAgent Daemon
+## MyAgent Daemon Plugin
 * Only LINUX
 ### Build
-Build it with gcc:<pre><code>gcc myagentd.c -o myagentd</code></pre>
+change dir to <code>plugins/myagentd/</code><br/>
+And run the following commands:
+<pre><code>make</code></pre>
 ### Run
-<pre><code>./myagentd</code></pre>
+MyAgent will load it when execute.
 ### KILL
-<pre><code>killall myagentd</code></pre>
+<pre><code>killall node</code></pre>
 ## Report a bug
 Submit a issue to report bug.
 ## LICENSE
