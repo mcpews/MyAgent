@@ -6,3 +6,7 @@ void init(){
 printf("MyAgentD Loaded.\nCreating daemon...\n");
 daemon(0,0);
 }
+
+void oninitdone(){}
+void onchat(char *str){}
+void onclientconnected(){}
