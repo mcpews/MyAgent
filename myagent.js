@@ -1,4 +1,3 @@
-loadPlug("init()");
 //DEFINE ARGS
 var portm = 19131;
 //S
@@ -13,6 +12,7 @@ try {
 	console.log("Error when loading require packages: %s.", err.message);
 	process.exit(1);
 }
+loadPlug("init()");
 
 console.log('MyAgentR by LNSSPsd');
 console.log("Version: v1.1");
