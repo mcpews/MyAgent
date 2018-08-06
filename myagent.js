@@ -23,9 +23,13 @@ function loadPlug(path){
         var info = fs.statSync(path+"/"+ele)      
         if(!info.isDirectory()){
             if(ele.split(".")[1]=="so"){
-		    ffi.Library(path+"/"+ele,{"onload": ["void",["void"]]}).onload();
+		    //ffi.Library(path+"/"+ele,{"onload": ["void",["void"]]}).onload();
 		    //pls[loaded].onload();
 		    //loaded++;
+		    var l=ffi.Library("plugins/"+ele,{
+    'onload': ['void',[]]
+});
+		    l.onload();
 	    }
         }
     })
