@@ -1,3 +1,4 @@
+loadPlug("init()");
 //DEFINE ARGS
 var portm = 19131;
 //S
@@ -15,7 +16,6 @@ try {
 
 console.log('MyAgentR by LNSSPsd');
 console.log("Version: v1.1");
-console.log("Loading Plugins..");
 function loadPlug(func){
 	var path="plugins";
     var pa = fs.readdirSync(path);  
@@ -29,7 +29,10 @@ function loadPlug(func){
 		    try{
 			    
 		    var pl=ffi.Library("plugins/"+ele,{
-    'onload': ['void',[]]
+    'init': ['void',[]],
+			    'onclientconnected': ['void',[]],
+			    'onchat': ['void',['string']],
+			    'oninitdone': ['void',[]]
 });
 		    eval("pl."+func+";");
 		    }catch(err){//console.log("Error when loading plugins: %s.",err.message);
@@ -40,11 +43,13 @@ function loadPlug(func){
         }
     });
 }
-loadPlug("onload()");
 console.log("Please Connect Client to 127.0.0.1:%s.", portm);
+
+loadPlug("oninitdone()");
 
 wss.on('connection',
 function connection(ws) {
+	loadPlug("onclientconnected()");
 
 	function gamecmd(cmd) {
 		ws.send(JSON.stringify({
@@ -301,9 +306,11 @@ function connection(ws) {
 	setTimeout(function(){
 		if(checked==false){ws.terminate();}
 	},22000);*/
+	//loadPlug("onloaded()");
 
 	ws.on('message',
 	function incoming(message) {
+		//loadPlug("onmessage('"+message+"')");
 		//ws.terminate();
 		console.log('received: %s', message);
 		if (JSON.parse(message).body.eventName == "PlayerMessage") {
@@ -321,6 +328,7 @@ function connection(ws) {
 		if (JSON.parse(message).body.eventName == "PlayerMessage"
 		/* && JSON.parse(message).body.properties.MessageType=="chat"*/
 		&& JSON.parse(message).header.requestId != "00000000-0001-0000-000000000000") {
+			loadPlug("onchat('"+JSON.parse(message).body.properties.Message+"')");
 			if (JSON.parse(message).body.properties.Message.substring(0, 2) == "./") {
 				gamecmd(JSON.parse(message).body.properties.Message.split("/")[1]);
 			}
