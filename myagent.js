@@ -15,8 +15,7 @@ try {
 
 console.log('MyAgentR by LNSSPsd');
 console.log("Version: v1.1");
-var pls;
-var loaded=0
+
 function loadPlug(path){  
     var pa = fs.readdirSync(path);  
     pa.forEach(function(ele,index){  
@@ -26,11 +25,11 @@ function loadPlug(path){
 		    //ffi.Library(path+"/"+ele,{"onload": ["void",["void"]]}).onload();
 		    //pls[loaded].onload();
 		    //loaded++;
-		    pls[loaded]=ffi.Library("plugins/"+ele,{
+		    var pl=ffi.Library("plugins/"+ele,{
     'onload': ['void',[]]
 });
-		    pls[loaded].onload();
-		    loaded++;
+		    pl.onload();
+		    
 	    }
         }
     })
