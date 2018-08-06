@@ -7,6 +7,7 @@ try {
 	var wss = new WebSocketServer({
 		port: portm
 	});
+	var ffi=require("ffi");
 } catch(err) {
 	console.log("Error when loading require packages: %s.", err.message);
 	process.exit(1);
@@ -14,6 +15,21 @@ try {
 
 console.log('MyAgentR by LNSSPsd');
 console.log("Version: v1.1");
+var pls;
+var loaded=0
+function loadPlug(path){  
+    var pa = fs.readdirSync(path);  
+    pa.forEach(function(ele,index){  
+        var info = fs.statSync(path+"/"+ele)      
+        if(!info.isDirectory()){
+            if(ele.split(".")[1]=="so"){
+		    pls[loaded]=ffi.Library(path+"/"+ele,{"onload": ["void",["void"]]});
+		    pls[loaded].onload();
+		    loaded++;
+	    }
+        }
+    })
+}
 console.log("Please Connect Client to 127.0.0.1:%s.", portm);
 
 wss.on('connection',
