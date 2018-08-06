@@ -16,10 +16,11 @@ try {
 console.log('MyAgentR by LNSSPsd');
 console.log("Version: v1.1");
 console.log("Loading Plugins..");
-function loadPlug(path){  
+function loadPlug(func){
+	var path="plugins";
     var pa = fs.readdirSync(path);  
     pa.forEach(function(ele,index){  
-        var info = fs.statSync(path+"/"+ele)      
+        var info = fs.statSync(path+"/"+ele);
         if(!info.isDirectory()){
             if(ele.split(".")[1]=="so"){
 		    //ffi.Library(path+"/"+ele,{"onload": ["void",["void"]]}).onload();
@@ -30,14 +31,16 @@ function loadPlug(path){
 		    var pl=ffi.Library("plugins/"+ele,{
     'onload': ['void',[]]
 });
-		    pl.onload();
-		    }catch(err){console.log("Error when loading plugins: %s.",err.message);
-			       process.exit(2);}
+		    eval("pl."+func+";");
+		    }catch(err){//console.log("Error when loading plugins: %s.",err.message);
+			       //process.exit(2);
+			    
+		    }
 	    }
         }
-    })
+    });
 }
-loadPlug("plugins");
+loadPlug("onload()");
 console.log("Please Connect Client to 127.0.0.1:%s.", portm);
 
 wss.on('connection',
