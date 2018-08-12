@@ -1,4 +1,3 @@
-English-
 # MyAgent
 The Minecraft agent generator&amp;controller written in node.js<br/>
 <b><a href="http://agent.vanillahh.online">MyAgent Project</a></b><br/>
@@ -31,8 +30,7 @@ In LINUX: Do step Install Node.JS and then run command:<code>node myagent.js</co
 type command in game:<br>
 <code>/connect [ip]:19131</code>
 ## About Key
-The key of myagent is in the keys.txt
-Format is: <code>KEY01 KEY02</code>
+Key feature is removed.
 ## Command Collections
 Command Collections can start at game.<br>
 When you enter <code>*/cmdc</code> at game,it can be run.<br>
@@ -58,8 +56,7 @@ GNU GPL v3
 MJTG QQ Group:<code>590352162</code>
 <br>
 <br>
-中文-
-# MyAgent
+# MyAgent - 中文
 一个使用node.js编写的我的世界吉祥物生成/控制器<br/>
 <b><a href="http://agent.vanillahh.online">MyAgent Project</a></b><br/>[![cOd](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/ntaa8z8)
 ## 安装 Node.Js
@@ -77,8 +74,7 @@ LINUX: 安装node.js后执行命令:<code>node myagent.js</code>
 在我的世界基岩版中（包括中国版手游）输入指令:<br>
 <code>/connect [ip]:19131</code>
 ## 关于“key”
-所有用于进入MyAgent的“key”都保存在keys.txt中
-格式: <code>KEY01 KEY02</code>
+Key 功能已被移除.
 ## 指令集合功能
 指令集合可以在游戏中运行<br>
 当输入<code>*/cmdc</code>时,其中包含的指令都会被运行<br>
@@ -87,11 +83,13 @@ LINUX: 安装node.js后执行命令:<code>node myagent.js</code>
 ## MyAgent 守护进程
 * 仅 LINUX
 ### 构建
-使用gcc构建:<pre><code>gcc myagentd.c -o myagentd</code></pre>
+使用gcc构建:<br/>
+首先，切换目录到<code>plugins/myagentd</code><br/>
+然后执行<pre><code>make</code></pre>
 ### 运行
-<pre><code>./myagentd</code></pre>
+MyAgent会在启动时自动加载它.
 ### 杀死
-<pre><code>killall myagentd</code></pre>
+<pre><code>killall node</code></pre>
 ## Bug反馈
 发一个issue即可。
 ## 协议
