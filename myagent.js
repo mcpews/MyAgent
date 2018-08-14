@@ -101,7 +101,7 @@ function connection(ws) {
 	}
 		
 	
-	var logtogame=true;
+	var logtogame=false;
 	console.log('Client Connected!');
 	//console.log('Listening Events...');
 	ws.send(JSON.stringify({
@@ -483,7 +483,7 @@ function connection(ws) {
 						break;
 					case "*/fenchant":
 						for(var i=0;i<33;i++){
-							if(i==10||i==11||i==16){continue;}
+							if(i==10||i==11||i==16||i==31){continue;}
 							function enc(level){gamecmds("enchant @s "+i+" "+level);}
 							switch(i){
 								case 0:
@@ -555,7 +555,7 @@ function connection(ws) {
 									enc(1);break;
 							}
 						}
-						serverinf("[Fast Enchant]Enchant is OK!");
+						serverinf("FastEnchant: Enchant is OK!");
 						break;
 				default:
 					gamecmd("agent " + JSON.parse(message).body.properties.Message.split("/")[1]);
