@@ -468,16 +468,95 @@ function connection(ws) {
 */place <slotNum:int> <direction>:Put <slotNum>'s block to <direction>.\n\
 */getitemcount|getitemspace|getitemdetail <slotNum:item>");
 					serverinf("*/bye:Disconnect Websocket.\n\
-*/wlg <true|false>:Set log when doing a loop.");
+*/wlg <true|false>:Set log when doing a loop.\n\
+*/fenchant:Fast enchant your items to top level.");
 
 					break;
 				case "*/wlg true":
 						logtogame=true;
 						serverinf("logtogame=true;");
+						break;
 					break;
 					case "*/wlg false":
 						logtogame=false;
 						serverinf("logtogame=false;");
+						break;
+					case "*/fenchant":
+						for(var i=0;i<33;i++){
+							if(i==10||i==11||i==16){continue;}
+							function enc(level){setTimeout(function(){gamecmds("enchant @s "+i+" "+level);},i*50);}
+							switch(i){
+								case 0:
+									enc(4);break;
+								case 1:
+									enc(4);break;
+								case 2:
+									enc(4);break;
+								case 3:
+									enc(4);break;
+								case 4:
+									enc(4);break;
+								case 5:
+									enc(3);break;
+								case 6:
+									enc(3);break;
+								case 7:
+									enc(3);break;
+								case 8:
+									enc(1);break;
+								case 9:
+									enc(5);break;
+								case 10:
+									enc(5);break;
+								case 11:
+									enc(5);break;
+								case 12:
+									enc(2);break;
+								case 13:
+									enc(2);break;
+								case 14:
+									enc(3);break;
+								case 15:
+									enc(5);break;
+								case 16:
+									enc(1);break;
+								case 17:
+									enc(3);break;
+								case 18:
+									enc(3);break;
+								case 19:
+									enc(5);break;
+								case 20:
+									enc(2);break;
+								case 21:
+									enc(1);break;
+								case 22:
+									enc(1);break;
+								case 23:
+									enc(3);break;
+								case 24:
+									enc(3);break;
+								case 25:
+									enc(2);break;
+								case 26:
+									enc(1);break;
+								case 27:
+									enc(1);break;
+								case 28:
+									enc(1);break;
+								case 29:
+									enc(5);break;
+								case 30:
+									enc(3);break;
+								case 31:
+									enc(3);break;
+								case 32:
+								default:
+									enc(1);break;
+							}
+						}
+						serverinf("[Fast Enchant]Enchant is OK!");
+						break;
 				default:
 					gamecmd("agent " + JSON.parse(message).body.properties.Message.split("/")[1]);
 					//serverinf("Unknown command.",ws);
