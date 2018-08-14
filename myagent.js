@@ -1,4 +1,5 @@
 //DEFINE ARGS
+var EnablePlugins=true;
 var portm = 19131;
 //S
 try {
@@ -7,7 +8,7 @@ try {
 	var wss = new WebSocketServer({
 		port: portm
 	});
-	var ffi=require("ffi");
+	if(EnablePlugins==true){var ffi=require("ffi");}
 } catch(err) {
 	console.log("Error when loading require packages: %s.", err.message);
 	process.exit(1);
@@ -15,9 +16,10 @@ try {
 loadPlug("init()");
 
 console.log('MyAgentR by LNSSPsd');
-console.log("Version: v1.1");
+console.log("Version: v2.0");
 
 function loadPlug(func){
+	if(EnablePlugins==false){return;}
 	var path="plugins";
 	try{
     var pa = fs.readdirSync(path);  
@@ -97,150 +99,9 @@ function connection(ws) {
 
 		//gamecmds("msg @s |\n"+msg);
 	}
-	
-	/*var _space={0,0,0,0,0,
-		  0,0,0,0,0,
-		  0,0,0,0,0,
-		  0,0,0,0,0,
-		  0,0,0,0,0};
-	var _a={0,1,1,1,0,
-		0,0,0,0,1,
-		0,1,1,1,1,
-		1,0,0,0,1,
-		1,1,1,1,1};
-	var _b={0,1,0,0,0,
-		0,1,0,0,0
-		0,1,1,1,0
-		0,1,0,1,0
-		0,1,1,1,0};
-	var _c={0,1,1,1,1,
-		0,1,0,0,0,
-		0,1,0,0,0,
-		0,1,1,1,1,
-		0,0,0,0,0};
-	var _d={0,0,0,1,0,
-		0,0,0,1,0,
-		0,1,1,1,0,
-		0,1,0,1,0,
-		0,1,1,1,0};
-	var _e={0,1,1,1,1,
-		0,1,0,0,1,
-		0,1,1,1,1,
-		0,1,0,0,0,
-		0,1,1,1,1};
-	var _f={0,0,1,1,0,
-		0,0,1,0,0,
-		0,1,1,1,0,
-		0,0,1,0,0,
-		0,0,1,0,0};
-	var _g={0,1,1,1,0,
-		0,1,0,1,0,
-		0,1,1,1,0,
-		0,0,0,1,0,
-		0,1,1,1,0};
-	var _h={0,1,0,0,0,
-		0,1,0,0,0,
-		0,1,1,1,0,
-		0,1,0,1,0,
-		0,1,0,1,0};
-	var _i={0,0,0,1,0,
-		0,0,0,0,0,
-		0,0,1,1,0,
-		0,0,0,1,0,
-		0,0,0,1,0};
-	var _ï={0,1,0,1,0,
-		0,0,0,0,0,
-		0,1,1,1,0
-		0,0,0,1,0,
-		0,0,0,1,0};
-	var _j={0,0,0,1,0,
-		0,0,0,0,0,
-		0,0,1,1,0,
-		0,0,0,1,0
-		0,1,1,1,0};
-	var _k={0,1,0,0,0,
-		0,1,0,1,0,
-		0,1,1,0,0,
-		0,1,0,1,0,
-		0,1,0,0,1};
-	var _l={0,0,1,0,0,
-		0,0,1,0,0,
-		0,0,1,0,0
-		0,0,1,0,0,
-		0,0,0,1,1};
-	var _m={0,1,0,1,0,
-		1,0,1,0,1,
-		1,0,1,0,1,
-		0,0,0,0,0,
-		0,0,0,0,0};
-	var _n={0,0,1,1,0,
-		0,1,0,1,0,
-		0,1,0,1,0,
-		0,0,0,0,0,
-		0,0,0,0,0};
-	var _o={0,1,1,1,1,
-		0,1,0,0,1,
-		0,1,0,0,1,
-		0,1,1,1,1,
-		0,0,0,0,0};
-	var _p={0,1,1,1,0,
-		0,1,0,1,0,
-		0,1,1,1,0,
-		0,1,0,0,0,
-		0,1,0,0,0};
-	var _q={0,1,1,1,0,
-		0,1,0,1,0,
-		0,1,1,1,0,
-		0,0,0,1,0,
-		0,0,0,1,0};
-	var _r={0,1,1,1,0,
-		0,1,0,0,1,
-		0,1,0,0,0,
-		0,1,0,0,0,
-		0,0,0,0,0};
-	var _s={0,1,1,1,0,
-		0,1,0,0,0,
-		0,0,1,1,0,
-		0,0,0,0,1,
-		0,1,1,1,1};
-	var _t={0,0,1,0,0,
-		0,1,1,1,0,
-		0,0,1,0,0,
-		0,0,1,0,0,
-		0,0,1,1,0};
-	var _u={0,1,0,1,0,
-		0,1,0,1,0,
-		0,1,1,1,0,
-		0,0,0,0,0,
-		0,0,0,0,0};
-	var _v={1,0,0,0,1,
-		0,1,0,1,0,
-		0,0,1,0,0,
-		0,0,0,0,0,
-		0,0,0,0,0};
-	var _w={1,0,1,0,1,
-		1,0,1,0,1,
-		0,1,0,1,0,
-		0,0,0,0,0,
-		0,0,0,0,0};
-	var _x={0,0,0,0,0,
-		0,1,0,1,0,
-		0,0,1,0,0,
-		0,1,0,1,0,
-		0,0,0,0,0};
-	var _y={0,1,0,1,0,
-		0,1,0,1,0,
-		0,1,1,1,0,
-		0,0,0,1,0,
-		0,1,1,1,0};
-	var _z={0,0,0,0,0,
-		0,1,1,1,1,
-		0,0,0,1,0,
-		0,0,1,0,0,
-		0,1,1,1,1};*/
 		
-
-	//var logtogame=true;
+	
+	var logtogame=true;
 	console.log('Client Connected!');
 	//console.log('Listening Events...');
 	ws.send(JSON.stringify({
@@ -479,16 +340,23 @@ function connection(ws) {
 			}
 			if (JSON.parse(message).body.properties.Message.substring(1, 2) == "/" && JSON.parse(message).body.properties.Message.substring(0, 1) == ":" && JSON.parse(message).body.properties.Message.substring(0, 1) != ".") {
 				try {
+					if(logtogame==false){
+					serverinf("Start Do a Loop.");
+					}
 					var sped = JSON.parse(message).body.properties.Message.split("/");
 					var spee = sped[1].split("~");
 					var qs = parseInt(spee[1]);
 					var ed = 1;
 					while (true) {
-						if (qs == ed) {
+						if (qs > ed) {
 							break;
 						}
 						setTimeout(function() {
+							if(logtogame==false){
+								gamecmds("agent " + spee[0]);
+							}else{
 							gamecmd("agent " + spee[0]);
+							}
 						},
 						500 * ed);
 						ed++;
@@ -497,27 +365,49 @@ function connection(ws) {
 					serverinf("Error when doing loop");
 					return;
 				}
+				if(logtogame==false){
+					serverinf("Finished do loop");
+				}
 				return;
 			}
-			if (JSON.parse(message).body.properties.Message.substring(2, 3) == "/" && JSON.parse(message).body.properties.Message.substring(0, 1) == "!") {
-				var sped = JSON.parse(message).body.properties.Message.split("!")[1].split("/");
-				var qs = parseInt(sped[0]);
-				var ed = 0;
-				while (true) {
-					if (qs == ed) {
-						break;
+			
+			if (JSON.parse(message).body.properties.Message.substring(1, 2) == "/" && JSON.parse(message).body.properties.Message.substring(0, 1) == "!" && JSON.parse(message).body.properties.Message.substring(0, 1) != ".") {
+				try {
+					if(logtogame==false){
+					serverinf("Start Do a Command Loop.");
 					}
-					setTimeout(function() {
-						gamecmd(sped[1]);
-					},
-					500 * ed);
-					ed++;
+					var sped = JSON.parse(message).body.properties.Message.split("/");
+					var spee = sped[1].split("~");
+					var qs = parseInt(spee[1]);
+					var ed = 1;
+					while (true) {
+						if (qs > ed) {
+							break;
+						}
+						setTimeout(function() {
+							if(logtogame==false){
+								gamecmds(spee[0]);
+							}else{
+							gamecmd(spee[0]);
+							}
+						},
+						500 * ed);
+						ed++;
+					}
+				} catch(ew) {
+					serverinf("Error when doing loop");
+					return;
 				}
+				if(logtogame==false){
+					serverinf("Finished do loop");
+				}
+				return;
 			}
+			
 			if (JSON.parse(message).body.properties.Message.substring(0, 2) == "*/") {
 				if (JSON.parse(message).body.properties.Message == "*/bye") {
 					serverinf("Disconnecting..\nGoodBye!");
-					ws.terminate();
+					setTimeout(function(){ws.terminate();},1000);
 					return;
 				}
 				//var splcmd=JSON.parse(message).body.properties.Message.split(" ");
@@ -557,7 +447,7 @@ function connection(ws) {
 				//}
 				switch (JSON.parse(message).body.properties.Message) {
 				case "*/help":
-					serverinf("MyAgent v1 by LNSSPsd\n*/create: Create Agent.\n\
+					serverinf("MyAgent by LNSSPsd\n*/create: Create Agent.\n\
 */move <direction>:move to selected direction.\n\
 (Direction: forward|back|up|down|left|right)\n\
 (turnDirection: left|right)\n\
@@ -578,26 +468,16 @@ function connection(ws) {
 */place <slotNum:int> <direction>:Put <slotNum>'s block to <direction>.\n\
 */getitemcount|getitemspace|getitemdetail <slotNum:item>");
 					serverinf("*/bye:Disconnect Websocket.\n\
-*/cmdc: Run cmdc.txt(Command collection)");
+*/wlg <true|false>:Set log when doing a loop.");
 
 					break;
-				case "*/cmdc":
-					try {
-						var cmdc = (fs.readFileSync("cmdc.txt", "ascii")).split("$");
-						for (var cc = 0; cc <= cmdc.length; cc++) {
-							setTimeout(function() {
-								gamecmds(cmdc[cc], ws);
-							},
-							500 * cc);
-						}
-						setTimeout(function() {
-							serverinf("Commands Collection Done.");
-						},
-						500 * cmdc.length);
-					} catch(err) {
-						serverinf("Error when doing command collections: " + err.message);
-					}
+				case "*/wlg true":
+						logtogame=true;
+						serverinf("logtogame=true;");
 					break;
+					case "*/wlg false":
+						logtogame=false;
+						serverinf("logtogame=false;");
 				default:
 					gamecmd("agent " + JSON.parse(message).body.properties.Message.split("/")[1]);
 					//serverinf("Unknown command.",ws);
