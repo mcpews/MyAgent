@@ -29,13 +29,6 @@ In LINUX: Do step Install Node.JS and then run command:<code>node myagent.js</co
 ## Connect
 type command in game:<br>
 <code>/connect [ip]:19131</code>
-## About Key
-Key feature is removed.
-## Command Collections
-Command Collections can start at game.<br>
-When you enter <code>*/cmdc</code> at game,it can be run.<br>
-The <code>cmdc.txt</code> is an example of command collections.<br>
-We use char <code>$</code> to split commands.
 ## MyAgent Daemon Plugin
 * Only LINUX
 ### Build
@@ -73,13 +66,6 @@ LINUX: 安装node.js后执行命令:<code>node myagent.js</code>
 ## 连接
 在我的世界基岩版中（包括中国版手游）输入指令:<br>
 <code>/connect [ip]:19131</code>
-## 关于“key”
-Key 功能已被移除.
-## 指令集合功能
-指令集合可以在游戏中运行<br>
-当输入<code>*/cmdc</code>时,其中包含的指令都会被运行<br>
-<code>cmdc.txt</code> 是一个“指令集合”的示例。<br>
-使用字符<code>$</code>来分割指令.
 ## MyAgent 守护进程
 * 仅 LINUX
 ### 构建
