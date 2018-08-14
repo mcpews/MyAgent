@@ -340,9 +340,9 @@ function connection(ws) {
 			}
 			if (JSON.parse(message).body.properties.Message.substring(1, 2) == "/" && JSON.parse(message).body.properties.Message.substring(0, 1) == ":" && JSON.parse(message).body.properties.Message.substring(0, 1) != ".") {
 				try {
-					if(logtogame==false){
+					/*if(logtogame==false){
 					serverinf("Start Do a Loop.");
-					}
+					}*/
 					var sped = JSON.parse(message).body.properties.Message.split("/");
 					var spee = sped[1].split("~");
 					var qs = parseInt(spee[1]);
@@ -351,31 +351,29 @@ function connection(ws) {
 						if (qs > ed) {
 							break;
 						}
-						setTimeout(function() {
-							if(logtogame==false){
-								gamecmds("agent " + spee[0]);
-							}else{
-							gamecmd("agent " + spee[0]);
-							}
-						},
-						500 * ed);
+						if(logtogame==false){
+							setTimeout(function() {gamecmds(spee[0]);},500 * ed);
+							ed++;
+							continue;
+						}
+						setTimeout(function() {gamecmd(spee[0]);},500 * ed);
 						ed++;
 					}
 				} catch(ew) {
 					serverinf("Error when doing loop");
 					return;
 				}
-				if(logtogame==false){
+				/*if(logtogame==false){
 					serverinf("Finished do loop");
-				}
+				}*/
 				return;
 			}
 			
 			if (JSON.parse(message).body.properties.Message.substring(1, 2) == "/" && JSON.parse(message).body.properties.Message.substring(0, 1) == "!" && JSON.parse(message).body.properties.Message.substring(0, 1) != ".") {
 				try {
-					if(logtogame==false){
+					/*if(logtogame==false){
 					serverinf("Start Do a Command Loop.");
-					}
+					}*/
 					var sped = JSON.parse(message).body.properties.Message.split("/");
 					var spee = sped[1].split("~");
 					var qs = parseInt(spee[1]);
@@ -384,23 +382,21 @@ function connection(ws) {
 						if (qs > ed) {
 							break;
 						}
-						setTimeout(function() {
-							if(logtogame==false){
-								gamecmds(spee[0]);
-							}else{
-							gamecmd(spee[0]);
-							}
-						},
-						500 * ed);
+						if(logtogame==false){
+							setTimeout(function() {gamecmds(spee[0]);},500 * ed);
+							ed++;
+							continue;
+						}
+						setTimeout(function() {gamecmd(spee[0]);},500 * ed);
 						ed++;
 					}
 				} catch(ew) {
 					serverinf("Error when doing loop");
 					return;
-				}
+				}/*
 				if(logtogame==false){
 					serverinf("Finished do loop");
-				}
+				}*/
 				return;
 			}
 			
