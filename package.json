@@ -1,6 +1,6 @@
 {
   "name": "MyAgent",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "The agent generator & controller written in node.js",
   "main": "myagent.js",
   "scripts": {
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LNSSPsd/MyAgent.git"
+    "url": "git+https://github.com/mcpewebsocket-dev/MyAgent.git"
   },
   "keywords": [
     "minecraftpe","minecraftbe"
   ],
-  "author": "LNSSPsd",
+  "author": "LNSSPsd,Torrekie,CAIMEOX,TheXuJiaXin",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/LNSSPsd/MyAgent/issues"
+    "url": "https://github.com/mcpewebsocket-dev/MyAgent/issues"
   },
   "homepage": "http://agent.vanillahh.online",
   "dependencies": {
