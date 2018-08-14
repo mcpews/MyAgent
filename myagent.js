@@ -484,7 +484,7 @@ function connection(ws) {
 					case "*/fenchant":
 						for(var i=0;i<33;i++){
 							if(i==10||i==11||i==16){continue;}
-							function enc(level){setTimeout(function(){gamecmds("enchant @s "+i+" "+level);},i*50);}
+							function enc(level){gamecmds("enchant @s "+i+" "+level);}
 							switch(i){
 								case 0:
 									enc(4);break;
