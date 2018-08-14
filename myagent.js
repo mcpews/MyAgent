@@ -98,7 +98,7 @@ function connection(ws) {
 		//gamecmds("msg @s |\n"+msg);
 	}
 	
-	var _space={0,0,0,0,0,
+	/*var _space={0,0,0,0,0,
 		  0,0,0,0,0,
 		  0,0,0,0,0,
 		  0,0,0,0,0,
@@ -237,7 +237,7 @@ function connection(ws) {
 		0,1,1,1,1,
 		0,0,0,1,0,
 		0,0,1,0,0,
-		0,1,1,1,1};
+		0,1,1,1,1};*/
 		
 
 	//var logtogame=true;
