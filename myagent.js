@@ -18,7 +18,9 @@ console.log('MyAgentR by LNSSPsd');
 console.log("Version: v1.1");
 function loadPlug(func){
 	var path="plugins";
+	try{
     var pa = fs.readdirSync(path);  
+	}catch(ejs){return;}
     pa.forEach(function(ele,index){  
         var info = fs.statSync(path+"/"+ele);
         if(!info.isDirectory()){
@@ -90,7 +92,7 @@ function connection(ws) {
 	function serverinf(msg) {
 
 		//console.log("[Server] %s",msg);
-		gamecmds("me §2§l*:§r" + msg);
+		gamecmds("say " + msg);
 
 		//gamecmds("msg @s |\n"+msg);
 	}
