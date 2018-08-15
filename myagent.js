@@ -1,6 +1,11 @@
 //DEFINE ARGS
 var EnablePlugins=true;
 var portm = 19131;
+try{
+	var ffi=require("ffi");
+}catch(dkdj){
+	EnablePlugins=false;
+}
 //S
 try {
 	var WebSocketServer = require("ws").Server;
@@ -8,7 +13,7 @@ try {
 	var wss = new WebSocketServer({
 		port: portm
 	});
-	if(EnablePlugins==true){var ffi=require("ffi");}
+	//if(EnablePlugins==true){var ffi=require("ffi");}
 } catch(err) {
 	console.log("Error when loading require packages: %s.", err.message);
 	process.exit(1);
