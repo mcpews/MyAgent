@@ -29,6 +29,9 @@ In LINUX: Do step Install Node.JS and then run command:<code>node myagent.js</co
 ## Connect
 type command in game:<br>
 <code>/connect [ip]:19131</code>
+## Enable Plugins
+Execute following commands：<pre><code>npm install ffi</code></pre><br/>
+and MyAgent will enable plugins when startup.
 ## MyAgent Daemon Plugin
 * Only LINUX
 ### Build
