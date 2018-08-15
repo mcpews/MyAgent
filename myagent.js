@@ -348,15 +348,19 @@ function connection(ws) {
 					var qs = parseInt(spee[1]);
 					var ed = 1;
 					while (true) {
-						if (qs > ed) {
+						if (qs < ed) {
 							break;
 						}
 						if(logtogame==false){
-							setTimeout(function() {gamecmds(spee[0]);},500 * ed);
+							setTimeout(function() {gamecmds("agent "+spee[0]);},500 * ed);
 							ed++;
 							continue;
 						}
-						setTimeout(function() {gamecmd(spee[0]);},500 * ed);
+						setTimeout(function() {gamecmd("agent "+spee[0]);},500 * ed);
+						setTimeout(function() {
+ 						gamecmd("agent "+sped[1]);
+ 					},
+ 					500 * ed);
 						ed++;
 					}
 				} catch(ew) {
@@ -379,7 +383,7 @@ function connection(ws) {
 					var qs = parseInt(spee[1]);
 					var ed = 1;
 					while (true) {
-						if (qs > ed) {
+						if (qs < ed) {
 							break;
 						}
 						if(logtogame==false){
