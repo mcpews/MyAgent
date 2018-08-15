@@ -1,5 +1,31 @@
 //DEFINE ARGS
 var EnablePlugins=true;
+const os = require('os');
+var localhost = ''
+try {
+    var network = os.networkInterfaces()
+    localhost = network[Object.keys(network)[0]][1].address
+} catch (e) {
+    localhost = 'localhost'
+}
+//console.log(localhost);
+//fs.exists("./options.json",function(exists){
+	//if(exists){
+		//getJson('port');
+		//function getJson(key){
+			//console.log("e");
+			//var file="./options.json";
+			//var result=JSON.parse(fs.readFileSync(file));
+			//console.log(result);
+			//var eValue=eval('result.'+key); 
+			//console.log(eValue); 
+			//global.ad = eValue;
+		//}
+	//}
+	//if(!exists){
+		//console.log("x")
+	//}
+//});
 var portm = 19131;
 try{
 	var ffi=require("ffi");
@@ -10,6 +36,7 @@ try{
 try {
 	var WebSocketServer = require("ws").Server;
 	var fs = require("fs");
+
 	var wss = new WebSocketServer({
 		port: portm
 	});
@@ -20,8 +47,8 @@ try {
 }
 loadPlug("init()");
 
-console.log('MyAgentR by LNSSPsd');
-console.log("Version: v2.0");
+console.log('MyAgentR by LNSSPsd & Torrekie');
+console.log("Version: v2.1");
 
 function loadPlug(func){
 	if(EnablePlugins==false){return;}
@@ -53,7 +80,10 @@ function loadPlug(func){
         }
     });
 }
-console.log("Please Connect Client to 127.0.0.1:%s.", portm);
+console.log("Before Connecting:");
+console.log("1. Make sure that your local server(Your computer) and your clients in same network.");
+console.log("2. Just ignore 1st point if you are running MyAgent in your Cloud Server.");
+console.log("Please Connect Client to " + localhost + ":%s.", portm);
 
 loadPlug("oninitdone()");
 
