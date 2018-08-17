@@ -80,10 +80,8 @@ function loadPlug(func){
         }
     });
 }
-console.log("Before Connecting:");
-console.log("1. Make sure that your local server(Your computer) and your clients in same network.");
-console.log("2. Just ignore 1st point if you are running MyAgent in your Cloud Server.");
-console.log("Please Connect Client to " + localhost + ":%s.", portm);
+
+console.log("\nPlease Connect Client to " + localhost + ":%s.", portm);
 
 loadPlug("oninitdone()");
 
@@ -126,6 +124,8 @@ function connection(ws) {
 			}
 		}));
 	}
+	
+	
 
 	function serverinf(msg) {
 
