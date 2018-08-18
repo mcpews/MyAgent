@@ -8,24 +8,7 @@ try {
 } catch (e) {
     localhost = 'localhost'
 }
-//console.log(localhost);
-//fs.exists("./options.json",function(exists){
-	//if(exists){
-		//getJson('port');
-		//function getJson(key){
-			//console.log("e");
-			//var file="./options.json";
-			//var result=JSON.parse(fs.readFileSync(file));
-			//console.log(result);
-			//var eValue=eval('result.'+key); 
-			//console.log(eValue); 
-			//global.ad = eValue;
-		//}
-	//}
-	//if(!exists){
-		//console.log("x")
-	//}
-//});
+
 var portm = 19131;
 try{
 	var ffi=require("ffi");
@@ -350,7 +333,7 @@ function connection(ws) {
 	//loadPlug("onloaded()");
 
 	ws.on('message',
-	function incoming(message) {
+	function (message) {
 		//loadPlug("onmessage('"+message+"')");
 		//ws.terminate();
 		console.log('received: %s', message);
