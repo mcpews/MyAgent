@@ -431,10 +431,11 @@ function connection(ws) {
 				if(JSON.parse(message).body.properties.Message.split(" ")[0]=="*/circlex"){
 					var r=JSON.parse(message).body.properties.Message.split(" ")[1];
 					var block=JSON.parse(message).body.properties.Message.split(" ")[2];
+					if(block==undefined){serverinf("BLOCK==UNDEFINED");return;}
 					for(var i=-r;i<=r;i++){
 for(var j=-r;j<=r;j++){
 if(i*i+j*j<r*r&&i*i+j*j>=(r-1)*(r-1)){
-	gamecmds("setblock ~ ~"+i+" ~"+j+" "+block);
+	setTimeout(function(){gamecmds("setblock ~ ~"+i+" ~"+j+" "+block);},500);
 }
 }}
 					serverinf("Circle: Done.");
