@@ -428,6 +428,18 @@ function connection(ws) {
 					setTimeout(function(){ws.terminate();},1000);
 					return;
 				}
+				if(JSON.parse(message).body.properties.Message.split(" ")[0]=="*/circlex"){
+					var r=JSON.parse(message).body.properties.Message.split(" ")[1];
+					var block=JSON.parse(message).body.properties.Message.split(" ")[2];
+					for(var i=-r;i<=r;i++){
+for(var j=-r;j<=r;j++){
+if(i*i+j*j<r*r&&i*i+j*j>=(r-1)*(r-1)){
+	gamecmds("setblock ~ ~"+i+" ~"+j+" "+block);
+}
+}}
+					serverinf("Circle: Done.");
+					return;
+				}
 				//var splcmd=JSON.parse(message).body.properties.Message.split(" ");
 				//switch(splcmd[0]){
 				//	case "*/move":
@@ -487,7 +499,8 @@ function connection(ws) {
 */getitemcount|getitemspace|getitemdetail <slotNum:item>");
 					serverinf("*/bye:Disconnect Websocket.\n\
 */wlg <true|false>:Set log when doing a loop.\n\
-*/fenchant:Fast enchant your items to top level.");
+*/fenchant:Fast enchant your items to top level.\n\
+*/circle<x|y|z> <r> <block>:Draw a circle.");
 
 					break;
 				case "*/wlg true":
