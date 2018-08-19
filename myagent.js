@@ -432,13 +432,15 @@ function connection(ws) {
 					var r=JSON.parse(message).body.properties.Message.split(" ")[1];
 					var block=JSON.parse(message).body.properties.Message.split(" ")[2];
 					if(block==undefined){serverinf("BLOCK==UNDEFINED");return;}
+					var time=0;
 					for(var i=-r;i<=r;i++){
 for(var j=-r;j<=r;j++){
 if(i*i+j*j<r*r&&i*i+j*j>=(r-1)*(r-1)){
-	setTimeout(function(){gamecmds("setblock ~ ~"+i+" ~"+j+" "+block);},500);
+	setTimeout(function(){gamecmds("setblock ~ ~"+i+" ~"+j+" "+block);},500*time);
+	time++;
 }
 }}
-					serverinf("Circle: Done.");
+					setTimeout(function(){serverinf("Circle: Done.");},500*time);
 					return;
 				}
 				//var splcmd=JSON.parse(message).body.properties.Message.split(" ");
