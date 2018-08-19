@@ -109,6 +109,36 @@ function connection(ws) {
 	}
 	
 	
+	var syncinfo={done:false,
+		      code:0,
+		      message:"nothing returned"};
+	
+	function gamecmdsync(cmd) {
+		ws.send(JSON.stringify({
+			"body": {
+				"origin": {
+					"type": "player"
+				},
+				"commandLine": cmd,
+				"version": 1
+			},
+			"header": {
+				"requestId": "00000000-0fe1-0000-000000000000",
+				"messagePurpose": "commandRequest",
+				"version": 1,
+				"messageType": "commandRequest"
+			}
+		}));
+		setTimeout(function(){syncinfo.code=-233;syncinfo.done=true;},5000);//If 5s no response,force return.
+		while(true){
+		if(syncinfo.done==true){
+			var sback=syncinfo;
+			syncinfo.done=false;
+			return sback;}
+		}
+		
+	}
+	
 
 	function serverinf(msg) {
 
@@ -343,9 +373,17 @@ function connection(ws) {
 			}
 		}
 
-		if (JSON.parse(message).header.messagePurpose == "commandResponse" && JSON.parse(message).header.requestId != "00000000-0001-0000-000000000000") {
+		if (JSON.parse(message).header.messagePurpose == "commandResponse" && JSON.parse(message).header.requestId != "00000000-0001-0000-000000000000" && JSON.parse(message).header.requestId != "00000000-0fe1-0000-000000000000") {
 			serverinf("Command Response:\nMessage:" + JSON.parse(message).body.statusMessage);
 		}
+		
+		if(JSON.parse(message).header.messagePurpose == "commandResponse" && JSON.parse(message).header.requestId != "00000000-0fe1-0000-000000000000"){
+			syncinfo.code=JSON.parse(message).body.statusCode;
+			syncinfo.message=JSON.parse(message).body.statusMessage;
+			syncinfo.done=true;
+			return;
+		}
+		
 		if (JSON.parse(message).body.eventName == "AgentCommand" && JSON.parse(message).header.requestId != "00000000-0000-0001-000000000000") {
 			serverinf("Agent Command:\nResult:" + JSON.parse(message).body.properties.Result);
 		}
@@ -428,21 +466,6 @@ function connection(ws) {
 					setTimeout(function(){ws.terminate();},1000);
 					return;
 				}
-				if(JSON.parse(message).body.properties.Message.split(" ")[0]=="*/circlex"){
-					var r=JSON.parse(message).body.properties.Message.split(" ")[1];
-					var block=JSON.parse(message).body.properties.Message.split(" ")[2];
-					if(block==undefined){serverinf("BLOCK==UNDEFINED");return;}
-					var time=0;
-					for(var i=-r;i<=r;i++){
-for(var j=-r;j<=r;j++){
-if(i*i+j*j<r*r&&i*i+j*j>=(r-1)*(r-1)){
-	setTimeout(function(){gamecmds("setblock ~ ~"+i+" ~"+j+" "+block);},500*time);
-	time++;
-}
-}}
-					setTimeout(function(){serverinf("Circle: Done.");},500*time);
-					return;
-				}
 				//var splcmd=JSON.parse(message).body.properties.Message.split(" ");
 				//switch(splcmd[0]){
 				//	case "*/move":
@@ -502,8 +525,7 @@ if(i*i+j*j<r*r&&i*i+j*j>=(r-1)*(r-1)){
 */getitemcount|getitemspace|getitemdetail <slotNum:item>");
 					serverinf("*/bye:Disconnect Websocket.\n\
 */wlg <true|false>:Set log when doing a loop.\n\
-*/fenchant:Fast enchant your items to top level.\n\
-*/circle<x|y|z> <r> <block>:Draw a circle.");
+*/fenchant:Fast enchant your items to top level.\n");
 
 					break;
 				case "*/wlg true":
