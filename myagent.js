@@ -401,6 +401,11 @@ function connection(ws) {
 		}
 		
 		if(JSON.parse(message).header.messagePurpose == "commandResponse" && JSON.parse(message).header.requestId != "00000000-0fe1-0000-000000000000"){
+			
+			return;
+		}
+		
+		if (JSON.parse(message).body.eventName == "AgentCommand") {
 			if(stopfp==true){stopfp=false;return;}
 			var ac=JSON.parse(JSON.parse(message).body.properties.Result);
 			if(ac.commandName=="inspect"){
@@ -411,14 +416,6 @@ function connection(ws) {
 				}
 				gamecmdfp("agent inspect forward");
 			}
-			return;
-		}
-		
-		if (JSON.parse(message).body.eventName == "AgentCommand") {
-			//serverinf("Agent Command:\nResult:" + JSON.parse(message).body.properties.Result);
-			syncinfo.agentcommand.result=JSON.parse(message).body.properties.Result;
-			//if(syncinfo.agentcommand.wait==true){syncinfo.agentcommand.done=true}
-			syncinfo.agentcommand.done=true;
 		}
 		if (JSON.parse(message).body.eventName == "PlayerMessage"
 		/* && JSON.parse(message).body.properties.MessageType=="chat"*/
