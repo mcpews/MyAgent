@@ -119,7 +119,7 @@ function connection(ws) {
 		     }
 		     };
 	
-	function gamecmdsync(cmd,wait) {
+	function gamecmdfp(cmd) {
 		//syncinfo.agentcommand.wait=wait
 		ws.send(JSON.stringify({
 			"body": {
@@ -136,7 +136,7 @@ function connection(ws) {
 				"messageType": "commandRequest"
 			}
 		}));
-		setTimeout(function(){if(syncinfo.alldone==true){return; }syncinfo.code=-233;syncinfo.alldone=true;},5000);//If 5s no response,force return.
+		/*setTimeout(function(){if(syncinfo.alldone==true){return; }syncinfo.code=-233;syncinfo.alldone=true;},5000);//If 5s no response,force return.
 		while(true){
 			if(wait==true){
 		if(syncinfo.done==true&&syncinfo.agentcommand.done==true){
@@ -157,7 +157,7 @@ function connection(ws) {
 			syncinfo.done=false;syncinfo.alldone=false;syncinfo.agentcommand.done=false;
 			return sback;
 		}
-		
+		*/
 	}
 	
 
@@ -383,6 +383,8 @@ function connection(ws) {
 	},22000);*/
 	//loadPlug("onloaded()");
 
+	var stopfp=false;
+	
 	ws.on('message',
 	function (message) {
 		//loadPlug("onmessage('"+message+"')");
@@ -399,10 +401,16 @@ function connection(ws) {
 		}
 		
 		if(JSON.parse(message).header.messagePurpose == "commandResponse" && JSON.parse(message).header.requestId != "00000000-0fe1-0000-000000000000"){
-			syncinfo.code=JSON.parse(message).body.statusCode;
-			syncinfo.message=JSON.parse(message).body.statusMessage;
-			//if(syncinfo.agentcommand.wait==true && syncinfo.agentcommand.done==false){return;}
-			syncinfo.done=true;
+			if(stopfp==true){stopfp=false;return;}
+			var ac=JSON.parse(JSON.parse(message).body.properties.Result);
+			if(ac.commandName=="inspect"){
+				if(ac.blockName=="air"){
+					gamecmds("agent move forward");
+				}else{
+					gamecmds("agent turn right");
+				}
+				gamecmdfp("agent inspect forward");
+			}
 			return;
 		}
 		
@@ -485,7 +493,7 @@ function connection(ws) {
 				return;
 			}
 			
-			var stopfp=false;
+			//var stopfp=false;
 			
 			if (JSON.parse(message).body.properties.Message.substring(0, 2) == "*/") {
 				if (JSON.parse(message).body.properties.Message == "*/bye") {
@@ -561,19 +569,7 @@ function connection(ws) {
 						stopfp=true;
 						break;
 					case "*/findpath":
-						while(true){
-							if(stopfp==true){stopfp=false;break;}
-							var ret=gamecmdsync("agent inspect forward",true);
-							if(ret.code!=0){
-								serverinf("FAILED To inspect: "+ret.message);
-								break;
-							}
-							if(JSON.parse(ret.agentcommand.result).blockName!="air"){
-								gamecmdsync("agent turn right",false);
-							}else{
-								gamecmdsync("agent move forward",false);
-							}
-						}
+						gamecmdfp("agent inspect forward");
 						break;
 				case "*/wlg true":
 						logtogame=true;
