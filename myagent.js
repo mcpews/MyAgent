@@ -136,7 +136,7 @@ function connection(ws) {
 				"messageType": "commandRequest"
 			}
 		}));
-		setTimeout(function(){if(syncinfo.alldone==true){return; }syncinfo.code=-233;syncinfo.done=true;},5000);//If 5s no response,force return.
+		setTimeout(function(){if(syncinfo.alldone==true){return; }syncinfo.code=-233;syncinfo.alldone=true;},5000);//If 5s no response,force return.
 		while(true){
 			if(wait==true){
 		if(syncinfo.done==true&&syncinfo.agentcommand.done==true){
@@ -151,6 +151,11 @@ function connection(ws) {
 			syncinfo.done=false;syncinfo.alldone=false;syncinfo.agentcommand.done=false;
 			return sback;}
 			}
+		}
+		if(syncinfo.alldone==true){
+			var sback=syncinfo;
+			syncinfo.done=false;syncinfo.alldone=false;syncinfo.agentcommand.done=false;
+			return sback;
 		}
 		
 	}
@@ -401,7 +406,7 @@ function connection(ws) {
 			return;
 		}
 		
-		if (JSON.parse(message).body.eventName == "AgentCommand" && JSON.parse(message).header.requestId == "00000000-0fe1-0000-000000000000") {
+		if (JSON.parse(message).body.eventName == "AgentCommand") {
 			//serverinf("Agent Command:\nResult:" + JSON.parse(message).body.properties.Result);
 			syncinfo.agentcommand.result=JSON.parse(message).body.properties.Result;
 			//if(syncinfo.agentcommand.wait==true){syncinfo.agentcommand.done=true}
