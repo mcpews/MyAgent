@@ -110,16 +110,17 @@ function connection(ws) {
 	
 	
 	var syncinfo={done:false,
+		      alldone:false,
 		      code:0,
 		      message:"nothing returned",
 		     agentcommand:{
 		     result:"{}",
-			     wait:false;
+			     done:false
 		     }
 		     };
 	
 	function gamecmdsync(cmd,wait) {
-		syncinfo.agentcommand.wait=wait
+		//syncinfo.agentcommand.wait=wait
 		ws.send(JSON.stringify({
 			"body": {
 				"origin": {
@@ -135,11 +136,12 @@ function connection(ws) {
 				"messageType": "commandRequest"
 			}
 		}));
-		setTimeout(function(){syncinfo.code=-233;syncinfo.done=true;},5000);//If 5s no response,force return.
+		setTimeout(function(){if(syncinfo.alldone==true){return; }syncinfo.code=-233;syncinfo.done=true;},5000);//If 5s no response,force return.
 		while(true){
-		if(syncinfo.done==true){
+		if(syncinfo.done==true&&syncinfo.agentcommand.done==true){
+			syncinfo.alldone=true
 			var sback=syncinfo;
-			syncinfo.done=false;
+			syncinfo.done=false;syncinfo.alldone=false;syncinfo.agentcommand.done=false;
 			return sback;}
 		}
 		
@@ -386,7 +388,7 @@ function connection(ws) {
 		if(JSON.parse(message).header.messagePurpose == "commandResponse" && JSON.parse(message).header.requestId != "00000000-0fe1-0000-000000000000"){
 			syncinfo.code=JSON.parse(message).body.statusCode;
 			syncinfo.message=JSON.parse(message).body.statusMessage;
-			if(syncinfo.agentcommand.wait==true){return;}
+			//if(syncinfo.agentcommand.wait==true && syncinfo.agentcommand.done==false){return;}
 			syncinfo.done=true;
 			return;
 		}
@@ -394,7 +396,8 @@ function connection(ws) {
 		if (JSON.parse(message).body.eventName == "AgentCommand" && JSON.parse(message).header.requestId == "00000000-0fe1-0000-000000000000") {
 			//serverinf("Agent Command:\nResult:" + JSON.parse(message).body.properties.Result);
 			syncinfo.agentcommand.result=JSON.parse(message).body.properties.Result;
-			if(syncinfo.agentcommand.wait==true){syncinfo.done=true}
+			//if(syncinfo.agentcommand.wait==true){syncinfo.agentcommand.done=true}
+			syncinfo.agentcommand.done=true;
 		}
 		if (JSON.parse(message).body.eventName == "PlayerMessage"
 		/* && JSON.parse(message).body.properties.MessageType=="chat"*/
