@@ -138,11 +138,19 @@ function connection(ws) {
 		}));
 		setTimeout(function(){if(syncinfo.alldone==true){return; }syncinfo.code=-233;syncinfo.done=true;},5000);//If 5s no response,force return.
 		while(true){
+			if(wait==true){
 		if(syncinfo.done==true&&syncinfo.agentcommand.done==true){
 			syncinfo.alldone=true
 			var sback=syncinfo;
 			syncinfo.done=false;syncinfo.alldone=false;syncinfo.agentcommand.done=false;
 			return sback;}
+			}else{
+		if(syncinfo.done==true){
+			syncinfo.alldone=true
+			var sback=syncinfo;
+			syncinfo.done=false;syncinfo.alldone=false;syncinfo.agentcommand.done=false;
+			return sback;}
+			}
 		}
 		
 	}
@@ -472,6 +480,8 @@ function connection(ws) {
 				return;
 			}
 			
+			var stopfp=false;
+			
 			if (JSON.parse(message).body.properties.Message.substring(0, 2) == "*/") {
 				if (JSON.parse(message).body.properties.Message == "*/bye") {
 					serverinf("Disconnecting..\nGoodBye!");
@@ -537,9 +547,29 @@ function connection(ws) {
 */getitemcount|getitemspace|getitemdetail <slotNum:item>");
 					serverinf("*/bye:Disconnect Websocket.\n\
 */wlg <true|false>:Set log when doing a loop.\n\
-*/fenchant:Fast enchant your items to top level.\n");
+*/fenchant:Fast enchant your items to top level.\n\
+*/findpath:Test method\n\
+*/stopfindpath:Stop findpath test.");
 
 					break;
+					case "*/stopfindpath":
+						stopfp=true;
+						break;
+					case "*/findpath":
+						while(true){
+							if(stopfp==true){stopfp=false;break;}
+							var ret=gamecmdsync("agent inspect forward",true);
+							if(ret.code!=0){
+								serverinf("FAILED To inspect: "+ret.message);
+								break;
+							}
+							if(JSON.parse(ret.agentcommand.result).blockName!="air"){
+								gamecmdsync("agent turn right",false);
+							}else{
+								gamecmdsync("agent move forward",false);
+							}
+						}
+						break;
 				case "*/wlg true":
 						logtogame=true;
 						serverinf("logtogame=true;");
