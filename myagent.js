@@ -111,9 +111,15 @@ function connection(ws) {
 	
 	var syncinfo={done:false,
 		      code:0,
-		      message:"nothing returned"};
+		      message:"nothing returned",
+		     agentcommand:{
+		     result:"{}",
+			     wait:false;
+		     }
+		     };
 	
-	function gamecmdsync(cmd) {
+	function gamecmdsync(cmd,wait) {
+		syncinfo.agentcommand.wait=wait
 		ws.send(JSON.stringify({
 			"body": {
 				"origin": {
@@ -380,12 +386,15 @@ function connection(ws) {
 		if(JSON.parse(message).header.messagePurpose == "commandResponse" && JSON.parse(message).header.requestId != "00000000-0fe1-0000-000000000000"){
 			syncinfo.code=JSON.parse(message).body.statusCode;
 			syncinfo.message=JSON.parse(message).body.statusMessage;
+			if(syncinfo.agentcommand.wait==true){return;}
 			syncinfo.done=true;
 			return;
 		}
 		
-		if (JSON.parse(message).body.eventName == "AgentCommand" && JSON.parse(message).header.requestId != "00000000-0000-0001-000000000000") {
-			serverinf("Agent Command:\nResult:" + JSON.parse(message).body.properties.Result);
+		if (JSON.parse(message).body.eventName == "AgentCommand" && JSON.parse(message).header.requestId == "00000000-0fe1-0000-000000000000") {
+			//serverinf("Agent Command:\nResult:" + JSON.parse(message).body.properties.Result);
+			syncinfo.agentcommand.result=JSON.parse(message).body.properties.Result;
+			if(syncinfo.agentcommand.wait==true){syncinfo.done=true}
 		}
 		if (JSON.parse(message).body.eventName == "PlayerMessage"
 		/* && JSON.parse(message).body.properties.MessageType=="chat"*/
