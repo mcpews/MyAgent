@@ -414,7 +414,7 @@ function connection(ws) {
 				}else{
 					gamecmds("agent turn right");
 				}
-				gamecmdfp("agent inspect forward");
+				setTimeout(function(){gamecmdfp("agent inspect forward");},500);
 			}
 		}
 		if (JSON.parse(message).body.eventName == "PlayerMessage"
