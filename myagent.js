@@ -409,12 +409,25 @@ function connection(ws) {
 			if(stopfp==true){stopfp=false;return;}
 			var ac=JSON.parse(JSON.parse(message).body.properties.Result);
 			if(ac.commandName=="inspect"){
+				while(true){
 				if(ac.blockName=="air"){
 					gamecmds("agent move forward");
 				}else{
+					var rd=Math.round(Math.random()*2);
+					if(rd==1){
 					gamecmds("agent turn right");
+					}else if(rd==2){
+						gamecmds("agent move up");
+						setTimeout(function(){gamecmdfp("agent move down");},1500);
+						setTimeout(function(){gamecmdfp("agent move down");},2000);
+					}else{
+						gamecmds("agent turn left");
+					}
+				}
+					break;
 				}
 				setTimeout(function(){gamecmdfp("agent inspect forward");},500);
+				//setTimeout(function(){gamecmdfp("agent inspect down");},900);
 			}
 		}
 		if (JSON.parse(message).body.eventName == "PlayerMessage"
