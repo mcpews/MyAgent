@@ -33,6 +33,25 @@ loadPlug("init()");
 console.log('MyAgentR by LNSSPsd & Torrekie');
 console.log("Version: v2.1");
 
+var jspl=[];
+
+function loadjsPl(){
+	var path="plugins";
+	try{
+    var pa = fs.readdirSync(path);  
+	}catch(ejs){return;}
+    pa.forEach(function(ele,index){  
+        var info = fs.statSync(path+"/"+ele);
+        if(!info.isDirectory()){
+            if(ele.split(".")[1]=="js"){
+		    jspl.push(require("./plugins/"+ele));
+	    }
+	}
+    });
+}
+
+loadjsPl();
+
 function loadPlug(func){
 	if(EnablePlugins==false){return;}
 	var path="plugins";
