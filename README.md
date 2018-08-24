@@ -1,43 +1,60 @@
 # MyAgent
-The Minecraft agent generator&amp;controller written in node.js<br/>
-<b><a href="http://agent.vanillahh.online">MyAgent Project</a></b><br/>
+The Minecraft agent generator&amp;controller written in node.js
+<b>[MyAgent Project](http://agent.vanillahh.online)</b>
 [![cOd](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/ntaa8z8)
-
 ## Install Node.Js
-* WINDOWS: download nodejs at <code>https://nodejs.org/en/download/</code>
-* LINUX: Please install packages <code>gcc g++ make</code> first,then<br/>
-Run commands:<pre><code>chmod +x configure
-./configure</code></pre>
+* WINDOWS: download nodejs at `https://nodejs.org/en/download/`
+* LINUX: Please install packages `gcc g++ make` first,then
+Run commands:
+```
+chmod +x configure
+./configure
+```
 and wait about 1 hour.
 ### Install Packages in Linux
 #### Debian and debian - based systems
-<pre><code>apt install gcc g++ make</code></pre>
+```
+apt install gcc g++ make
+```
 #### CentOs and CentOS based systems
-<pre><code>yum install gcc
+````
+yum install gcc
 yum install make
-yum install gcc-c++</code></pre>
+yum install gcc-c++
+````
 ## Arch Linux
-<pre><code>pacman -S gcc
-pacman -S make</code></pre>
+````
+pacman -S gcc
+pacman -S make
+````
 ## Other Systems
-[Search by Google](http://google.com)<br>[Search by bing](http://bing.com)<br>[Search by BAIDU](http://www.baidu.com)
+[Search by Google](http://google.com)
+[Search by bing](http://bing.com)
+[Search by BAIDU](http://www.baidu.com)
 ## Run
-In WINDOWS:First,please run following commands:<br/>
-<pre><code>npm install</code></pre>
-Then,run command:<code>node myagent.js</code>
-In LINUX: Do step Install Node.JS and then run command:<code>node myagent.js</code>
+In WINDOWS:First,please run following commands:
+````
+npm install
+````
+Then,run command:`node myagent.js`
+In LINUX: Do step Install Node.JS and then run command:`node myagent.js`
 ## Connect
-type command in game:<br>
-<code>/connect [ip]:19131</code>
+type command in game:
+`/connect [ip]:19131`
 ## Enable Plugins
-Execute following commands：<pre><code>npm install ffi</code></pre><br/>
+Execute following commands：
+````
+npm install ffi
+````
 and MyAgent will enable plugins when startup.
 ## MyAgent Daemon Plugin
 * Only LINUX
 ### Build
-change dir to <code>plugins/myagentd/</code><br/>
-And run the following commands:
-<pre><code>make</code></pre>
+change dir to `plugins/myagentd/`
+And run the following command:
+````
+make
+````
 ### Run
 MyAgent will load it when execute.
 ### KILL
@@ -50,8 +67,8 @@ GNU GPL v3
 [許嘉鋅](https://github.com/TheXuJiaXin),[LNSSPsd](https://github.com/LNSSPsd),[CAIMEO](https://github.com/CAIMEOX) &amp; [Torrekie](https://github.com/Torrekie).
 ## Contact Us
 MJTG QQ Group:<code>590352162</code>
-<br>
-<br>
+
+
 # MyAgent - 中文
 一个使用node.js编写的我的世界吉祥物生成/控制器<br/>
 <b><a href="http://agent.vanillahh.online">MyAgent Project</a></b><br/>[![cOd](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/ntaa8z8)
