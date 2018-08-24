@@ -1,6 +1,8 @@
 # MyAgent
 The Minecraft agent generator&amp;controller written in node.js
+
 <b>[MyAgent Project](http://agent.vanillahh.online)</b>
+
 [![cOd](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/ntaa8z8)
 ## Install Node.Js
 * WINDOWS: download nodejs at `https://nodejs.org/en/download/`
@@ -29,7 +31,9 @@ pacman -S make
 ````
 ## Other Systems
 [Search by Google](http://google.com)
+
 [Search by bing](http://bing.com)
+
 [Search by BAIDU](http://www.baidu.com)
 ## Run
 In WINDOWS:First,please run following commands:
@@ -58,7 +62,9 @@ make
 ### Run
 MyAgent will load it when execute.
 ### KILL
-<pre><code>killall node</code></pre>
+````
+killall node
+````
 ## Report a bug
 Submit a issue to report bug.
 ## LICENSE
