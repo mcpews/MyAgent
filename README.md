@@ -41,6 +41,7 @@ In WINDOWS:First,please run following commands:
 npm install
 ````
 Then,run command:`node myagent.js`
+
 In LINUX: Do step Install Node.JS and then run command:`node myagent.js`
 ## Connect
 type command in game:
