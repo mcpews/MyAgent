@@ -20,19 +20,19 @@ jobs:
           command: npm i pkg
       - run:
           name: buildbinary-linux-x86
-          command: node node_modules/pkg/lib-es5/bin.js -t node8-linux-x86 myagent.js;cp myagent ~/myagent_binary/linux/myagent-x86;rm -rf myagent
+          command: node node_modules/pkg/lib-es5/bin.js -t node6-linux-x86 myagent.js;cp myagent ~/myagent_binary/linux/myagent-x86;rm -rf myagent
       - run:
           name: buildbinary-linux-x64
           command: node node_modules/pkg/lib-es5/bin.js -t node8-linux-x64 myagent.js;cp myagent ~/myagent_binary/linux/myagent-x64;rm -rf myagent
       - run:
           name: buildbinary-windows-x86
-          command: node node_modules/pkg/lib-es5/bin.js -t node8-win-x86 myagent.js;cp myagent.exe ~/myagent_binary/windows/myagent-x86.exe;rm -rf myagent.exe
+          command: node node_modules/pkg/lib-es5/bin.js -t node6-win-x86 myagent.js;cp myagent.exe ~/myagent_binary/windows/myagent-x86.exe;rm -rf myagent.exe
       - run:
           name: buildbinary-windows-x64
           command: node node_modules/pkg/lib-es5/bin.js -t node8-win-x64 myagent.js;cp myagent.exe ~/myagent_binary/windows/myagent-x64.exe;rm -rf myagent.exe
       - run:
           name: buildbinary-macos-x86
-          command: node node_modules/pkg/lib-es5/bin.js -t node8-macos-x86 myagent.js;cp myagent ~/myagent_binary/macos/myagent-x86;rm -rf myagent
+          command: node node_modules/pkg/lib-es5/bin.js -t node6-macos-x86 myagent.js;cp myagent ~/myagent_binary/macos/myagent-x86;rm -rf myagent
       - run:
           name: buildbinary-macos-x64
           command: node node_modules/pkg/lib-es5/bin.js -t node8-macos-x64 myagent.js;cp myagent ~/myagent_binary/macos/myagent-x64;rm -rf myagent
