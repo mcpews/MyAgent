@@ -14,28 +14,22 @@ jobs:
           command: node myagent.js test
       - run:
           name: mkdir
-          command: mkdir ~/myagent_binary;mkdir ~/myagent_binary/linux;mkdir ~/myagent_binary/windows;mkdir ~/myagent_binary/macos
+          command: mkdir ~/myagent_binary;mkdir ~/myagent_binary/STOPPED_SUPPORT_FOR_x86
       - run:
           name: installpkg
           command: npm i pkg
       - run:
-          name: buildbinary-linux-x86
-          command: node node_modules/pkg/lib-es5/bin.js -t node6-linux-x86 myagent.js;cp myagent ~/myagent_binary/linux/myagent-x86;rm -rf myagent
+          name: buildbinary-linux
+          command: node node_modules/pkg/lib-es5/bin.js -t node8-linux-x64 myagent.js;cp myagent ~/myagent_binary/myagent-linux;rm -rf myagent
       - run:
-          name: buildbinary-linux-x64
-          command: node node_modules/pkg/lib-es5/bin.js -t node8-linux-x64 myagent.js;cp myagent ~/myagent_binary/linux/myagent-x64;rm -rf myagent
+          name: test-for-linuxbinary
+          command: chmod +x ~/myagent_binary/myagent-linux;~/myagent_binary/myagent-linux test
       - run:
-          name: buildbinary-windows-x86
-          command: node node_modules/pkg/lib-es5/bin.js -t node6-win-x86 myagent.js;cp myagent.exe ~/myagent_binary/windows/myagent-x86.exe;rm -rf myagent.exe
+          name: buildbinary-windows
+          command: node node_modules/pkg/lib-es5/bin.js -t node8-win-x64 myagent.js;cp myagent.exe ~/myagent_binary/myagent-win.exe;rm -rf myagent.exe
       - run:
-          name: buildbinary-windows-x64
-          command: node node_modules/pkg/lib-es5/bin.js -t node8-win-x64 myagent.js;cp myagent.exe ~/myagent_binary/windows/myagent-x64.exe;rm -rf myagent.exe
-      - run:
-          name: buildbinary-macos-x86
-          command: node node_modules/pkg/lib-es5/bin.js -t node6-macos-x86 myagent.js;cp myagent ~/myagent_binary/macos/myagent-x86;rm -rf myagent
-      - run:
-          name: buildbinary-macos-x64
-          command: node node_modules/pkg/lib-es5/bin.js -t node8-macos-x64 myagent.js;cp myagent ~/myagent_binary/macos/myagent-x64;rm -rf myagent
+          name: buildbinary-macos
+          command: node node_modules/pkg/lib-es5/bin.js -t node8-macos-x64 myagent.js;cp myagent ~/myagent_binary/myagent-macos;rm -rf myagent
       - store_artifacts:
           path: ~/myagent_binary
 
