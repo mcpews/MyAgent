@@ -7,14 +7,14 @@ jobs:
     steps:
       - checkout
       - run:
+          name: installrequire
+          command: npm i
+      - run:
           name: test_myagent
           command: node myagent.js test
       - run:
           name: mkdir
           command: mkdir ~/myagent_binary
-      - run:
-          name: installrequire
-          command: npm i
       - run:
           name: installpkg
           command: npm i pkg
