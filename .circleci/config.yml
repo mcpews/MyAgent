@@ -17,7 +17,7 @@ jobs:
           command: npm i pkg
       - run:
           name: buildbinary
-          command: node node_modules/pkg/lib-es5/bin.js -t linux myagent.js;cp myagent ~/myagent_binary/
+          command: node node_modules/pkg/lib-es5/bin.js -t node8-linux myagent.js;cp myagent ~/myagent_binary/
       - store_artifacts:
           path: ~/myagent_binary
 
