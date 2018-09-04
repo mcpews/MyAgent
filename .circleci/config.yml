@@ -7,12 +7,15 @@ jobs:
     steps:
       - checkout
       - run:
+          name: installrequire
+          command: npm i
+      - run:
           name: installpkg
-          command: npm i -g pkg
+          command: npm i pkg
       - run:
           name: buildbinary
           command: 
-            pkg -t linux myagent.js
+            node node_modules/pkg/lib-es5/bin.js -t linux myagent.js
             cp myagent ~/myagent
       - store_artifacts:
           path: ~/myagent
