@@ -7,6 +7,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: test_myagent
+          command: node myagent.js test
+      - run:
           name: mkdir
           command: mkdir ~/myagent_binary
       - run:
