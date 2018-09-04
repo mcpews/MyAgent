@@ -7,6 +7,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: mkdir
+          command: mkdir ~/myagent_binary
+      - run:
           name: installrequire
           command: npm i
       - run:
@@ -14,11 +17,9 @@ jobs:
           command: npm i pkg
       - run:
           name: buildbinary
-          command: 
-            node node_modules/pkg/lib-es5/bin.js -t linux myagent.js
-            cp myagent ~/myagent
+          command: node node_modules/pkg/lib-es5/bin.js -t linux myagent.js;cp myagent ~/myagent_binary/
       - store_artifacts:
-          path: ~/myagent
+          path: ~/myagent_binary
 
 workflows:
   version: 2
