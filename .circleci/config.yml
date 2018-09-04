@@ -14,7 +14,7 @@ jobs:
           command: node myagent.js test
       - run:
           name: mkdir
-          command: mkdir ~/myagent_binary;mkdir ~/myagent_binary/STOPPED_SUPPORT_FOR_x86
+          command: mkdir ~/myagent_binary;touch ~/myagent_binary/STOPPED_SUPPORT_FOR_x86
       - run:
           name: installpkg
           command: npm i pkg
