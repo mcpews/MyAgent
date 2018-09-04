@@ -1,4 +1,9 @@
 //DEFINE ARGS
+var test=false;
+try{
+if(process.argv.splice(2)=="test"){
+	test=true;
+}}catch(n){}
 var EnablePlugins=true;
 const os = require('os');
 var localhost = ''
@@ -84,6 +89,8 @@ function loadPlug(func){
 }
 
 console.log("\nPlease Connect Client to " + localhost + ":%s.", portm);
+
+if(test==true){process.exit(0);}
 
 loadPlug("oninitdone()");
 
