@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/node:7.10
-    working_directory: /build
+    working_directory: /data/work
     steps:
       - checkout
       - run:
@@ -11,9 +11,11 @@ jobs:
           command: npm i -g pkg
       - run:
           name: buildbinary
-          command: pkg -t linux myagent.js
+          command: 
+            pkg -t linux myagent.js
+            cp myagent /data/binary/myagent
       - store_artifacts:
-          path: /data/projects/out/mods.tar.xz
+          path: /data/binary/myagent
 
 workflows:
   version: 2
