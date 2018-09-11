@@ -8,10 +8,10 @@ var EnablePlugins=true;
 const os = require('os');
 var localhost = ''
 try {
-    var network = os.networkInterfaces()
-    localhost = network[Object.keys(network)[0]][1].address
+	var network = os.networkInterfaces()
+	localhost = network[Object.keys(network)[0]][1].address
 } catch (e) {
-    localhost = 'localhost'
+	localhost = 'localhost'
 }
 
 var portm = 19131;

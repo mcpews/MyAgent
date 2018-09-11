@@ -1,7 +1,7 @@
 # MyAgent
 The Minecraft agent generator&amp;controller written in node.js
 
-<b>[MyAgent Project](http://agent.vanillahh.online)</b>
+**[MyAgent Project](http://agent.vanillahh.online)**
 
 [![cOd](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/ntaa8z8)
 
