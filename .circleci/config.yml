@@ -13,23 +13,11 @@ jobs:
           name: test_myagent
           command: node myagent.js test
       - run:
-          name: mkdir
-          command: mkdir ~/myagent_binary;echo a>~/myagent_binary/STOPPED_SUPPORT_FOR_x86
-      - run:
-          name: installpkg
-          command: npm i pkg
-      - run:
-          name: buildbinary-linux
-          command: node node_modules/pkg/lib-es5/bin.js -t node8-linux-x64 myagent.js;cp myagent ~/myagent_binary/myagent-linux;rm -rf myagent
+          name: buildbinary
+          command: make allplatform;mv build ~/myagent_binary
       - run:
           name: test-for-linuxbinary
-          command: chmod +x ~/myagent_binary/myagent-linux;~/myagent_binary/myagent-linux test
-      - run:
-          name: buildbinary-windows
-          command: node node_modules/pkg/lib-es5/bin.js -t node8-win-x64 myagent.js;cp myagent.exe ~/myagent_binary/myagent-win.exe;rm -rf myagent.exe
-      - run:
-          name: buildbinary-macos
-          command: node node_modules/pkg/lib-es5/bin.js -t node8-macos-x64 myagent.js;cp myagent ~/myagent_binary/myagent-macos;rm -rf myagent
+          command: ~/myagent_binary/myagent-linux test
       - store_artifacts:
           path: ~/myagent_binary
 
