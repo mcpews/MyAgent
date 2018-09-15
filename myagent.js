@@ -618,7 +618,11 @@ function connection(ws) {
 */wlg <true|false>:Set log when doing a loop.\n\
 */fenchant:Fast enchant your items to top level.\n\
 */findpath:Test method\n\
-*/stopfindpath:Stop findpath test.");
+*/stopfindpath:Stop findpath test.\n\
+*/setitem <slot> <item> <count> <data>:set item to agent.\n\
+*/getposition:Get position of agent.\n\
+*/tp [x y z]:tp to position\n\
+*/collect all:collect all drops");
 
 					break;
 					case "*/stopfindpath":
