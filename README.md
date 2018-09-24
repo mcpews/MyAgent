@@ -8,45 +8,23 @@ The Minecraft agent generator&amp;controller written in node.js
 [![CircleCI](https://circleci.com/gh/mcpewebsocket-dev/MyAgent.svg?style=svg)](https://circleci.com/gh/mcpewebsocket-dev/MyAgent)
 ## MyAgent Binary File
 You can download builded binary file of myagent in CircleCI.
+## READ ME if you want to make
+* File `Makefile` is for make binary version of myagent. So DON'T run it if you only want to spawn your agent.
+* If you only want to spawn your own agent, only do the `node myagent.js`.
 ## Install Node.Js
 * WINDOWS: download nodejs at `https://nodejs.org/en/download/`
-* LINUX: Please install packages `gcc g++ make` first,then
-Run commands:
+* LINUX: Please execute following commands to install Node.JS x64 version.
 ```
-chmod +x configure
-./configure
+./install_node
 ```
-and wait about 1 hour.
-### Install Packages in Linux
-#### Debian and debian - based systems
-```
-apt install gcc g++ make
-```
-#### CentOs and CentOS based systems
-````
-yum install gcc
-yum install make
-yum install gcc-c++
-````
-## Arch Linux
-````
-pacman -S gcc
-pacman -S make
-````
-## Other Systems
-[Search by Google](http://google.com)
-
-[Search by bing](http://bing.com)
-
-[Search by BAIDU](http://www.baidu.com)
+execute `./install_node_x86` to install x86 version of Node.JS
 ## Run
-In WINDOWS:First,please run following commands:
+First,please execute following commands:
 ````
 npm install
 ````
 Then,run command:`node myagent.js`
 
-In LINUX: Do step Install Node.JS and then run command:`node myagent.js`
 ## Connect
 type command in game:
 `/connect [ip]:19131`

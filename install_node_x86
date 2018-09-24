@@ -1,0 +1,17 @@
+#! /bin/bash
+
+wget https://nodejs.org/dist/v8.12.0/node-v8.12.0-linux-x86.tar.xz
+if [ $? != 0 ]; then
+echo Failed to download nodejs.
+fi
+xz -d node-v8.12.0-linux-x86.tar.xz
+tar -xvf node-v8.12.0-linux-x86.tar
+cd node-v8.12.0-linux-x86
+mv bin/* /usr/bin/
+mv include/node /usr/include/node
+mv lib/* /usr/lib/
+mv share/* /usr/share/
+cd ..
+rm -rf node-v8.12.0-linux-x86
+
+echo Node Installed.

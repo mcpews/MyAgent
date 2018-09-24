@@ -1,8 +1,11 @@
 {
   "name": "MyAgent",
-  "version": "2.0.0",
+  "version": "2.3.3",
   "description": "The agent generator & controller written in node.js",
   "main": "myagent.js",
+  "bin": {
+	  "myagent": "myagent.js"
+  },
   "scripts": {
     "nop": "exit"
   },
@@ -11,7 +14,7 @@
     "url": "git+https://github.com/mcpewebsocket-dev/MyAgent.git"
   },
   "keywords": [
-    "minecraftpe","minecraftbe"
+    "minecraftpe","minecraftbe","agent"
   ],
   "author": "LNSSPsd,Torrekie,CAIMEOX,TheXuJiaXin",
   "license": "GPL-3.0",

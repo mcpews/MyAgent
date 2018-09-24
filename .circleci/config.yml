@@ -18,6 +18,9 @@ jobs:
       - run:
           name: test-for-linuxbinary
           command: ~/myagent_binary/myagent-linux test
+      - run:
+          name: make-xz
+          command: cd ~/myagent_binary;tar -cvf all.tar * ;xz -9 -e all.tar;xz -k -9 -e myagent-linux;xz -k -9 -e myagent-macos;xz -k -9 -e myagent-win64.exe
       - store_artifacts:
           path: ~/myagent_binary
 
