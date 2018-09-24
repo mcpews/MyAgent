@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 //DEFINE ARGS
 var test=false;
 try{
