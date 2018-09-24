@@ -1,6 +1,6 @@
 {
-  "name": "MyAgent",
-  "version": "2.3.5",
+  "name": "myagent",
+  "version": "2.3.4",
   "description": "The agent generator & controller written in node.js",
   "main": "myagent.js",
   "bin": {
