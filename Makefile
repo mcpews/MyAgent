@@ -13,7 +13,7 @@ allplatform: $(PKG) builddir
 	node $(PKG) -t node8-linux-x64 myagent.js
 	mv myagent build/myagent-linux
 	node $(PKG) -t node8-win-x64 myagent.js
-	mv myagent.exe build/myagent-win.exe
+	mv myagent.exe build/myagent-win64.exe
 	node $(PKG) -t node8-macos-x64 myagent.js
 	mv myagent build/myagent-macos
 

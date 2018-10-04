@@ -1,12 +1,18 @@
 # MyAgent
 The Minecraft agent generator&amp;controller written in node.js
 
+[![MyAgent](myagent.png)](https://github.com/mcpewebsocket-dev/MyAgent)
+
 **[MyAgent Project](http://agent.vanillahh.online)**
 
 [![Discord](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/ntaa8z8)
 [![CircleCI](https://circleci.com/gh/mcpewebsocket-dev/MyAgent.svg?style=svg)](https://circleci.com/gh/mcpewebsocket-dev/MyAgent)
 [![MyAgent NPM](https://img.shields.io/badge/npm-myagent-blue.svg)](https://www.npmjs.com/myagent)
 
+## Fast install
+Execute `npm i myagent -g` to install myagent.
+
+Execute `myagent` command to start myagent.
 ## MyAgent Binary File
 You can download builded binary file of myagent in CircleCI.
 ## READ ME if you want to make
