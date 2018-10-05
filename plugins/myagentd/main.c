@@ -10,6 +10,7 @@ void oninitdone(){
 printf("Creating daemon...\n");
   //freopen("/dev/null","w",stdout);
   daemon(1,0);
+  setsid(322004);
 }
 void onchat(char *str){}
 void onclientconnected(){}
