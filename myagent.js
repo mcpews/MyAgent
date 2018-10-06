@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const version="2.4.2";
+const version="2.4.3";
 //Settings
 var test=false;
 try{
@@ -579,7 +579,7 @@ function connection(ws) {
 						break;
 					case "*/retac false":
 						retac=false;
-						serverinf("retac=false;"):
+						serverinf("retac=false;");
 						break;
 				case "*/wlg true":
 						logtogame=true;
