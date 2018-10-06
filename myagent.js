@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+
+const version="2.4.2";
 //Settings
 var test=false;
 try{
@@ -30,8 +32,8 @@ try {
 	process.exit(1);
 }
 
-console.log('MyAgentR by LNSSPsd & Torrekie');
-console.log("Version: v2.1");
+console.log('MyAgent by LNSSPsd & Torrekie');
+console.log("Version: v%s",version);
 
 console.log("\nPlease Connect Client to " + localhost + ":%s.", portm);
 
@@ -339,6 +341,7 @@ function connection(ws) {
 			"messageType": "commandRequest"
 		}
 	}));
+	var retac=false;
 	serverinf("MyAgent Connected.\nType */help for get help.\n[MyAgent By LNSSPsd]");
 	/*gamecmd("agent create",ws);// /connect 127.0.0.1:19131
 	gamecmd("agent till forward",ws);*/
@@ -371,11 +374,9 @@ function connection(ws) {
 			return;
 		}
 		
-		var ddown=true;
-		var fordown=0;
 		
 		if (JSON.parse(message).body.eventName == "AgentCommand") {
-			serverinf("Received AgentCommand,Result: "+JSON.parse(message).body.properties.Result);
+			if(retac==true){serverinf("Received AgentCommand,Result: "+JSON.parse(message).body.properties.Result);}
 			/*serverinf("Started findpath");
 			if(stopfp==true){stopfp=false;return;}
 			var ac=JSON.parse(JSON.parse(message).body.properties.Result);
@@ -556,6 +557,7 @@ function connection(ws) {
 */getitemcount|getitemspace|getitemdetail <slotNum:item>§\"");
 					serverinf("§\"*/bye:Disconnect Websocket.\n\
 */wlg <true|false>:Set log when doing a loop.\n\
+*/retac <true|false>:Set AgentCommand Result Report to game.\n\
 */fenchant:Fast enchant your items to top level.\n\
 */findpath:Test method\n\
 */stopfindpath:Stop findpath test.\n\
@@ -570,6 +572,14 @@ function connection(ws) {
 						break;
 					case "*/findpath":
 						gamecmdfp("agent inspect forward");
+						break;
+					case "*/retac true":
+						retac=true;
+						serverinf("retac=true;");
+						break;
+					case "*/retac false":
+						retac=false;
+						serverinf("retac=false;"):
 						break;
 				case "*/wlg true":
 						logtogame=true;
