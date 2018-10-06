@@ -375,7 +375,8 @@ function connection(ws) {
 		var fordown=0;
 		
 		if (JSON.parse(message).body.eventName == "AgentCommand") {
-			serverinf("Started findpath");
+			serverinf("Received AgentCommand,Result: "+JSON.parse(message).body.properties.Result);
+			/*serverinf("Started findpath");
 			if(stopfp==true){stopfp=false;return;}
 			var ac=JSON.parse(JSON.parse(message).body.properties.Result);
 			if(ac.commandName=="inspect"){
@@ -414,7 +415,7 @@ function connection(ws) {
 				setTimeout(function(){gamecmdfp("agent inspect down");},600);
 				}
 				//setTimeout(function(){gamecmdfp("agent inspect down");},1200);
-			}
+			}*/
 		}
 		if (JSON.parse(message).body.eventName == "PlayerMessage"
 		/* && JSON.parse(message).body.properties.MessageType=="chat"*/
@@ -533,7 +534,7 @@ function connection(ws) {
 				//}
 				switch (JSON.parse(message).body.properties.Message) {
 				case "*/help":
-					serverinf("MyAgent by LNSSPsd\n*/create: Create Agent.\n\
+					serverinf("§\"MyAgent by LNSSPsd\n*/create: Create Agent.\n\
 */move <direction>:move to selected direction.\n\
 (Direction: forward|back|up|down|left|right)\n\
 (turnDirection: left|right)\n\
@@ -541,19 +542,19 @@ function connection(ws) {
 */turn <turnDirection>:turn left or right.\n\
 */attack <direction>:attack target in <direction>.\n\
 */destroy <direction>:destroy block in <direction>.\n\
-*/drop <slot:int> <quantity:int> <direction>:drop item in <slot:quantity> to <direction>.\n");
-					serverinf("*/dropall <direction>:drop all item from agent's bag to <direction>.\n\
+*/drop <slot:int> <quantity:int> <direction>:drop item in <slot:quantity> to <direction>.\n§\"");
+					serverinf("§\"*/dropall <direction>:drop all item from agent's bag to <direction>.\n\
 */inspect <direction>:inspect what block in front.\n\
 */inspectdata <direction>:inspect block data in front.\n\
 */detect <direction>:Unknown because Result is 'false'?\n\
-*/detectredstone <direction>:Detect redstone activated in <direction>?\n");
-					serverinf("*/transfer <srcSlotNum:int> <quantity:int> <dstSlotNum:int>:transfer <quntity> <src> to <dst>\n\
+*/detectredstone <direction>:Detect redstone activated in <direction>?\n§\"");
+					serverinf("§\"*/transfer <srcSlotNum:int> <quantity:int> <dstSlotNum:int>:transfer <quntity> <src> to <dst>\n\
 */tp:tp agent to player.\n\
 */collect <item:string>:collect <item>.\n\
 */till <direction>:till for <direction>.\n\
 */place <slotNum:int> <direction>:Put <slotNum>'s block to <direction>.\n\
-*/getitemcount|getitemspace|getitemdetail <slotNum:item>");
-					serverinf("*/bye:Disconnect Websocket.\n\
+*/getitemcount|getitemspace|getitemdetail <slotNum:item>§\"");
+					serverinf("§\"*/bye:Disconnect Websocket.\n\
 */wlg <true|false>:Set log when doing a loop.\n\
 */fenchant:Fast enchant your items to top level.\n\
 */findpath:Test method\n\
@@ -561,7 +562,7 @@ function connection(ws) {
 */setitem <slot> <item> <count> <data>:set item to agent.\n\
 */getposition:Get position of agent.\n\
 */tp [x y z]:tp to position\n\
-*/collect all:collect all drops");
+*/collect all:collect all drops§\"");
 
 					break;
 					case "*/stopfindpath":
