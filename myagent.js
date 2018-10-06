@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const version="2.4.3";
+const version="2.4.4";
 //Settings
 var test=false;
 try{
@@ -22,6 +22,11 @@ var portm = 19131;
 try {
 	var WebSocketServer = require("ws").Server;
 	var fs = require("fs");
+	var readline=require("readline");
+	var rl = readline.createInterface({
+		    input: process.stdin,
+		    output: process.stdout
+	});
 
 	var wss = new WebSocketServer({
 		port: portm
@@ -38,10 +43,32 @@ console.log("Version: v%s",version);
 console.log("\nPlease Connect Client to " + localhost + ":%s.", portm);
 
 if(test==true){process.exit(0);}
+var allws=[];
+
+rl.on("line",function (line){
+	allws.forEach(function(e,i){
+		try{e.send(JSON.stringify({
+			"body": {
+				"origin": {
+					"type": "player"
+				},
+				"commandLine": line,
+				"version": 1
+			},
+			"header": {
+				"requestId": "00000000-0001-0000-000000000000",
+				"messagePurpose": "commandRequest",
+				"version": 1,
+				"messageType": "commandRequest"
+			}
+		}));}catch(ne){}
+	});
+});
+rl.on("SIGINT",function(){process.exit(0);});
 
 wss.on('connection',
 function connection(ws) {
-
+	allws.push(ws);
 	function gamecmd(cmd) {
 		ws.send(JSON.stringify({
 			"body": {
