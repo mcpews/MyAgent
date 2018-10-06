@@ -1,6 +1,6 @@
 {
   "name": "myagent",
-  "version": "2.3.3333",
+  "version": "2.4.0",
   "description": "The agent generator & controller written in node.js",
   "main": "myagent.js",
   "bin": {
@@ -16,7 +16,7 @@
   "keywords": [
     "minecraftpe",
     "minecraftbe",
-    "agent"
+    "mcpeagent"
   ],
   "author": "LNSSPsd,Torrekie,CAIMEOX,TheXuJiaXin",
   "license": "GPL-3.0",

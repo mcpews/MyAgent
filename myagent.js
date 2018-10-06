@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-//DEFINE ARGS
+//Settings
 var test=false;
 try{
 if(process.argv.splice(2)=="test"){
 	test=true;
 }}catch(n){}
-var EnablePlugins=true;
+
 const os = require('os');
 var localhost = ''
 try {
@@ -16,11 +16,6 @@ try {
 }
 
 var portm = 19131;
-try{
-	var ffi=require("ffi");
-}catch(dkdj){
-	EnablePlugins=false;
-}
 //S
 try {
 	var WebSocketServer = require("ws").Server;
@@ -34,70 +29,16 @@ try {
 	console.log("Error when loading require packages: %s.", err.message);
 	process.exit(1);
 }
-loadPlug("init()");
 
 console.log('MyAgentR by LNSSPsd & Torrekie');
 console.log("Version: v2.1");
-
-var jspl=[];
-
-function loadjsPl(){
-	var path="plugins";
-	try{
-    var pa = fs.readdirSync(path);  
-	}catch(ejs){return;}
-    pa.forEach(function(ele,index){  
-        var info = fs.statSync(path+"/"+ele);
-        if(!info.isDirectory()){
-            if(ele.split(".")[1]=="js"){
-		    jspl.push(require("./plugins/"+ele));
-	    }
-	}
-    });
-}
-
-loadjsPl();
-
-function loadPlug(func){
-	if(EnablePlugins==false){return;}
-	var path="plugins";
-	try{
-    var pa = fs.readdirSync(path);  
-	}catch(ejs){return;}
-    pa.forEach(function(ele,index){  
-        var info = fs.statSync(path+"/"+ele);
-        if(!info.isDirectory()){
-            if(ele.split(".")[1]=="so"){
-		    //ffi.Library(path+"/"+ele,{"onload": ["void",["void"]]}).onload();
-		    //pls[loaded].onload();
-		    //loaded++;
-		    try{
-			    
-		    var pl=ffi.Library("plugins/"+ele,{
-    'init': ['void',[]],
-			    'onclientconnected': ['void',[]],
-			    'onchat': ['void',['string']],
-			    'oninitdone': ['void',[]]
-});
-		    eval("pl."+func+";");
-		    }catch(err){//console.log("Error when loading plugins: %s.",err.message);
-			       //process.exit(2);
-			    
-		    }
-	    }
-        }
-    });
-}
 
 console.log("\nPlease Connect Client to " + localhost + ":%s.", portm);
 
 if(test==true){process.exit(0);}
 
-loadPlug("oninitdone()");
-
 wss.on('connection',
 function connection(ws) {
-	loadPlug("onclientconnected()");
 
 	function gamecmd(cmd) {
 		ws.send(JSON.stringify({
@@ -408,13 +349,11 @@ function connection(ws) {
 	setTimeout(function(){
 		if(checked==false){ws.terminate();}
 	},22000);*/
-	//loadPlug("onloaded()");
 
 	var stopfp=false;
 	
 	ws.on('message',
 	function (message) {
-		//loadPlug("onmessage('"+message+"')");
 		//ws.terminate();
 		console.log('received: %s', message);
 		if (JSON.parse(message).body.eventName == "PlayerMessage") {
@@ -480,7 +419,6 @@ function connection(ws) {
 		if (JSON.parse(message).body.eventName == "PlayerMessage"
 		/* && JSON.parse(message).body.properties.MessageType=="chat"*/
 		&& JSON.parse(message).header.requestId != "00000000-0001-0000-000000000000") {
-			loadPlug("onchat('"+JSON.parse(message).body.properties.Message+"')");
 			if (JSON.parse(message).body.properties.Message.substring(0, 2) == "./") {
 				gamecmd(JSON.parse(message).body.properties.Message.split("/")[1]);
 			}

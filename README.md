@@ -1,7 +1,7 @@
 # MyAgent
-The Minecraft agent generator&amp;controller written in node.js
+The Minecraft agent generator & controller written in node.js
 
-[![MyAgent](myagent.png)](https://github.com/mcpewebsocket-dev/MyAgent)
+[![MyAgent](pmyagent.png)](https://github.com/mcpewebsocket-dev/MyAgent)
 
 **[MyAgent Project](http://agent.vanillahh.online)**
 
@@ -22,44 +22,32 @@ You can download builded binary file of myagent in CircleCI.
 * WINDOWS: download nodejs at `https://nodejs.org/en/download/`
 * LINUX: Please execute following commands to install Node.JS x64 version.
 ```
-./install_node
+node/install_node
 ```
-execute `./install_node_x86` to install x86 version of Node.JS
-## Run
+execute `node/install_node_x86` to install x86 version of Node.JS
+## Run source code
 First,please execute following commands:
-````
+```
 npm install
-````
+```
 Then,run command:`node myagent.js`
-
+## Run
+Install Node.JS First,And then execute:
+```
+npm i myagent -g
+myagent
+```
 ## Connect
 type command in game:
 `/connect [ip]:19131`
-## Enable Plugins
-Execute following commands：
-````
-npm install ffi
-````
-and MyAgent will enable plugins when startup.
-## MyAgent Daemon Plugin
-* Only LINUX
-### Build
-change dir to `plugins/myagentd/`
-And run the following command:
-````
-make
-````
-### Run
-MyAgent will load it when execute.
-### KILL
-````
-killall node
-````
 ## Report a bug
-Submit a issue to report bug.
+Submit a issue to report bug or ask me in MJTG.
 ## LICENSE
 GNU GPL v3
-## Authors
+## Author & Maintainers.
+### Author
+[LNSSPsd](https://github.com/LNSSPsd)
+### Maintainers
 [許嘉鋅](https://github.com/TheXuJiaXin),[LNSSPsd](https://github.com/LNSSPsd),[CAIMEO](https://github.com/CAIMEOX) &amp; [Torrekie](https://github.com/Torrekie).
 ## Contact Us
-MJTG QQ Group:<code>590352162</code>
+MJTG QQ Group:`590352162`
