@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const version="2.4.4";
+const looplimit=-1;//-1 is no limit.
 //Settings
 var test=false;
 try{
@@ -61,10 +62,18 @@ rl.on("line",function (line){
 				"version": 1,
 				"messageType": "commandRequest"
 			}
-		}));}catch(ne){}
+		}));}catch(ne){allws.splice(i,1);}
 	});
 });
-rl.on("SIGINT",function(){process.exit(0);});
+
+function shutdown(){
+	allws.forEach(function(e,i){
+		try{e.terminate();}catch(eee){}
+	});
+	process.exit(0);
+}
+
+rl.on("SIGINT",function(){shutdown();});
 
 wss.on('connection',
 function connection(ws) {
@@ -459,6 +468,12 @@ function connection(ws) {
 					var sped = JSON.parse(message).body.properties.Message.split("/");
 					var spee = sped[1].split("~");
 					var qs = parseInt(spee[1]);
+					if(looplimit!=-1){
+						if(qs>looplimit){
+							serverinf("Loop hit limit.Aborted!")
+							terrrr();
+						}
+					}
 					var ed = 1;
 					while (true) {
 						if (qs < ed) {
@@ -494,6 +509,12 @@ function connection(ws) {
 					var sped = JSON.parse(message).body.properties.Message.split("/");
 					var spee = sped[1].split("~");
 					var qs = parseInt(spee[1]);
+					if(looplimit!=-1){
+						if(qs>looplimit){
+							serverinf("Loops hit limit.Abort!"):
+							abddxxxxx();
+						}
+					}
 					var ed = 1;
 					while (true) {
 						if (qs < ed) {
