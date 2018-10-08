@@ -511,7 +511,7 @@ function connection(ws) {
 					var qs = parseInt(spee[1]);
 					if(looplimit!=-1){
 						if(qs>looplimit){
-							serverinf("Loops hit limit.Abort!"):
+							serverinf("Loops hit limit.Abort!");
 							abddxxxxx();
 						}
 					}
