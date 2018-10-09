@@ -1,25 +1,40 @@
 #!/usr/bin/env node
 
-const version="2.4.4";
+//Info & Settings
+const version="2.5";
 const looplimit=-1;//-1 is no limit.
-//Settings
+var portm=19131;
 var test=false;
+var log=true;
+
+console.log("MyAgent v%s",version);
+console.log("Author: LNSSPsd");
+console.log("https://github.com/mcpewebsocket-dev/MyAgent");
+console.log("https://npmjs.com/myagent");
+
 try{
 if(process.argv.splice(2)=="test"){
+	console.log("[SET] TEST MODE: true");
 	test=true;
-}}catch(n){}
-
-const os = require('os');
-var localhost = ''
-try {
-	var network = os.networkInterfaces()
-	localhost = network[Object.keys(network)[0]][1].address
-} catch (e) {
-	localhost = 'localhost'
 }
+if(process.argv.splice(2)=="port"){
+	portm=process.argv.splice(3);
+	console.log("[SET] PORT: %d",portm);
+}
+}catch(n){}
 
-var portm = 19131;
-//S
+const os = require("os");
+
+if(os.platform()=="win32"){//It only works in windows.
+try {
+	var network = os.networkInterfaces();
+	console.log("HOST: %s",network[Object.keys(network)[0]][1].address);
+} catch (e) {
+	console.log("HOST: Unknown");
+}
+}
+console.log("PORT: %d",portm);
+
 try {
 	var WebSocketServer = require("ws").Server;
 	var fs = require("fs");
@@ -32,21 +47,27 @@ try {
 	var wss = new WebSocketServer({
 		port: portm
 	});
-	//if(EnablePlugins==true){var ffi=require("ffi");}
 } catch(err) {
-	console.log("Error when loading require packages: %s.", err.message);
+	console.error("[ERROR] Error when loading require packages: %s.", err.message);
 	process.exit(1);
 }
-
-console.log('MyAgent by LNSSPsd & Torrekie');
-console.log("Version: v%s",version);
-
-console.log("\nPlease Connect Client to " + localhost + ":%s.", portm);
+console.log("");
+//console.log("\nPlease Connect Client to " + localhost + "%s.", portm);
 
 if(test==true){process.exit(0);}
 var allws=[];
 
 rl.on("line",function (line){
+	if(line=="+log"){
+		log=true;
+		console.log("[SET] log=true");
+		return;
+	}
+	if(line=="-log"){
+		log=false;
+		console.log("[SET] log=false");
+		return;
+	}
 	allws.forEach(function(e,i){
 		try{e.send(JSON.stringify({
 			"body": {
@@ -177,8 +198,8 @@ function connection(ws) {
 		
 	
 	var logtogame=false;
-	console.log('Client Connected!');
-	//console.log('Listening Events...');
+	console.log("==New Client==");
+	
 	ws.send(JSON.stringify({
 		"body": {
 			"eventName": "WorldUnloaded"
@@ -393,8 +414,9 @@ function connection(ws) {
 	
 	ws.on('message',
 	function (message) {
-		//ws.terminate();
-		console.log('received: %s', message);
+		if(log==true){
+		console.log("[Info] Received: %s", message);
+		}
 		if (JSON.parse(message).body.eventName == "PlayerMessage") {
 			if (JSON.parse(message).body.properties.MessageType == "me" || JSON.parse(message).body.properties.MessageType == "say") {
 				return;
