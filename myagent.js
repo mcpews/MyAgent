@@ -69,7 +69,7 @@ rl.on("line",function (line){
 		console.log("[SET] log=false");
 		return;
 	}
-	if(line.substring(1,8)=="-kickid "){
+	if(line.substring(0,8)=="-kickid "){
 		try{findid(parseInt(line.split(" ")[1])).ws.terminate();}catch(err){console.log("[KickId] Failed.");return;}
 		console.log("[KickId] Success.");
 		return;
@@ -443,7 +443,7 @@ function connection(ws) {
 	ws.on('message',
 	function (message) {
 		if(log==true){
-		console.log("[Client ID%d] Received: %s", message,wsi.id);
+		console.log("[Client ID%d] Received: %s",wsi.id, message);
 		}
 		if (JSON.parse(message).body.eventName == "PlayerMessage") {
 			if (JSON.parse(message).body.properties.MessageType == "me" || JSON.parse(message).body.properties.MessageType == "say") {
