@@ -56,6 +56,7 @@ console.log("");
 
 if(test==true){process.exit(0);}
 var allws=[];
+var idp=1;
 
 rl.on("line",function (line){
 	if(line=="+log"){
@@ -68,8 +69,14 @@ rl.on("line",function (line){
 		console.log("[SET] log=false");
 		return;
 	}
+	if(line.substring(1,8)=="-kickid "){
+		try{findid(parseInt(line.split(" ")[1])).ws.terminate();}catch(err){console.log("[KickId] Failed.");return;}
+		console.log("[KickId] Success.");
+		return;
+	}
+
 	allws.forEach(function(e,i){
-		try{e.send(JSON.stringify({
+		try{e.ws.send(JSON.stringify({
 			"body": {
 				"origin": {
 					"type": "player"
@@ -89,16 +96,37 @@ rl.on("line",function (line){
 
 function shutdown(){
 	allws.forEach(function(e,i){
-		try{e.terminate();}catch(eee){}
+		try{e.ws.terminate();}catch(eee){}
 	});
 	process.exit(0);
+}
+
+function findid(id){
+	var bws={
+		id:-1,
+		ws:-1
+	};
+	allws.forEach(function(e,i){
+		if(e.id==id){
+			bws=e;
+		}
+	});
+	if(bws.id==-1){
+		throw new Error("Id not found.");
+	}
+	return bws;
 }
 
 rl.on("SIGINT",function(){shutdown();});
 
 wss.on('connection',
 function connection(ws) {
-	allws.push(ws);
+	var wsi={
+		id: idp,
+		ws: ws
+	};
+	idp++;
+	allws.push(wsi);
 	function gamecmd(cmd) {
 		ws.send(JSON.stringify({
 			"body": {
@@ -198,7 +226,7 @@ function connection(ws) {
 		
 	
 	var logtogame=false;
-	console.log("==New Client==");
+	console.log("[Info] A new client connected,ID: %d.",wsi.id);
 	
 	ws.send(JSON.stringify({
 		"body": {
@@ -415,7 +443,7 @@ function connection(ws) {
 	ws.on('message',
 	function (message) {
 		if(log==true){
-		console.log("[Info] Received: %s", message);
+		console.log("[Client ID%d] Received: %s", message,wsi.id);
 		}
 		if (JSON.parse(message).body.eventName == "PlayerMessage") {
 			if (JSON.parse(message).body.properties.MessageType == "me" || JSON.parse(message).body.properties.MessageType == "say") {
@@ -493,7 +521,7 @@ function connection(ws) {
 					if(looplimit!=-1){
 						if(qs>looplimit){
 							serverinf("Loop hit limit.Aborted!")
-							terrrr();
+							throw new Error("Loop hit limit.");
 						}
 					}
 					var ed = 1;
@@ -534,7 +562,7 @@ function connection(ws) {
 					if(looplimit!=-1){
 						if(qs>looplimit){
 							serverinf("Loops hit limit.Abort!");
-							abddxxxxx();
+							throw new Error("Loop hit limit");
 						}
 					}
 					var ed = 1;
@@ -741,7 +769,7 @@ function connection(ws) {
 					//serverinf("Unknown command.",ws);
 				}
 			}
-			console.log("<%s> %s", JSON.parse(message).body.properties.Sender, JSON.parse(message).body.properties.Message);
+			console.log("ID%d:<%s> %s",wsi.id, JSON.parse(message).body.properties.Sender, JSON.parse(message).body.properties.Message);
 		}
 	});
 });
