@@ -38,15 +38,10 @@ try {
 
 
 try {
-	var WebSocketServer = require("ws").Server;
 	var fs = require("fs");
 try{
 	var settingsstr;
-	if(os.platform()=="win32"){
-		settingsstr=fs.readFileSync(process.env.home+"\\.myagentcfg").toString();
-	}else{
-		settingsstr=fs.readFileSync(process.env.home+"/.myagentcfg").toString();
-	}
+	settingsstr=fs.readFileSync(process.env.HOME+"/.myagentcfg").toString();
 	settings=JSON.parse(settingsstr);
 }catch(errx){}
 console.log("PORT: %d",settings.port);
@@ -57,6 +52,7 @@ console.log("PORT: %d",settings.port);
 		    output: process.stdout
 	});
 
+		var WebSocketServer = require("ws").Server;
 	var wss = new WebSocketServer({
 		port: settings.port
 	});
