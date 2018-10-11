@@ -2,10 +2,12 @@
 
 //Info & Settings
 const version="2.5";
-const looplimit=-1;//-1 is no limit.
-var portm=19131;
+var settings={
+	looplimit: -1,//-1: no limit
+	port: 19131,
+	log: true
+};
 var test=false;
-var log=true;
 
 console.log("MyAgent v%s",version);
 console.log("Author: LNSSPsd");
@@ -18,8 +20,8 @@ if(process.argv.splice(2)=="test"){
 	test=true;
 }
 if(process.argv.splice(2)=="port"){
-	portm=process.argv.splice(3);
-	console.log("[SET] PORT: %d",portm);
+	settings.port=process.argv.splice(3);
+	console.log("[SET] PORT: %d",settings.port);
 }
 }catch(n){}
 
@@ -33,7 +35,7 @@ try {
 	console.log("HOST: Unknown");
 }
 }
-console.log("PORT: %d",portm);
+console.log("PORT: %d",settings.port);
 
 try {
 	var WebSocketServer = require("ws").Server;
@@ -45,12 +47,21 @@ try {
 	});
 
 	var wss = new WebSocketServer({
-		port: portm
+		port: settings.port
 	});
 } catch(err) {
 	console.error("[ERROR] Error when loading require packages: %s.", err.message);
 	process.exit(1);
 }
+try{
+	var settingsstr;
+	if(os.platform()=="win32"){
+		settingsstr=fs.readFileSync(process.env.home+"\\.myagentcfg").toString();
+	}else{
+		settingsstr=fs.readFileSync(process.env.home+"/.myagentcfg").toString();
+	}
+	settings=JSON.parse(settingsstr);
+}catch(errx){}
 console.log("");
 //console.log("\nPlease Connect Client to " + localhost + "%s.", portm);
 
@@ -60,12 +71,12 @@ var idp=1;
 
 rl.on("line",function (line){
 	if(line=="+log"){
-		log=true;
+		settings.log=true;
 		console.log("[SET] log=true");
 		return;
 	}
 	if(line=="-log"){
-		log=false;
+		settings.log=false;
 		console.log("[SET] log=false");
 		return;
 	}
@@ -427,7 +438,7 @@ function connection(ws) {
 		}
 	}));
 	var retac=false;
-	serverinf("MyAgent Connected.\nType */help for get help.\n[MyAgent By LNSSPsd]");
+	serverinf("MyAgent Connected.\nYour ID: "+wsi.id+"\nType */help for get help.\n[MyAgent By LNSSPsd]");
 	/*gamecmd("agent create",ws);// /connect 127.0.0.1:19131
 	gamecmd("agent till forward",ws);*/
 
@@ -442,7 +453,7 @@ function connection(ws) {
 	
 	ws.on('message',
 	function (message) {
-		if(log==true){
+		if(settings.log==true){
 		console.log("[Client ID%d] Received: %s",wsi.id, message);
 		}
 		if (JSON.parse(message).body.eventName == "PlayerMessage") {
@@ -463,46 +474,6 @@ function connection(ws) {
 		
 		if (JSON.parse(message).body.eventName == "AgentCommand") {
 			if(retac==true){serverinf("Received AgentCommand,Result: "+JSON.parse(message).body.properties.Result);}
-			/*serverinf("Started findpath");
-			if(stopfp==true){stopfp=false;return;}
-			var ac=JSON.parse(JSON.parse(message).body.properties.Result);
-			if(ac.commandName=="inspect"){
-				while(true){
-				if(ac.blockName=="air"){
-					if(fordown==1&&ddown==true){
-						gamecmds("agent move down");
-						break;
-					}
-					if(Math.round(Math.random()*21)==3){
-						gamecmds("agent turn right");
-					}else if(Math.round(Math.random()*21)==2){
-						gamecmds("agent turn left");
-					}
-					gamecmds("agent move forward");
-				}else{
-					var rd=Math.round(Math.random()*2);
-					if(rd==1){
-					gamecmds("agent turn right");
-					}else if(rd==2){
-						ddown=false;
-						gamecmds("agent move up");
-						setTimeout(function(){ddown=true;},2500);
-						//setTimeout(function(){gamecmdfp("agent move down");},2000);
-					}else{
-						gamecmds("agent turn left");
-					}
-				}
-					break;
-				}
-				if(fordown==1){
-					fordown=0;
-				setTimeout(function(){gamecmdfp("agent inspect forward");},600);
-				}else{
-					fordown=1;
-				setTimeout(function(){gamecmdfp("agent inspect down");},600);
-				}
-				//setTimeout(function(){gamecmdfp("agent inspect down");},1200);
-			}*/
 		}
 		if (JSON.parse(message).body.eventName == "PlayerMessage"
 		/* && JSON.parse(message).body.properties.MessageType=="chat"*/
@@ -518,8 +489,8 @@ function connection(ws) {
 					var sped = JSON.parse(message).body.properties.Message.split("/");
 					var spee = sped[1].split("~");
 					var qs = parseInt(spee[1]);
-					if(looplimit!=-1){
-						if(qs>looplimit){
+					if(settings.looplimit!=-1){
+						if(qs>settings.looplimit){
 							serverinf("Loop hit limit.Aborted!")
 							throw new Error("Loop hit limit.");
 						}
@@ -559,8 +530,8 @@ function connection(ws) {
 					var sped = JSON.parse(message).body.properties.Message.split("/");
 					var spee = sped[1].split("~");
 					var qs = parseInt(spee[1]);
-					if(looplimit!=-1){
-						if(qs>looplimit){
+					if(settings.looplimit!=-1){
+						if(qs>settings.looplimit){
 							serverinf("Loops hit limit.Abort!");
 							throw new Error("Loop hit limit");
 						}
@@ -596,41 +567,7 @@ function connection(ws) {
 					setTimeout(function(){ws.terminate();},1000);
 					return;
 				}
-				//var splcmd=JSON.parse(message).body.properties.Message.split(" ");
-				//switch(splcmd[0]){
-				//	case "*/move":
-				//	if(splcmd[1]!="forward" && splcmd[1]!="back" && splcmd[1]!="up" && splcmd[1]!="down" && splcmd[1]!="left" && splcmd[1]!="right")
-				//	{
-				//		serverinf("Invalid!!",ws);
-				//		break;
-				//	}
-				//	gamecmd("agent move "+splcmd[1],ws);
-				//	break;
-				//	case "*/turn":
-				//	if(splcmd[1]!="left" && splcmd[1]!="right")
-				//	{
-				//		serverinf("Invalid!!!",ws);
-				//		break;
-				//	}
-				//	gamecmd("agent turn "+splcmd[1],ws);
-				//	break;
-				//	case "*/attack":
-				//	if(splcmd[1]!="forward" && splcmd[1]!="back" && splcmd[1]!="up" && splcmd[1]!="down" && splcmd[1]!="left" && splcmd[1]!="right")
-				//	{
-				//		serverinf("Invalid!!",ws);
-				//		break;
-				//	}
-				//gamecmd("agent attack "+splcmd[1],ws);
-				//	break;
-				//	case "*/destroy":
-				//	if(splcmd[1]!="forward" && splcmd[1]!="back" && splcmd[1]!="up" && splcmd[1]!="down" && splcmd[1]!="left" && splcmd[1]!="right")
-				//	{
-				//		serverinf("Invalid!!",ws);
-				//		break;
-				//	}
-				//	gamecmd("agent destroy "+splcmd[1],ws);
-				//	break;
-				//}
+				
 				switch (JSON.parse(message).body.properties.Message) {
 				case "*/help":
 					serverinf("§\"MyAgent by LNSSPsd\n*/create: Create Agent.\n\
@@ -665,12 +602,6 @@ function connection(ws) {
 */collect all:collect all drops§\"");
 
 					break;
-					case "*/stopfindpath":
-						stopfp=true;
-						break;
-					case "*/findpath":
-						gamecmdfp("agent inspect forward");
-						break;
 					case "*/retac true":
 						retac=true;
 						serverinf("retac=true;");
