@@ -35,11 +35,22 @@ try {
 	console.log("HOST: Unknown");
 }
 }
-console.log("PORT: %d",settings.port);
+
 
 try {
 	var WebSocketServer = require("ws").Server;
 	var fs = require("fs");
+try{
+	var settingsstr;
+	if(os.platform()=="win32"){
+		settingsstr=fs.readFileSync(process.env.home+"\\.myagentcfg").toString();
+	}else{
+		settingsstr=fs.readFileSync(process.env.home+"/.myagentcfg").toString();
+	}
+	settings=JSON.parse(settingsstr);
+}catch(errx){}
+console.log("PORT: %d",settings.port);
+
 	var readline=require("readline");
 	var rl = readline.createInterface({
 		    input: process.stdin,
@@ -53,15 +64,7 @@ try {
 	console.error("[ERROR] Error when loading require packages: %s.", err.message);
 	process.exit(1);
 }
-try{
-	var settingsstr;
-	if(os.platform()=="win32"){
-		settingsstr=fs.readFileSync(process.env.home+"\\.myagentcfg").toString();
-	}else{
-		settingsstr=fs.readFileSync(process.env.home+"/.myagentcfg").toString();
-	}
-	settings=JSON.parse(settingsstr);
-}catch(errx){}
+
 console.log("");
 //console.log("\nPlease Connect Client to " + localhost + "%s.", portm);
 
