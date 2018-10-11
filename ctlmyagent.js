@@ -8,11 +8,7 @@ var settings={
 };
 
 try{
-	if(os.platform()=="win32"){
-		settings=JSON.parse(fs.readFileSync(process.env.home+"\\.myagentcfg").toString());
-	}else{
-		settings=JSON.parse(fs.readFileSync(process.env.home+"/.myagentcfg").toString());
-	}
+	settings=JSON.parse(fs.readFileSync(process.env.HOME+"/.myagentcfg").toString());
 }catch(nn){}
 
 if(process.argv.length==2){
@@ -23,13 +19,14 @@ if(process.argv.length==2){
 if(process.argv[2]=="set" && process.argv.length==5){
 	try{
 	eval("settings."+process.argv[3]+"="+process.argv[4]+";");
-	}catch(h){console.log("Failed to set.");}
+		fs.writeFileSync(process.env.HOME+"/.myagentcfg",JSON.stringify(settings));
+	}catch(h){console.log("Failed to set.");process.exit(0);}
 	console.log("Done");
 	process.exit(0);
 }
 
 if(process.argv[2]=="rmconf"){
-	fs.unlinkSync(process.env.home+"/.myagentcfg");
+	fs.unlinkSync(process.env.HOME+"/.myagentcfg");
 	process.exit(0);
 }
 console.log("error");
