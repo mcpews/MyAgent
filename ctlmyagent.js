@@ -12,7 +12,7 @@ try{
 }catch(nn){}
 
 if(process.argv.length==2){
-	console.log("MyAgent Control\nmyagentctl set <settings> <set>\nmyagentctl rmconf\n%s",JSON.stringify(settings));
+	console.log("MyAgent Control\nmyagentctl set <config> <value>\nmyagentctl rmconf\n%s",JSON.stringify(settings));
 	process.exit(0);
 }
 

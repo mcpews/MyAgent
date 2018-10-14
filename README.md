@@ -13,35 +13,33 @@ The Minecraft agent generator & controller written in node.js
 Execute `npm i myagent -g` to install myagent.
 
 Execute `myagent` command to start myagent.
+
+`myagentctl` is the tool to change myagent's config.
 ## MyAgent Binary File
-You can download builded binary file of myagent in CircleCI.
-## READ ME if you want to make
-* File `Makefile` is for make binary version of myagent. So DON'T run it if you only want to spawn your agent.
-* If you only want to spawn your own agent, only do the `node myagent.js`.
-## Install Node.Js
-* WINDOWS: download nodejs at `https://nodejs.org/en/download/`
-* LINUX: Please execute following commands to install Node.JS x64 version.
-```
-node/install_node
-```
-execute `node/install_node_x86` to install x86 version of Node.JS
-## Run source code
-First,please execute following commands:
+You can download builded binary file of myagent in CircleCI.(Stopped Update)
+## MyAgent Control
+MyAgent Control can set the config of myagent.
+`myagentctl set <config> <value>` to set a config.
+
+`myagentctl rmconf` to remove config of myagent (back to default configs)
+## Execute myagent from source code
+First,please execute following command:
 ```
 npm install
 ```
-Then,run command:`node myagent.js`
+Then,execute command:`node myagent.js`
 ## Run
 Install Node.JS First,And then execute:
 ```
 npm i myagent -g
 myagent
 ```
+
 ## Connect
 type command in game:
 `/connect [ip]:19131`
 ## Report a bug
-Submit a issue to report bug or ask me in MJTG.
+Submit a issue to report bug.
 ## LICENSE
 GNU GPL v3
 ## Author & Maintainers.

@@ -1,4 +1,0 @@
-#! /bin/bash
-
-rm -rf /usr/bin/node /usr/bin/npm /usr/bin/npx /usr/include/node /usr/lib/node_modules /usr/share/doc/node /usr/share/man/man1/node.1 /usr/share/systemtap/tapset/node.stp
-echo Done

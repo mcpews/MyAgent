@@ -21,12 +21,12 @@ process.on("uncaughtException",function (error){
 
 try{
 if(process.argv.splice(2)=="test"){
-	console.log("[SET] TEST MODE: true");
+	console.log("TEST MODE: true");
 	test=true;
 }
 if(process.argv.splice(2)=="port"){
 	settings.port=process.argv.splice(3);
-	console.log("[SET] PORT: %d",settings.port);
+	console.log("PORT: %d",settings.port);
 }
 }catch(n){}
 
