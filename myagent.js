@@ -14,6 +14,11 @@ console.log("Author: LNSSPsd");
 console.log("https://github.com/mcpewebsocket-dev/MyAgent");
 console.log("https://npmjs.com/myagent");
 
+process.on("uncaughtException",function (error){
+	console.log("[ERROR] uncaughtException: %s.",error.message);
+});
+
+
 try{
 if(process.argv.splice(2)=="test"){
 	console.log("[SET] TEST MODE: true");
@@ -52,8 +57,8 @@ console.log("PORT: %d",settings.port);
 		    output: process.stdout
 	});
 
-		var WebSocketServer = require("ws").Server;
-	var wss = new WebSocketServer({
+		var WSk = require("ws");
+	var wss = new WSk.Server({
 		port: settings.port
 	});
 } catch(err) {
@@ -238,7 +243,7 @@ function connection(ws) {
 	var logtogame=false;
 	console.log("[Info] A new client connected,ID: %d.",wsi.id);
 	
-	ws.send(JSON.stringify({
+	/*ws.send(JSON.stringify({
 		"body": {
 			"eventName": "WorldUnloaded"
 		},
@@ -281,7 +286,7 @@ function connection(ws) {
 			"version": 1,
 			"messageType": "commandRequest"
 		}
-	}));
+	}));*/
 	ws.send(JSON.stringify({
 		"body": {
 			"eventName": "AgentCreated"
@@ -304,7 +309,7 @@ function connection(ws) {
 			"messageType": "commandRequest"
 		}
 	}));
-	ws.send(JSON.stringify({
+	/*ws.send(JSON.stringify({
 		"body": {
 			"eventName": "BossKilled"
 		},
@@ -424,7 +429,7 @@ function connection(ws) {
 			"version": 1,
 			"messageType": "commandRequest"
 		}
-	}));
+	}));*/
 	ws.send(JSON.stringify({
 		"body": {
 			"eventName": "PlayerMessage"
