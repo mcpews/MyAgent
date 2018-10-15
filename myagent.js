@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 //Info & Settings
-const version="2.5";
+const version="2.6";
 var settings={
 	looplimit: -1,//-1: no limit
 	port: 19131,
@@ -67,7 +67,6 @@ console.log("PORT: %d",settings.port);
 }
 
 console.log("");
-//console.log("\nPlease Connect Client to " + localhost + "%s.", portm);
 
 if(test==true){process.exit(0);}
 var allws=[];
@@ -179,56 +178,6 @@ function connection(ws) {
 	}
 	
 	
-	var syncinfo={done:false,
-		      alldone:false,
-		      code:0,
-		      message:"nothing returned",
-		     agentcommand:{
-		     result:"{}",
-			     done:false
-		     }
-		     };
-	
-	function gamecmdfp(cmd) {
-		//syncinfo.agentcommand.wait=wait
-		ws.send(JSON.stringify({
-			"body": {
-				"origin": {
-					"type": "player"
-				},
-				"commandLine": cmd,
-				"version": 1
-			},
-			"header": {
-				"requestId": "00000000-0fe1-0000-000000000000",
-				"messagePurpose": "commandRequest",
-				"version": 1,
-				"messageType": "commandRequest"
-			}
-		}));
-		/*setTimeout(function(){if(syncinfo.alldone==true){return; }syncinfo.code=-233;syncinfo.alldone=true;},5000);//If 5s no response,force return.
-		while(true){
-			if(wait==true){
-		if(syncinfo.done==true&&syncinfo.agentcommand.done==true){
-			syncinfo.alldone=true
-			var sback=syncinfo;
-			syncinfo.done=false;syncinfo.alldone=false;syncinfo.agentcommand.done=false;
-			return sback;}
-			}else{
-		if(syncinfo.done==true){
-			syncinfo.alldone=true
-			var sback=syncinfo;
-			syncinfo.done=false;syncinfo.alldone=false;syncinfo.agentcommand.done=false;
-			return sback;}
-			}
-		}
-		if(syncinfo.alldone==true){
-			var sback=syncinfo;
-			syncinfo.done=false;syncinfo.alldone=false;syncinfo.agentcommand.done=false;
-			return sback;
-		}
-		*/
-	}
 	
 
 	function serverinf(msg) {
@@ -598,8 +547,6 @@ function connection(ws) {
 */wlg <true|false>:Set log when doing a loop.\n\
 */retac <true|false>:Set AgentCommand Result Report to game.\n\
 */fenchant:Fast enchant your items to top level.\n\
-*/findpath:Test method\n\
-*/stopfindpath:Stop findpath test.\n\
 */setitem <slot> <item> <count> <data>:set item to agent.\n\
 */getposition:Get position of agent.\n\
 */tp [x y z]:tp to position\n\
