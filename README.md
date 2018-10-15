@@ -10,11 +10,16 @@ The Minecraft agent generator & controller written in node.js
 [![MyAgent NPM](https://img.shields.io/badge/npm-myagent-blue.svg)](https://www.npmjs.com/myagent)
 
 ## Fast install
+### Global Install
 Execute `npm i myagent -g` to install myagent.
 
 Execute `myagent` command to start myagent.
 
 `myagentctl` is the tool to change myagent's config.
+### Normal Install
+Execute `npm i myagent` to install myagent.
+
+Execute `npx myagent` to start myagent.
 ## MyAgent Binary File
 You can download builded binary file of myagent in CircleCI.(Stopped Update)
 ## MyAgent Control
