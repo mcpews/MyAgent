@@ -1,3 +1,11 @@
+# MyAgent not support for MCBE 1.7+
+1.7+ versions of MCBE always return a error when you try to create a agent.
+
+So all agent controll commands is no longer works in 1.7+.
+
+This is the lastest version of MyAgent.
+
+MyAgent will continue update when MCBE add back agent create.(Maybe never)
 # MyAgent
 The Minecraft agent generator & controller written in node.js
 

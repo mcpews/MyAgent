@@ -4,7 +4,8 @@ const fs=require("fs");
 var settings={
 	looplimit: -1,
 	port: 19131,
-	log: true
+	log: true,
+	loopinterval: 500
 };
 
 try{

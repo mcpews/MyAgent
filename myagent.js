@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
 //Info & Settings
-const version="2.6";
+const version="3.0";
 var settings={
 	looplimit: -1,//-1: no limit
 	port: 19131,
-	log: true
+	log: true,
+	loopinterval: 500
 };
 var test=false;
 
@@ -16,6 +17,7 @@ console.log("https://npmjs.com/myagent");
 
 process.on("uncaughtException",function (error){
 	console.log("[ERROR] uncaughtException: %s.",error.message);
+	process.exit(3);
 });
 
 
@@ -454,11 +456,11 @@ function connection(ws) {
 							break;
 						}
 						if(logtogame==false){
-							setTimeout(function() {gamecmds("agent "+spee[0]);},500 * ed);
+							setTimeout(function() {gamecmds("agent "+spee[0]);},settings.loopinterval * ed);
 							ed++;
 							continue;
 						}
-						setTimeout(function() {gamecmd("agent "+spee[0]);},500 * ed);
+						setTimeout(function() {gamecmd("agent "+spee[0]);},settings.loopinterval * ed);
 						setTimeout(function() {
  						gamecmd("agent "+sped[1]);
  					},
@@ -495,11 +497,11 @@ function connection(ws) {
 							break;
 						}
 						if(logtogame==false){
-							setTimeout(function() {gamecmds(spee[0]);},500 * ed);
+							setTimeout(function() {gamecmds(spee[0]);},settings.loopinterval * ed);
 							ed++;
 							continue;
 						}
-						setTimeout(function() {gamecmd(spee[0]);},500 * ed);
+						setTimeout(function() {gamecmd(spee[0]);},settings.loopinterval * ed);
 						ed++;
 					}
 				} catch(ew) {
@@ -520,6 +522,33 @@ function connection(ws) {
 					setTimeout(function(){ws.terminate();},1000);
 					return;
 				}
+
+				try{
+					var spl=JSON.parse(message).body.properties.Message.split(" ");
+					if(spl[0]=="*/cmdfile"){
+						try{
+							var file=JSON.parse(fs.readFileSync(spl[1]).toString());
+							var d=0;
+							if(file.type!="cmdfile"){serverinf("Not a cmdfile.");throw new Error("Invalid file");}
+							var intv=500;
+							if(file.commands_interval!=undefined){
+								intv=file.commands_interval;
+							}
+							if(file.name!=undefined && file.author!=undefined){
+								d=1;
+								serverinf("Start execute cmdfile: "+file.name+"\nAuthor: "+file.author);
+							}
+							file.commands.forEach(function(e,i){
+								setTimeout(function(){gamecmds(e);},intv*d);
+								d++;
+							});
+							return;
+						}catch(err){
+							serverinf("Failed to run cmdfile,Error message: "+err.message);
+							return;
+						}
+					}
+				}catch(tr){}
 				
 				switch (JSON.parse(message).body.properties.Message) {
 				case "*/help":
@@ -550,7 +579,8 @@ function connection(ws) {
 */setitem <slot> <item> <count> <data>:set item to agent.\n\
 */getposition:Get position of agent.\n\
 */tp [x y z]:tp to position\n\
-*/collect all:collect all drops§\"");
+*/collect all:collect all drops\n\
+*/cmdfile <file>: Execute all commands in <file>.§\"");
 
 					break;
 					case "*/retac true":
