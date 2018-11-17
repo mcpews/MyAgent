@@ -1,11 +1,3 @@
-# MyAgent not support for MCBE 1.7+
-1.7+ versions of MCBE always return a error when you try to create a agent.
-
-So all agent controll commands is no longer works in 1.7+.
-
-This is the lastest version of MyAgent.
-
-MyAgent will continue update when MCBE add back agent create.(Maybe never)
 # MyAgent
 The Minecraft agent generator & controller written in node.js
 
@@ -16,7 +8,8 @@ The Minecraft agent generator & controller written in node.js
 [![Discord](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/ntaa8z8)
 [![CircleCI](https://circleci.com/gh/mcpewebsocket-dev/MyAgent.svg?style=svg)](https://circleci.com/gh/mcpewebsocket-dev/MyAgent)
 [![MyAgent NPM](https://img.shields.io/badge/npm-myagent-blue.svg)](https://www.npmjs.com/myagent)
-
+## Considerations
+Not compatible with Minecraft Bedrock 1.7
 ## Fast install
 ### Global Install
 Execute `npm i myagent -g` to install myagent.
