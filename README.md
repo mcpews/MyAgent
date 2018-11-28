@@ -9,7 +9,14 @@ The Minecraft agent generator & controller written in node.js
 [![CircleCI](https://circleci.com/gh/mcpewebsocket-dev/MyAgent.svg?style=svg)](https://circleci.com/gh/mcpewebsocket-dev/MyAgent)
 [![MyAgent NPM](https://img.shields.io/badge/npm-myagent-blue.svg)](https://www.npmjs.com/myagent)
 ## Considerations
-Not compatible with Minecraft Bedrock 1.7
+Agent Commands doesn't work in Minecraft Bedrock 1.7.x, that means you can't create or control Agent in this version.
+## Available Minecraft Versions
+iOS: 0.16 ~ 1.6
+Android: 0.16 ~ 1.9b
+Windows 10: 0.16 ~ 1.9b
+PC(Minecraft Java Edition): Not Compatible
+Apple TV: 0.16 ~ 1.1.5
+Also compatible with Minecraft China and Minecraft Education Edition
 ## Fast install
 ### Global Install
 Execute `npm i myagent -g` to install myagent.
