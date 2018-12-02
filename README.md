@@ -11,50 +11,48 @@ The Minecraft agent generator & controller written in node.js
 ## Considerations
 Agent Commands doesn't work in Minecraft Bedrock 1.7.x, that means you can't create or control Agent in this version.
 ## Available Minecraft Versions
-iOS: 0.16 ~ 1.6
-Android: 0.16 ~ 1.9b
-Windows 10: 0.16 ~ 1.9b
-PC(Minecraft Java Edition): Not Compatible
-Apple TV: 0.16 ~ 1.1.5
-Also compatible with Minecraft China and Minecraft Education Edition
+iOS: 0.16 ~ 1.6  
+Android: 0.16 ~ 1.9b  
+Windows 10: 0.16 ~ 1.9b  
+PC(Minecraft Java Edition): Not Compatible  
+Apple TV: 0.16 ~ 1.1.5  
+Also compatible with Minecraft China Edition and Minecraft Education Edition
 ## Fast install
 ### Global Install
-Execute `npm i myagent -g` to install myagent.
-
-Execute `myagent` command to start myagent.
-
+Execute `npm i myagent -g` to install myagent.  
+Execute `myagent` command to start myagent.  
 `myagentctl` is the tool to change myagent's config.
 ### Normal Install
-Execute `npm i myagent` to install myagent.
-
+Execute `npm i myagent` to install myagent.  
 Execute `npx myagent` to start myagent.
 ## MyAgent Binary File
 You can download builded binary file of myagent in CircleCI.(Stopped Update)
 ## MyAgent Control
-MyAgent Control can set the config of myagent.
-`myagentctl set <config> <value>` to set a config.
-
-`myagentctl rmconf` to remove config of myagent (back to default configs)
+MyAgent Control can set the config of myagent.  
+`myagentctl set <config> <value>` to set a config.  
+`myagentctl rmconf` to remove config file of myagent (back to default configs)
 ## Execute myagent from source code
-First,please execute following command:
+First,Clone a copy of myagent  
+And then,please execute following command:
 ```
 npm install
 ```
-Then,execute command:`node myagent.js`
+At last,execute command:`node myagent.js`
 ## Run
 Install Node.JS First,And then execute:
 ```
 npm i myagent -g
 myagent
 ```
-
 ## Connect
 type command in game:
-`/connect [ip]:19131`
+`/connect [ip]:[port]`  
+`[ip]` is IP of the server where you hosting myagent.  
+`[port]` is the ip of myagent. Default value is 19131.
 ## Report a bug
 Submit a issue to report bug.
 ## LICENSE
-GNU GPL v3
+[GNU GPL v3](LICENSE)
 ## Author & Maintainers.
 ### Author
 [LNSSPsd](https://github.com/LNSSPsd)
