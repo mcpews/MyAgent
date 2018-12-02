@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 //Info & Settings
-const version="3.0";
+const version="3.1";
 var settings={
 	looplimit: -1,//-1: no limit
 	port: 19131,
@@ -114,6 +114,9 @@ function shutdown(){
 	allws.forEach(function(e,i){
 		try{e.ws.terminate();}catch(eee){}
 	});
+	console.log("\nTerminated all clients.");
+	console.log("Bye.");
+	if(false){console.log("Goodbye,Expand Dong.");}
 	process.exit(0);
 }
 
