@@ -8,8 +8,9 @@ The Minecraft agent generator & controller written in node.js
 [![Discord](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/ntaa8z8)
 [![CircleCI](https://circleci.com/gh/mcpewebsocket-dev/MyAgent.svg?style=svg)](https://circleci.com/gh/mcpewebsocket-dev/MyAgent)
 [![MyAgent NPM](https://img.shields.io/badge/npm-myagent-blue.svg)](https://www.npmjs.com/myagent)
+[![MyAgent Version](https://img.shields.io/badge/dynamic/json.svg?label=myagent%20version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fmcpewebsocket-dev%2FMyAgent%2Fmaster%2Fpackage.json&query=%24.version&colorB=yellowgreen)](https://github.com/mcpewebsocket-dev/MyAgent)
 ## Considerations
-Agent Commands doesn't work in Minecraft Bedrock 1.7.x, that means you can't create or control Agent in this version.
+Agent Commands doesn't work in Minecraft Bedrock 1.7~1.8.x, that means you can't create or control Agent in this version.
 ## Available Minecraft Versions
 iOS: 0.16 ~ 1.6  
 Android: 0.16 ~ 1.9b  
@@ -59,4 +60,4 @@ Submit a issue to report bug.
 ### Maintainers
 [許嘉鋅](https://github.com/TheXuJiaXin),[LNSSPsd](https://github.com/LNSSPsd),[CAIMEO](https://github.com/CAIMEOX) &amp; [Torrekie](https://github.com/Torrekie).
 ## Contact Us
-MJTG QQ Group:`590352162`
+LNSSPsd's QQ:`2825121086`
