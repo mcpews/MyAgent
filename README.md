@@ -19,6 +19,11 @@ Windows 10: 0.16 ~ 1.9b
 PC(Minecraft Java Edition): Not Compatible  
 Apple TV: 0.16 ~ 1.1.5  
 Also compatible with Minecraft China Edition and Minecraft Education Edition
+## ID Operation
+### Kick ID
+kick a target by using `-kickid [ID`
+### List all live ID
+`-listid` to show all live id.
 ## Fast install
 ### Global Install
 Execute `npm i myagent -g` to install myagent.  

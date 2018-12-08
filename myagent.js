@@ -90,6 +90,13 @@ rl.on("line",function (line){
 		console.log("[KickId] Success.");
 		return;
 	}
+	if(line.substring(0,7)=="-listid"){
+		console.log("Websocket - live:");
+		allws.forEach(function(e,i){
+			try{e.ws.send("");console.log(e.id.toString());}catch(tr){}
+		});
+		return;
+	}
 
 	allws.forEach(function(e,i){
 		try{e.ws.send(JSON.stringify({
@@ -197,50 +204,6 @@ function connection(ws) {
 	var logtogame=false;
 	console.log("[Info] A new client connected,ID: %d.",wsi.id);
 	
-	/*ws.send(JSON.stringify({
-		"body": {
-			"eventName": "WorldUnloaded"
-		},
-		"header": {
-			"requestId": "233ae098-00ff-ffff-abbbbbbbbbdd3344",
-			"messagePurpose": "subscribe",
-			"version": 1,
-			"messageType": "commandRequest"
-		}
-	}));
-	ws.send(JSON.stringify({
-		"body": {
-			"eventName": "BlockBroken"
-		},
-		"header": {
-			"requestId": "fffdb098-00ff-ffff-abbbbbbbbbdd3344",
-			"messagePurpose": "subscribe",
-			"version": 1,
-			"messageType": "commandRequest"
-		}
-	}));
-	ws.send(JSON.stringify({
-		"body": {
-			"eventName": "BlockPlaced"
-		},
-		"header": {
-			"requestId": "aaaae098-00ff-ffff-abbbbbbbbbdd3344",
-			"messagePurpose": "subscribe",
-			"version": 1,
-			"messageType": "commandRequest"
-		}
-	}));
-	ws.send(JSON.stringify({
-		"body": {
-			"eventName": "BoardTextUpdated"
-		},
-		"header": {
-			"requestId": "0ffa0000-00ff-ffff-abbbbbbbbbdd3344",
-			"messagePurpose": "subscribe",
-			"version": 1,
-			"messageType": "commandRequest"
-		}
-	}));*/
 	ws.send(JSON.stringify({
 		"body": {
 			"eventName": "AgentCreated"
@@ -263,127 +226,6 @@ function connection(ws) {
 			"messageType": "commandRequest"
 		}
 	}));
-	/*ws.send(JSON.stringify({
-		"body": {
-			"eventName": "BossKilled"
-		},
-		"header": {
-			"requestId": "0ffae009-00ff-ffff-abbbbbbbbbdd3344",
-			"messagePurpose": "subscribe",
-			"version": 1,
-			"messageType": "commandRequest"
-		}
-	}));
-	ws.send(JSON.stringify({
-		"body": {
-			"eventName": "ItemCrafted"
-		},
-		"header": {
-			"requestId": "affae098-00ff-ffff-abbbbbbbbbdd3344",
-			"messagePurpose": "subscribe",
-			"version": 1,
-			"messageType": "commandRequest"
-		}
-	}));
-	ws.send(JSON.stringify({
-		"body": {
-			"eventName": "ItemDestroyed"
-		},
-		"header": {
-			"requestId": "effae098-00ff-ffff-abbbbbbbbbdd3344",
-			"messagePurpose": "subscribe",
-			"version": 1,
-			"messageType": "commandRequest"
-		}
-	}));
-	ws.send(JSON.stringify({
-		"body": {
-			"eventName": "ItemUsed"
-		},
-		"header": {
-			"requestId": "0f334098-00ff-ffff-abbbbbbbbbdd3344",
-			"messagePurpose": "subscribe",
-			"version": 1,
-			"messageType": "commandRequest"
-		}
-	}));
-	ws.send(JSON.stringify({
-		"body": {
-			"eventName": "MobKilled"
-		},
-		"header": {
-			"requestId": "0ffae098-00ee-ffff-abbbbbbbbbdd3344",
-			"messagePurpose": "subscribe",
-			"version": 1,
-			"messageType": "commandRequest"
-		}
-	}));
-	ws.send(JSON.stringify({
-		"body": {
-			"eventName": "PlayerDied"
-		},
-		"header": {
-			"requestId": "0ffae098-00ff-f333-abbbbbbbbbdd3344",
-			"messagePurpose": "subscribe",
-			"version": 1,
-			"messageType": "commandRequest"
-		}
-	}));
-	ws.send(JSON.stringify({
-		"body": {
-			"eventName": "PlayerJoin"
-		},
-		"header": {
-			"requestId": "0ffae098-00ff-ffff-abbb09bbbbdd3344",
-			"messagePurpose": "subscribe",
-			"version": 1,
-			"messageType": "commandRequest"
-		}
-	}));
-	ws.send(JSON.stringify({
-		"body": {
-			"eventName": "PlayerLeave"
-		},
-		"header": {
-			"requestId": "0ffae098-00ff-ffff-aabbbbbbbbdd3344",
-			"messagePurpose": "subscribe",
-			"version": 1,
-			"messageType": "commandRequest"
-		}
-	}));
-	ws.send(JSON.stringify({
-		"body": {
-			"eventName": "PlayerTeleported"
-		},
-		"header": {
-			"requestId": "0ffae098-00ff-ffff-abbbbcccbbdd3344",
-			"messagePurpose": "subscribe",
-			"version": 1,
-			"messageType": "commandRequest"
-		}
-	}));
-	ws.send(JSON.stringify({
-		"body": {
-			"eventName": "PortalBuilt"
-		},
-		"header": {
-			"requestId": "0ffae098-00ff-ffff-abbbbbdddbdd3344",
-			"messagePurpose": "subscribe",
-			"version": 1,
-			"messageType": "commandRequest"
-		}
-	}));
-	ws.send(JSON.stringify({
-		"body": {
-			"eventName": "PortalUsed"
-		},
-		"header": {
-			"requestId": "0ffae098-00ff-ffff-abbbbbbbbbdf3344",
-			"messagePurpose": "subscribe",
-			"version": 1,
-			"messageType": "commandRequest"
-		}
-	}));*/
 	ws.send(JSON.stringify({
 		"body": {
 			"eventName": "PlayerMessage"
@@ -474,17 +316,11 @@ function connection(ws) {
 					serverinf("Error when doing loop");
 					return;
 				}
-				/*if(logtogame==false){
-					serverinf("Finished do loop");
-				}*/
 				return;
 			}
 			
 			if (JSON.parse(message).body.properties.Message.substring(1, 2) == "/" && JSON.parse(message).body.properties.Message.substring(0, 1) == "!" && JSON.parse(message).body.properties.Message.substring(0, 1) != ".") {
 				try {
-					/*if(logtogame==false){
-					serverinf("Start Do a Command Loop.");
-					}*/
 					var sped = JSON.parse(message).body.properties.Message.split("/");
 					var spee = sped[1].split("~");
 					var qs = parseInt(spee[1]);
@@ -510,10 +346,7 @@ function connection(ws) {
 				} catch(ew) {
 					serverinf("Error when doing loop");
 					return;
-				}/*
-				if(logtogame==false){
-					serverinf("Finished do loop");
-				}*/
+				}
 				return;
 			}
 			
