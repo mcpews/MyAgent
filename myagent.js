@@ -277,7 +277,7 @@ function connection(ws) {
 		}
 		if (JSON.parse(message).body.eventName == "PlayerMessage"
 		/* && JSON.parse(message).body.properties.MessageType=="chat"*/
-		&& JSON.parse(message).header.requestId != "00000000-0001-0000-000000000000") {
+		/*&& JSON.parse(message).header.requestId != "00000000-0001-0000-000000000000"*/) {
 			if (JSON.parse(message).body.properties.Message.substring(0, 2) == "./") {
 				gamecmd(JSON.parse(message).body.properties.Message.split("/")[1]);
 			}
@@ -508,9 +508,9 @@ function connection(ws) {
 								case 33:
 									enc(1);break;
 								case 34:
-									enc(4);break;
+									enc(1);break;
 								case 35:
-									enc(3);break;
+									enc(1);break;
 								case 32:
 								default:
 									enc(1);break;
