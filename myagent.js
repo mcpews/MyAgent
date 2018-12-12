@@ -505,6 +505,12 @@ function connection(ws) {
 									enc(3);break;
 								case 31:
 									enc(3);break;
+								case 33:
+									enc(1);break;
+								case 34:
+									enc(4);break;
+								case 35:
+									enc(3);break;
 								case 32:
 								default:
 									enc(1);break;
