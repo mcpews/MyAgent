@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 //Info & Settings
-const version="3.1";
+const version="3.2";
 var settings={
 	looplimit: -1,//-1: no limit
 	port: 19131,
@@ -76,28 +76,40 @@ var allws=[];
 var idp=1;
 
 rl.on("line",function (line){
-	if(line=="+log"){
+	spl=line.split(" ");
+	/*if(spl[0]=="+log"){
 		settings.log=true;
 		console.log("[SET] log=true");
 		return;
-	}
-	if(line=="-log"){
+	}*/
+	if(spl[0]=="-log"){
+		if(spl[1]==undefined){console.log("[SET/ERROR]No args\n-log [true/false]");return;}
+		if(spl[1]=="false"){
 		settings.log=false;
-		console.log("[SET] log=false");
+		}else{
+			settings.log=true;
+		}
+		console.log("[SET] log=%s",settings.log.toString());
 		return;
 	}
-	if(line.substring(0,8)=="-kickid "){
-		try{findid(parseInt(line.split(" ")[1])).ws.terminate();}catch(err){console.log("[KickId] Failed.");return;}
+	if(spl[0]=="-kickid"){
+		try{findid(parseInt(spl[1])).ws.terminate();}catch(err){console.log("[KickId] Failed.");return;}
 		console.log("[KickId] Success.");
 		return;
 	}
-	if(line.substring(0,7)=="-listid"){
+	if(spl[0]=="-listid"){
 		console.log("Websocket - live:");
 		allws.forEach(function(e,i){
 			try{e.ws.send("");console.log(e.id.toString());}catch(tr){}
 		});
-		console.log("ID Added to :%d",idp);
+		console.log("ID Added to:%d",idp);
 		return;
+	}
+	if(spl[0]=="-exit"||spl[0]=="-bye"||spl[0]=="-quit"){
+		shutdown();
+	}
+	if(spl[0]=="-reset"||spl[0]=="-reboot"||spl[0]=="-restart"||spl[0]=="-reload"){
+		reset();
 	}
 
 	allws.forEach(function(e,i){
@@ -127,6 +139,17 @@ function shutdown(){
 	console.log("Bye.");
 	if(false){console.log("Goodbye,Expand Dong.");}
 	process.exit(0);
+}
+function reset(){
+	allws.forEach(function(e,i){
+		try{e.ws.terminate();}catch(eee){}
+	});
+	console.log("Terminated all clients.");
+	allws=[];
+	console.log("Resetted websocket array");
+	idp=1;
+	console.log("Resetted ID Pool to 1.");
+	console.log("MyAgent Resetted.");
 }
 
 function findid(id){
