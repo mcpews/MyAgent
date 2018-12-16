@@ -12,7 +12,8 @@ var test=false;
 
 console.log("MyAgent v%s",version);
 console.log("Author: LNSSPsd");
-console.log("https://github.com/mcpewebsocket-dev/MyAgent");
+console.log("Maintainers(github username): LNSSPsd,TheXuJiaXin,Torrekie,CAIMEOX");
+console.log("https://github.com/mcpews/MyAgent");
 console.log("https://npmjs.com/myagent");
 
 process.on("uncaughtException",function (error){
@@ -95,6 +96,7 @@ rl.on("line",function (line){
 		allws.forEach(function(e,i){
 			try{e.ws.send("");console.log(e.id.toString());}catch(tr){}
 		});
+		console.log("ID Added to :%d",idp);
 		return;
 	}
 

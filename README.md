@@ -1,24 +1,23 @@
 # MyAgent
 The Minecraft agent generator & controller written in node.js
 
-[![MyAgent](pmyagent.png)](https://github.com/mcpewebsocket-dev/MyAgent)
-
-**[MyAgent Project](http://agent.vanillahh.online)**
+[![MyAgent](pmyagent.png)](https://github.com/mcpews/MyAgent)
 
 [![Discord](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/ntaa8z8)
 [![CircleCI](https://circleci.com/gh/mcpewebsocket-dev/MyAgent.svg?style=svg)](https://circleci.com/gh/mcpewebsocket-dev/MyAgent)
 [![MyAgent NPM](https://img.shields.io/badge/npm-myagent-blue.svg)](https://www.npmjs.com/myagent)
-[![MyAgent Version](https://img.shields.io/badge/dynamic/json.svg?label=myagent%20version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fmcpewebsocket-dev%2FMyAgent%2Fmaster%2Fpackage.json&query=%24.version&colorB=yellowgreen)](https://github.com/mcpewebsocket-dev/MyAgent)
+[![MyAgent Version](https://img.shields.io/badge/dynamic/json.svg?label=myagent%20version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fmcpews%2FMyAgent%2Fmaster%2Fpackage.json&query=%24.version&colorB=yellowgreen)](https://github.com/mcpews/MyAgent)
 [![Video On Bilibili](https://img.shields.io/badge/Video-On%20Bilibili-ff69b4.svg)](http://www.bilibili.com/video/av37343451)
 ## Considerations
 Agent Commands doesn't work in Minecraft Bedrock 1.7~1.8beta(1.8 is supported), that means you can't create or control Agent in these versions.
 ## Available Minecraft Versions
-iOS: 0.16 ~ 1.6  
-Android: 0.16 ~ 1.9b  
-Windows 10: 0.16 ~ 1.9b  
+iOS: 1.0 ~ 1.6  
+Android: 1.0 ~ 1.9b  
+Windows 10: 1.0 ~ 1.9b  
 PC(Minecraft Java Edition): Not Compatible  
-Apple TV: 0.16 ~ 1.1.5  
-Also compatible with Minecraft China Edition and Minecraft Education Edition
+Apple TV: 1.0 ~ 1.1.5  
+(Note: 0.16~0.17[?] used another commandRequest format,so not compatible.)  
+Also compatible with Minecraft China Edition and Minecraft Education Edition.
 ## ID Operation
 ### Kick ID
 kick a target by using `-kickid [ID`
