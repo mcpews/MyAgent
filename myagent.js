@@ -1,25 +1,37 @@
 #!/usr/bin/env node
 
+
 //Info & Settings
-const version="3.2";
+var version="Unknown";
 var settings={
 	looplimit: -1,//-1: no limit
 	port: 19131,
 	log: true,
+	errtrace: true,
 	loopinterval: 500
 };
 var test=false;
 
-console.log("MyAgent v%s",version);
+if(settings.errtrace){
+process.on("uncaughtException",function (error){
+	console.error("[ERROR] uncaughtException: %s.",error);
+	const err={name:"MyAgent Error Tracing",message:error};
+	Error.stackTraceLimit=30;
+	Error.captureStackTrace(err);
+	console.error(err.stack);
+	const dt=new Date();
+	const fs=require("fs");fs.writeFileSync(process.env.HOME+"/myagent-crash-tracing-"+dt.getFullYear()+"-"+dt.getMonth()+"-"+dt.getDate()+"-"+dt.getHours()+"-"+dt.getMinutes()+"-"+dt.getSeconds()+"-"+dt.getMilliseconds()+".log",
+"====MyAgent Crash Tracing====\nAt:"+Date()+"\nVersion:"+version+"\n"+err.stack+"\n====End Tracing====");
+	process.exit(3);
+});
+}
+
+console.log("=MyAgent=");
 console.log("Author: LNSSPsd");
+try{console.log("Version: %s",version=gv());}catch(to){}
 console.log("Maintainers(github username): LNSSPsd,TheXuJiaXin,Torrekie,CAIMEOX");
 console.log("https://github.com/mcpews/MyAgent");
 console.log("https://npmjs.com/myagent");
-
-process.on("uncaughtException",function (error){
-	console.log("[ERROR] uncaughtException: %s.",error.message);
-	process.exit(3);
-});
 
 
 try{
@@ -32,6 +44,11 @@ if(process.argv.splice(2)=="port"){
 	console.log("PORT: %d",settings.port);
 }
 }catch(n){}
+
+function gv(){
+const fss=require("fs");
+return JSON.parse(fss.readFileSync("package.json").toString()).version;
+}
 
 const os = require("os");
 
@@ -82,6 +99,12 @@ rl.on("line",function (line){
 		console.log("[SET] log=true");
 		return;
 	}*/
+	if(spl[0]=="-repl"){
+		const repl=require("repl");
+		rl.close();
+		repl.start().on("exit",function(){process.exit(0);});
+		return;
+	}
 	if(spl[0]=="-log"){
 		if(spl[1]==undefined){console.log("[SET/ERROR]No args\n-log [true/false]");return;}
 		if(spl[1]=="false"){
@@ -137,7 +160,6 @@ function shutdown(){
 	});
 	console.log("\nTerminated all clients.");
 	console.log("Bye.");
-	if(false){console.log("Goodbye,Expand Dong.");}
 	process.exit(0);
 }
 function reset(){

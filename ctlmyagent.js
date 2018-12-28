@@ -5,6 +5,7 @@ var settings={
 	looplimit: -1,
 	port: 19131,
 	log: true,
+	errtrace: true,
 	loopinterval: 500
 };
 
