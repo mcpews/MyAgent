@@ -18,11 +18,7 @@ PC(Minecraft Java Edition): Not Compatible
 Apple TV: 1.0 ~ 1.1.5  
 (Note: 0.16~0.17[?] used another commandRequest format,so not compatible.)  
 Also compatible with Minecraft China Edition and Minecraft Education Edition.
-## ID Operation
-### Kick ID
-kick a target by using `-kickid [ID`
-### List all live ID
-`-listid` to show all live id.
+## [MyAgent Server Commands](https://github.com/mcpews/wiki/server-commands)
 ## Fast install
 ### Global Install
 Execute `npm i myagent -g` to install myagent.  
