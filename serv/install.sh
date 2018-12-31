@@ -1,6 +1,23 @@
 #! /bin/bash
 
-cd $(dirname $0)
+
+if [ "$1" == "--help" ] || [ "$1" == "-h" ]; then
+	echo "$0 [-s/-f/-h]"
+	echo "-s:Install screen version service."
+	echo "-f:Force install"
+	echo "-h:Help"
+	exit 0
+fi
+
+SOURCE="$0"
+while [ -h "$SOURCE"  ]; do
+	DIR="$( cd -P "$( dirname "$SOURCE"  )" && pwd  )"
+	SOURCE="$(readlink "$SOURCE")"
+	[[ $SOURCE != /*  ]] && SOURCE="$DIR/$SOURCE"
+done
+DIR="$( cd -P "$( dirname "$SOURCE"  )" && pwd  )"
+cd $DIR
+
 if [ $(whoami) != "root" ]; then
 	echo Please run as root permission.
 	exit 2
@@ -34,7 +51,16 @@ if [ "$?" != "0" ]; then
 	exit 4
 fi
 
-cp myagent.service /etc/systemd/system/multi-user.target.wants/
+if [ "$1" == "-s" ]; then
+	screen -v >/dev/null 2>/dev/null
+	if [ "$?" != "0" ]; then
+		echo "[ERROR] Screen not installed"
+		exit 8
+	fi
+	cp myagent_s.service /etc/systemd/system/multi-user.target.wants/
+else
+	cp myagent.service /etc/systemd/system/multi-user.target.wants/
+fi
 if [ "$?" != "0" ]; then
 	echo "====Fatal Error====->Copy failed,code: $?"
 	exit 5

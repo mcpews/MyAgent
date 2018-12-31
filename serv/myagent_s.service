@@ -1,0 +1,11 @@
+[Unit]
+Description=MyAgent Server (Screen)
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/env screen -S ag myagent
+ExecReload=/bin/kill -SIGTERM $MAINPID ; /usr/bin/env screen -S ag myagent
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
