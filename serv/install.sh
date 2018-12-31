@@ -53,7 +53,7 @@ fi
 
 if [ "$1" == "-s" ]; then
 	screen -v >/dev/null 2>/dev/null
-	if [ "$?" != "0" ]; then
+	if [ "$?" != "1" ]; then
 		echo "[ERROR] Screen not installed"
 		exit 8
 	fi
