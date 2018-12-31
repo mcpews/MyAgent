@@ -52,12 +52,7 @@ if [ "$?" != "0" ]; then
 fi
 
 if [ "$1" == "-s" ]; then
-	screen -v >/dev/null 2>/dev/null
-	if [ "$?" != "1" ]; then
-		echo "[ERROR] Screen not installed"
-		exit 8
-	fi
-	cp myagent_s.service /etc/systemd/system/multi-user.target.wants/
+	cp myagent_s.service /etc/systemd/system/multi-user.target.wants/myagent.service
 else
 	cp myagent.service /etc/systemd/system/multi-user.target.wants/
 fi
