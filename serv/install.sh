@@ -3,7 +3,6 @@
 
 if [ "$1" == "--help" ] || [ "$1" == "-h" ]; then
 	echo "$0 [-s/-f/-h]"
-	echo "-s:Install screen version service."
 	echo "-f:Force install"
 	echo "-h:Help"
 	exit 0
@@ -51,11 +50,8 @@ if [ "$?" != "0" ]; then
 	exit 4
 fi
 
-if [ "$1" == "-s" ]; then
-	cp myagent_s.service /etc/systemd/system/multi-user.target.wants/myagent.service
-else
-	cp myagent.service /etc/systemd/system/multi-user.target.wants/
-fi
+cp myagent.service /etc/systemd/system/multi-user.target.wants/
+
 if [ "$?" != "0" ]; then
 	echo "====Fatal Error====->Copy failed,code: $?"
 	exit 5
