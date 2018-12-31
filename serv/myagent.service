@@ -1,0 +1,12 @@
+[Unit]
+Description=MyAgent Server
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/env myagent
+ExecReload=/bin/kill -SIGTERM $MAINPID ; /usr/bin/env myagent
+Restart=always
+RestartPreventExitStatus=0 1 3
+
+[Install]
+WantedBy=multi-user.target

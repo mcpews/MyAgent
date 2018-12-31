@@ -1,11 +1,13 @@
 {
   "name": "myagent",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "description": "The agent generator & controller written in node.js",
   "main": "myagent.js",
   "bin": {
     "myagent": "myagent.js",
-    "myagentctl": "ctlmyagent.js"
+    "myagentctl": "ctlmyagent.js",
+    "myagentinstall": "serv/install.sh",
+    "myagentuninstall": "serv/uninstall.sh"
   },
   "scripts": {
     "nop": "exit"
