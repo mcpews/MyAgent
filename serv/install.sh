@@ -1,6 +1,6 @@
 #! /bin/bash
 
-cd serv
+cd $(dirname $0)
 if [ $(whoami) != "root" ]; then
 	echo Please run as root permission.
 	exit 2

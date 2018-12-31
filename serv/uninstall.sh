@@ -1,7 +1,5 @@
 #! /bin/bash
 
-cd serv
-
 if [ $(whoami) != "root" ]; then
 	echo ROOT PERMISSION Plz.
 	exit 1
