@@ -4,7 +4,6 @@ The Minecraft agent generator & controller written in node.js
 [![MyAgent](pmyagent.png)](https://github.com/mcpews/MyAgent)
 
 [![Discord](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/ntaa8z8)
-<!--[![CircleCI](https://circleci.com/gh/mcpewebsocket-dev/MyAgent.svg?style=svg)](https://circleci.com/gh/mcpewebsocket-dev/MyAgent)-->
 [![MyAgent NPM](https://img.shields.io/badge/npm-myagent-blue.svg)](https://www.npmjs.com/myagent)
 [![MyAgent Version](https://img.shields.io/badge/dynamic/json.svg?label=myagent%20version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fmcpews%2FMyAgent%2Fmaster%2Fpackage.json&query=%24.version&colorB=yellowgreen)](https://github.com/mcpews/MyAgent)
 [![Video On Bilibili](https://img.shields.io/badge/Video-On%20Bilibili-ff69b4.svg)](http://www.bilibili.com/video/av37343451)
