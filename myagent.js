@@ -193,7 +193,7 @@ function findid(id){
 rl.on("SIGINT",function(){shutdown();});
 
 wss.on('connection',
-function connection(ws) {
+function connection(ws,req) {
 	var wsi={
 		id: idp,
 		ws: ws
@@ -249,7 +249,7 @@ function connection(ws) {
 		
 	
 	var logtogame=false;
-	console.log("[Info] A new client connected,ID: %d.",wsi.id);
+	console.log("[Info] A new client connected,ID: %d,IP: %s",wsi.id,req.connection.remoteAddress);
 	
 	ws.send(JSON.stringify({
 		"body": {
