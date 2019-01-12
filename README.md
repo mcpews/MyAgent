@@ -4,7 +4,6 @@ The Minecraft agent generator & controller written in node.js
 [![MyAgent](pmyagent.png)](https://github.com/mcpews/MyAgent)
 
 [![Discord](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/ntaa8z8)
-[![CircleCI](https://circleci.com/gh/mcpewebsocket-dev/MyAgent.svg?style=svg)](https://circleci.com/gh/mcpewebsocket-dev/MyAgent)
 [![MyAgent NPM](https://img.shields.io/badge/npm-myagent-blue.svg)](https://www.npmjs.com/myagent)
 [![MyAgent Version](https://img.shields.io/badge/dynamic/json.svg?label=myagent%20version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fmcpews%2FMyAgent%2Fmaster%2Fpackage.json&query=%24.version&colorB=yellowgreen)](https://github.com/mcpews/MyAgent)
 [![Video On Bilibili](https://img.shields.io/badge/Video-On%20Bilibili-ff69b4.svg)](http://www.bilibili.com/video/av37343451)
@@ -51,7 +50,7 @@ type command in game:
 `/connect [ip]:[port]`  
 `[ip]` is IP of the server where you hosting myagent.  
 `[port]` is the ip of myagent. Default value is 19131.
-## Report a bug
+## Report bug
 Submit a issue to report bug.
 ## LICENSE
 [GNU GPL v3](LICENSE)
@@ -63,4 +62,4 @@ Submit a issue to report bug.
 ## MyAgent Live Server
 111.230.43.58:19131
 ## Contact Us
-LNSSPsd's QQ:`2825121086`
+Send a issue,plz.
