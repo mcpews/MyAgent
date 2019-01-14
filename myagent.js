@@ -47,7 +47,7 @@ if(process.argv.splice(2)=="port"){
 
 function gv(){
 const fss=require("fs");
-return JSON.parse(fss.readFileSync("package.json").toString()).version;
+return JSON.parse(fss.readFileSync(__dirname+"/package.json").toString()).version;
 }
 
 const os = require("os");
