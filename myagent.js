@@ -13,11 +13,11 @@ var settings={
 var test=false;
 
 if(settings.errtrace){
-process.on("uncaughtException",function (error){
+process.on("uncaughtException",function trace(error){
 	console.error("[ERROR] uncaughtException: %s.",error);
 	const err={name:"MyAgent Error Tracing",message:error};
 	Error.stackTraceLimit=30;
-	Error.captureStackTrace(err);
+	Error.captureStackTrace(err,trace);
 	console.error(err.stack);
 	const dt=new Date();
 	const fs=require("fs");fs.writeFileSync(process.env.HOME+"/myagent-crash-tracing-"+dt.getFullYear()+"-"+dt.getMonth()+"-"+dt.getDate()+"-"+dt.getHours()+"-"+dt.getMinutes()+"-"+dt.getSeconds()+"-"+dt.getMilliseconds()+".log",
@@ -71,16 +71,16 @@ try{
 }catch(errx){}
 console.log("PORT: %d",settings.port);
 
-	var readline=require("readline");
-	var rl = readline.createInterface({
-		    input: process.stdin,
-		    output: process.stdout
-	});
+var readline=require("readline");
+var rl = readline.createInterface({
+	input: process.stdin,
+	output: process.stdout
+});
 
-		var WSk = require("ws");
-	var wss = new WSk.Server({
-		port: settings.port
-	});
+var WSk = require("ws");
+var wss = new WSk.Server({
+	port: settings.port
+});
 } catch(err) {
 	console.error("[ERROR] Error when loading require packages: %s.", err.message);
 	process.exit(1);
@@ -108,7 +108,7 @@ rl.on("line",function (line){
 	if(spl[0]=="-log"){
 		if(spl[1]==undefined){console.log("[SET/ERROR]No args\n-log [true/false]");return;}
 		if(spl[1]=="false"){
-		settings.log=false;
+			settings.log=false;
 		}else{
 			settings.log=true;
 		}
@@ -300,6 +300,7 @@ function connection(ws,req) {
 	
 	ws.on('message',
 	function (message) {
+		try{JSON.parse(message)}catch(error){console.log("[ERROR on Client %d] %s",wsi.id,error);ws.terminate();}
 		if(settings.log==true){
 		console.log("[Client ID%d] Received: %s",wsi.id, message);
 		}

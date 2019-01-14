@@ -10,11 +10,7 @@ The Minecraft agent generator & controller written in node.js
 ## Considerations
 Agent Commands doesn't work in Minecraft Bedrock 1.7~1.8beta(1.8 is supported), that means you can't create or control Agent in these versions.
 ## Available Minecraft Versions
-iOS: 1.0 ~ 1.6  
-Android: 1.0 ~ 1.9b  
-Windows 10: 1.0 ~ 1.9b  
-PC(Minecraft Java Edition): Not Compatible  
-Apple TV: 1.0 ~ 1.1.5  
+All MCPE Bedrock Embedded version: 1.0+ but not 1.7~1.8b
 (Note: 0.16~0.17[?] used another commandRequest format,so not compatible.)  
 Also compatible with Minecraft China Edition and Minecraft Education Edition.
 ## [MyAgent Server Commands](https://github.com/mcpews/wiki/server-commands)
