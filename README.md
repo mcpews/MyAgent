@@ -10,20 +10,16 @@ The Minecraft agent generator & controller written in node.js
 ## Considerations
 Agent Commands doesn't work in Minecraft Bedrock 1.7~1.8beta(1.8 is supported), that means you can't create or control Agent in these versions.
 ## Available Minecraft Versions
-All MCPE Bedrock Embedded version: 1.0+ but not 1.7~1.8b
-(Note: 0.16~0.17[?] used another commandRequest format,so not compatible.)  
-Also compatible with Minecraft China Edition and Minecraft Education Edition.
+All MCPE Bedrock Embedded Build (version: 1.2+ but not 1.7~1.8b)
+(Note: 0.16~1.1 used another commandRequest packet format,so not compatible.)  
+MyAgent also compatible with Minecraft China Edition and Minecraft Education Edition.
 ## [MyAgent Server Commands](https://github.com/mcpews/wiki/server-commands)
 ## Fast install
-### Global Install
 Execute `npm i myagent -g` to install myagent.  
 Execute `myagent` command to start myagent.  
 `myagentctl` is the tool to change myagent's config.
-### Normal Install
-Execute `npm i myagent` to install myagent.  
-Execute `npx myagent` to start myagent.
 ## MyAgent Binary File
-You can download builded binary file of myagent in CircleCI.(Stopped Update)
+Binary version of myagent is too old. :(
 ## MyAgent Control
 MyAgent Control can set the config of myagent.  
 `myagentctl set <config> <value>` to set a config.  
@@ -36,7 +32,7 @@ npm install
 ```
 At last,execute command:`node myagent.js`
 ## Run
-Install Node.JS First,And then execute:
+Install Node.JS first,and then execute:
 ```
 npm i myagent -g
 myagent
@@ -55,7 +51,10 @@ Submit a issue to report bug.
 [LNSSPsd](https://github.com/LNSSPsd)
 ### Maintainers
 [許嘉鋅](https://github.com/TheXuJiaXin),[LNSSPsd](https://github.com/LNSSPsd),[CAIMEO](https://github.com/CAIMEOX) &amp; [Torrekie](https://github.com/Torrekie).
-## MyAgent Live Server
+## MyAgent Live Server(Sometimes not work x( )
 111.230.43.58:19131
 ## Contact Us
 Send a issue,plz.
+## More
+For verbose help or info,see [MyAgent Wiki](https://github.com/mcpews/MyAgent/wiki).
+

@@ -7,7 +7,7 @@ var settings={
 	looplimit: -1,//-1: no limit
 	port: 19131,
 	log: true,
-	errtrace: true,
+	errtrace: false,
 	loopinterval: 500
 };
 var test=false;
@@ -35,8 +35,8 @@ console.log("https://npmjs.com/myagent");
 
 
 try{
-if(process.argv.splice(2)=="test"){
-	console.log("TEST MODE: true");
+if(process.argv.splice(2)=="test"){ //Test mode is made for binary file build test.
+	console.log("TEST MODE: true");//TestMode:Quit when myagent loaded successfully.
 	test=true;
 }
 if(process.argv.splice(2)=="port"){
