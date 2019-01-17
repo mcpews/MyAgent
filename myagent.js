@@ -159,6 +159,8 @@ function shutdown(){
 		try{e.ws.terminate();}catch(eee){}
 	});
 	console.log("\nTerminated all clients.");
+	wss.close();
+	console.log("Server closed");
 	console.log("Bye.");
 	process.exit(0);
 }
