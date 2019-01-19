@@ -61,13 +61,9 @@ return JSON.parse(fss.readFileSync(__dirname+"/package.json").toString()).versio
 
 const os = require("os");
 
-if(os.platform()=="win32"){//It only works in windows.
 try {
-	var network = os.networkInterfaces();
-	console.log("HOST: %s",network[Object.keys(network)[0]][1].address);
+	console.log("HOST: %s",require('os').networkInterfaces()[Object.keys(require('os').networkInterfaces())[1]][0].address);
 } catch (e) {
-	console.log("HOST: Unknown");
-}
 }
 
 
@@ -170,6 +166,8 @@ function shutdown(){
 		try{e.ws.terminate();}catch(eee){}
 	});
 	console.log("\nTerminated all clients.");
+	wss.close();
+	console.log("Server closed");
 	console.log("Bye.");
 	process.exit(0);
 }

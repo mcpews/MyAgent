@@ -43,7 +43,7 @@ type command in game:
 `[ip]` is IP of the server where you hosting myagent.  
 `[port]` is the ip of myagent. Default value is 19131.
 ## Report bug
-Submit a issue to report bug.
+Submit an issue to report bug.
 ## LICENSE
 [GNU GPL v3](LICENSE)
 ## Author & Maintainers.
@@ -54,7 +54,7 @@ Submit a issue to report bug.
 ## MyAgent Live Server(Sometimes not work x( )
 111.230.43.58:19131
 ## Contact Us
-Send a issue,plz.
+Send an issue,plz.
 ## More
 For verbose help or info,see [MyAgent Wiki](https://github.com/mcpews/MyAgent/wiki).
 
