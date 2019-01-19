@@ -35,6 +35,15 @@ console.log("https://npmjs.com/myagent");
 
 
 try{
+if(process.argv.splice(2)=="-d"){
+console.log("MyAgent Service");
+try{var DBus=require("dbus");
+var serv=DBus.registerService("session","com.mcpews.myagent");
+var sobj=serv.prototype.createObject("/com/mcpews/myagent/control");
+var itf=sobj.createInterface("com.mcpews.myagent.i");
+itf.prototype.addMethod("line",{in:[DBus.Define(String)]},function(line){online(line)});
+}catch(undefined){}
+}
 if(process.argv.splice(2)=="test"){ //Test mode is made for binary file build test.
 	console.log("TEST MODE: true");//TestMode:Quit when myagent loaded successfully.
 	test=true;
@@ -92,7 +101,7 @@ if(test==true){process.exit(0);}
 var allws=[];
 var idp=1;
 
-rl.on("line",function (line){
+function online(line){
 	spl=line.split(" ");
 	/*if(spl[0]=="+log"){
 		settings.log=true;
@@ -152,7 +161,9 @@ rl.on("line",function (line){
 			}
 		}));}catch(ne){allws.splice(i,1);}
 	});
-});
+}
+
+rl.on("line",function (line){online(line);});
 
 function shutdown(){
 	allws.forEach(function(e,i){

@@ -28,6 +28,7 @@
   },
   "homepage": "http://agent.vanillahh.online",
   "dependencies": {
+    "dbus": "^1.0.3",
     "ws": "^6.0.0"
   }
 }
