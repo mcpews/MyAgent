@@ -41,7 +41,8 @@ try{var DBus=require("dbus");
 var serv=DBus.registerService("session","com.mcpews.myagent");
 var sobj=serv.prototype.createObject("/com/mcpews/myagent/control");
 var itf=sobj.createInterface("com.mcpews.myagent.i");
-itf.prototype.addMethod("line",{in:[DBus.Define(String)]},function(line){online(line)});
+itf.prototype.addMethod("line",{in: DBus.Define(String)},function(line,callback){online(line);callback(null);});
+itf.update();
 }catch(undefined){}
 }
 if(process.argv.splice(2)=="test"){ //Test mode is made for binary file build test.
@@ -309,7 +310,8 @@ function connection(ws,req) {
 	
 	ws.on('message',
 	function (message) {
-		try{JSON.parse(message)}catch(error){console.log("[ERROR on Client %d] %s",wsi.id,error);ws.terminate();}
+		if(message=="")return;
+		try{JSON.parse(message)}catch(error){console.log("[ERROR on Client %d] %s",wsi.id,error);return;ws.terminate();}
 		if(settings.log==true){
 		console.log("[Client ID%d] Received: %s",wsi.id, message);
 		}
