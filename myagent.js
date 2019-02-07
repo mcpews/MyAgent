@@ -62,6 +62,7 @@ onMessage(message,wsi,callbacks,cmdproc){
 		try{packet=JSON.parse(message);}catch(error){console.log("[ERROR on Client %d] %s",wsi.id,error);try{cmdproc.sendText("Bad Packet!");ws.send("Bad packet!\nYou are trying to fuck our server??");cmdproc.executeNCommand("closewebsocket");ws.terminate();}catch(undefined){try{ws.terminate();}catch(undefined){}}}
 		if(packet.header.messagePurpose=="commandResponse"){
 	    callbacks.doCallback(packet.header.requestId,packet);
+		return;
 	    }
 if (packet.body.eventName == "PlayerMessage") {
 			if (packet.body.properties.MessageType == "me" || packet.body.properties.MessageType == "say") {

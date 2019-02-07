@@ -29,7 +29,7 @@ let help={
 	"getposition":"*/getposition:Get position of agent.",
 	"collect":"*/collect <all|itemname>:collect all drops",
 	"cmdfile":"*/cmdfile <file>: Execute all commands in <file>.",
-	"help"":"*/help [item]:Show help of [item] or show all helps."
+	"help":"*/help [item]:Show help of [item] or show all helps."
 }
 
 
