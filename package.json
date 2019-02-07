@@ -1,11 +1,10 @@
 {
   "name": "myagent",
-  "version": "3.2.16",
+  "version": "3.9.999",
   "description": "The agent generator & controller written in node.js",
   "main": "myagent.js",
   "bin": {
     "myagent": "myagent.js",
-    "myagentctl": "ctlmyagent.js",
     "myagentinstall": "serv/install.sh",
     "myagentuninstall": "serv/uninstall.sh"
   },
@@ -28,7 +27,6 @@
   },
   "homepage": "http://agent.vanillahh.online",
   "dependencies": {
-    "dbus": "^1.0.3",
     "ws": "^6.0.0"
   }
 }

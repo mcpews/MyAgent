@@ -17,13 +17,10 @@ MyAgent also compatible with Minecraft China Edition and Minecraft Education Edi
 ## Fast install
 Execute `npm i myagent -g` to install myagent.  
 Execute `myagent` command to start myagent.  
-`myagentctl` is the tool to change myagent's config.
-## MyAgent Binary File
-Binary version of myagent is too old. :(
 ## MyAgent Control
 MyAgent Control can set the config of myagent.  
-`myagentctl set <config> <value>` to set a config.  
-`myagentctl rmconf` to remove config file of myagent (back to default configs)
+`myagent control set <config> <value>` to set a config.  
+`myagent control rmconf` to remove config file of myagent (back to default configs)
 ## Execute myagent from source code
 First,Clone a copy of myagent  
 And then,please execute following command:
@@ -51,8 +48,6 @@ Submit an issue to report bug.
 [LNSSPsd](https://github.com/LNSSPsd)
 ### Maintainers
 [許嘉鋅](https://github.com/TheXuJiaXin),[LNSSPsd](https://github.com/LNSSPsd),[CAIMEO](https://github.com/CAIMEOX) &amp; [Torrekie](https://github.com/Torrekie).
-## MyAgent Live Server(Sometimes not work x( )
-111.230.43.58:19131
 ## Contact Us
 Send an issue,plz.
 ## More
