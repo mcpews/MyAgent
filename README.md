@@ -1,7 +1,7 @@
 # MyAgent
-The Minecraft agent generator & controller written in node.js
+A Minecraft agent generator & controller written in node.js
 
-[![MyAgent](pmyagent.png)](https://github.com/mcpews/MyAgent)
+[![MyAgent v4](images/myagent4.png)](https://github.com/mcpews/MyAgent)
 
 [![MyAgent NPM](https://img.shields.io/badge/npm-myagent-blue.svg)](https://www.npmjs.com/myagent)
 [![MyAgent Version](https://img.shields.io/badge/dynamic/json.svg?label=myagent%20version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fmcpews%2FMyAgent%2Fmaster%2Fpackage.json&query=%24.version&colorB=yellowgreen)](https://github.com/mcpews/MyAgent)
@@ -13,13 +13,18 @@ All MCPE Bedrock Embedded Build (version: 1.2+ but not 1.7 ~ 1.8b)
 (Note: 0.16 ~ 1.1 used another commandRequest packet format,so not compatible.)  
 MyAgent also compatible with Minecraft China Edition and Minecraft Education Edition.
 ## [MyAgent Server Commands](https://github.com/mcpews/wiki/server-commands)
+## Loops
+Syntax: `[:/!]/<command>~<loop count>`  
+Examples:
+ - Move agent up for 10 times `:/move up~10`
+ - Say `oh` for 5 times `!/say oh~5`
 ## Fast install
 Execute `npm i myagent -g` to install myagent.  
-Execute `myagent` command to start myagent.  
+Then execute `myagent` command to start myagent.  
 ## MyAgent Control
 MyAgent Control can set the config of myagent.  
 `myagent control set <config> <value>` to set a config.  
-`myagent control rmconf` to remove config file of myagent (back to default configs)
+`myagent control rmconf` to remove config file of myagent (reset to default configs)
 ## Execute myagent from source code
 First,Clone a copy of myagent  
 And then,please execute following command:

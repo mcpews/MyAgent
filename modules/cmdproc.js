@@ -1,15 +1,13 @@
-let ws,callbacks,Methods;
-
 class CommandProcessor{
-	constructor(ws1,callbacks1,Methods1){
-		ws=ws1;
-		callbacks=callbacks1;
-		Methods=Methods1;
+	constructor(ws,callbacks,Methods){
+		this.ws=ws;
+		this.callbacks=callbacks;
+		this.Methods=Methods;
 	}
 
 	executeCommand(command,callback){
-		let iiid=Methods.genUUID();
-		ws.send(JSON.stringify({
+		let iiid=this.Methods.genUUID();
+		this.ws.send(JSON.stringify({
 			"body": {
 				"origin": {
 					"type": "player"
@@ -18,23 +16,54 @@ class CommandProcessor{
 				"version": 1
 			},
 			"header": {
-				"requestId": iiid,//"0ffae098-00ff-ffff-abbbbbdf3f44",
+				"requestId": iiid,
 				"messagePurpose": "commandRequest",
 				"version": 1,
 				"messageType": "commandRequest"
 			}
 		}));
 		if(callback!=undefined){
-		let empty=callbacks.findEmpty(callbacks);
+		let empty=this.callbacks.findEmpty();
 		if(empty!=null){
-			callbacks.callbackz.splice(empty+1,1,[iiid,callback]);
+			this.callbacks.callbackz.splice(empty+1,1,[iiid,callback]);
 		}else{
-			callbacks.callbackz.push([iiid,callback]);
+			this.callbacks.callbackz.push([iiid,callback]);
 		}}
 	}
 
+	executeAgentCommandSync(command){
+		return new Promise((done)=>{
+		let iiid=this.Methods.genUUID();
+		this.ws.send(JSON.stringify({
+			"body": {
+				"origin": {
+					"type": "player"
+				},
+				"commandLine": command,
+				"version": 1
+			},
+			"header": {
+				"requestId": iiid,
+				"messagePurpose": "commandRequest",
+				"version": 1,
+				"messageType": "commandRequest"
+			}
+		}));
+		let empty=this.callbacks.findEmpty();
+		if(empty!=null){
+			this.callbacks.callbackz.splice(empty+1,1,[iiid,done,"agent"]);
+		}else{
+			this.callbacks.callbackz.push([iiid,done,"agent"]);
+		}
+		});
+	}
+
+	executeCommandSync(command){
+		return new Promise((callout)=>{this.executeCommand(command,callout);});
+	}
+
 	executeNCommand(cmd){
-		ws.send(JSON.stringify({
+		this.ws.send(JSON.stringify({
 			"body": {
 				"origin": {
 					"type": "player"
@@ -56,12 +85,12 @@ class CommandProcessor{
 	}
 
 	subscribe(ev){
-		ws.send(JSON.stringify({
+		this.ws.send(JSON.stringify({
 			"body": {
 				"eventName": ev
 			},
 			"header": {
-				"requestId": Methods.genUUID(),
+				"requestId": this.Methods.genUUID(),
 				"messagePurpose": "subscribe",
 				"version": 1,
 				"messageType": "commandRequest"

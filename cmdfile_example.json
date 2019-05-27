@@ -1,7 +1,0 @@
-{
-	"name": "CMDFILE EXAMPLE",
-	"author": "LNSSPsd",
-	"type": "cmdfile",
-	"commands_interval": 500,
-	"commands": ["agent create","say Hello World!","agent move forward"]
-}

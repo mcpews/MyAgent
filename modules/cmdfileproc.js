@@ -1,5 +1,13 @@
+const fs=require("fs");
+
+function asleep(time){
+	return new Promise((ok)=>{
+		setTimeout(ok,time);
+	});
+}
+
 class CmdFileProcessor{
-	run(content,cmdproc){
+	async run(content,cmdproc){
 		let d=0;
 		if(content.type!="cmdfile"){throw new Error("Invalid file type.");}
 		let intv=500;
@@ -11,9 +19,11 @@ class CmdFileProcessor{
 			cmdproc.sendText("Start execute cmdfile: "+content.name+"\nAuthor: "+content.author);
 		}
 		for(let e of content.commands){
-			setTimeout(function(){cmdproc.executeNCommand(e);},intv*d);
+			await asleep(intv);
+			cmdproc.executeNCommand(e);
 			d++;
 		}
+		cmdproc.sendText("Command file executed successfully.");
 		return;
 	}
 }
