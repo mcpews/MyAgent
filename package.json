@@ -1,19 +1,17 @@
 {
   "name": "myagent",
-  "version": "3.9.9999",
+  "version": "4.0.0",
   "description": "The agent generator & controller written in node.js",
   "main": "myagent.js",
   "bin": {
-    "myagent": "myagent.js",
-    "myagentinstall": "serv/install.sh",
-    "myagentuninstall": "serv/uninstall.sh"
+    "myagent": "myagent.js"
   },
   "scripts": {
     "nop": "exit"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mcpewebsocket-dev/MyAgent.git"
+    "url": "git+https://github.com/mcpews/MyAgent.git"
   },
   "keywords": [
     "minecraftpe",
@@ -23,10 +21,10 @@
   "author": "LNSSPsd,Torrekie,CAIMEOX,TheXuJiaXin",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/mcpewebsocket-dev/MyAgent/issues"
+    "url": "https://github.com/mcpews/MyAgent/issues"
   },
-  "homepage": "http://agent.vanillahh.online",
+  "homepage": "https://github.com/mcpews/MyAgent",
   "dependencies": {
-    "ws": "^6.0.0"
+    "ws": "6.1.0"
   }
 }
