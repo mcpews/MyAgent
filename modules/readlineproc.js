@@ -65,7 +65,7 @@ class ReadLineProcessor{
 				"version": 1
 			},
 			"header": {
-				"requestId": "00000000-0001-0000-000000000000",
+				"requestId": "00000000-0001-1000-ffff-000000000000",
 				"messagePurpose": "commandRequest",
 				"version": 1,
 				"messageType": "commandRequest"
