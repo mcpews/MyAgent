@@ -12,7 +12,7 @@ And the latest version of iOS platform's MC China Edition doesn't compatible wit
 All MCPE Bedrock Embedded Build (version: 1.2+ but not 1.7 ~ 1.8b)
 (Note: 0.16 ~ 1.1 used another commandRequest packet format,so not compatible.)  
 MyAgent also compatible with Minecraft China Edition and Minecraft Education Edition.
-## [MyAgent Server Commands](https://github.com/mcpews/wiki/server-commands)
+## [MyAgent Server Commands](https://github.com/mcpews/MyAgent/wiki/server-commands)
 ## Loops
 Syntax: `[:/!]/<command>~<loop count>`  
 Examples:
