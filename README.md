@@ -46,6 +46,8 @@ Submit an issue to report bug.
 [CAIMEO](https://github.com/CAIMEOX)
 [Torrekie](https://github.com/Torrekie)
 [許嘉鋅](https://github.com/TheXuJiaXin)
+## See also
+[MyAgent++](https://github.com/mcpews/MyAgentPP)
 ## More
 For verbose help or info,please see [MyAgent Wiki](https://github.com/mcpews/MyAgent/wiki).
 
